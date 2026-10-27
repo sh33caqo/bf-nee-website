@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' class='svglite' width='612.00pt' height='216.00pt' viewBox='0 0 612.00 216.00'>
+<defs>
+  <style type='text/css'><![CDATA[
+    .svglite line, .svglite polyline, .svglite polygon, .svglite path, .svglite rect, .svglite circle {
+      fill: none;
+      stroke: #000000;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-miterlimit: 10.00;
+    }
+    .svglite text {
+      white-space: pre;
+    }
+  ]]></style>
+</defs>
+<rect width='100%' height='100%' style='stroke: none; fill: none;'/>
+<defs>
+  <clipPath id='cpMC4wMHw2MTIuMDB8MC4wMHwyMTYuMDA='>
+    <rect x='0.00' y='0.00' width='612.00' height='216.00' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpMC4wMHw2MTIuMDB8MC4wMHwyMTYuMDA=)'>
+<rect x='0.000000000000064' y='0.00' width='612.00' height='216.00' style='stroke-width: 1.26; stroke: none;' />
+</g>
+<defs>
+  <clipPath id='cpMTczLjM5fDYwMC4wNHwyNS45NnwxNzguMjg='>
+    <rect x='173.39' y='25.96' width='426.66' height='152.32' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpMTczLjM5fDYwMC4wNHwyNS45NnwxNzguMjg=)'>
+<rect x='173.39' y='25.96' width='426.66' height='152.32' style='stroke-width: 1.26; stroke: none;' />
+<polyline points='173.39,178.28 173.39,25.96 ' style='stroke-width: 0.75; stroke: #E1E0D9; stroke-linecap: butt;' />
+<polyline points='266.14,178.28 266.14,25.96 ' style='stroke-width: 0.75; stroke: #E1E0D9; stroke-linecap: butt;' />
+<polyline points='358.89,178.28 358.89,25.96 ' style='stroke-width: 0.75; stroke: #E1E0D9; stroke-linecap: butt;' />
+<polyline points='451.64,178.28 451.64,25.96 ' style='stroke-width: 0.75; stroke: #E1E0D9; stroke-linecap: butt;' />
+<polyline points='544.39,178.28 544.39,25.96 ' style='stroke-width: 0.75; stroke: #E1E0D9; stroke-linecap: butt;' />
+<rect x='173.39' y='64.04' width='371.01' height='76.16' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #B5B3AB;' />
+<text x='546.24' y='105.64' style='font-size: 9.67px;fill: #52514E; font-family: "DejaVu Sans";' textLength='6.15px' lengthAdjust='spacingAndGlyphs'>4</text>
+</g>
+<g clip-path='url(#cpMC4wMHw2MTIuMDB8MC4wMHwyMTYuMDA=)'>
+<polyline points='173.39,178.28 173.39,25.96 ' style='stroke-width: 0.85; stroke: #C3C2B7; stroke-linecap: butt;' />
+<text x='167.56' y='105.91' text-anchor='end' style='font-size: 10.40px;fill: #898781; font-family: "DejaVu Sans";' textLength='159.59px' lengthAdjust='spacingAndGlyphs'>no LandSHIFT commodity data</text>
+<text x='173.39' y='191.68' text-anchor='middle' style='font-size: 10.40px;fill: #898781; font-family: "DejaVu Sans";' textLength='6.61px' lengthAdjust='spacingAndGlyphs'>0</text>
+<text x='266.14' y='191.68' text-anchor='middle' style='font-size: 10.40px;fill: #898781; font-family: "DejaVu Sans";' textLength='6.61px' lengthAdjust='spacingAndGlyphs'>1</text>
+<text x='358.89' y='191.68' text-anchor='middle' style='font-size: 10.40px;fill: #898781; font-family: "DejaVu Sans";' textLength='6.61px' lengthAdjust='spacingAndGlyphs'>2</text>
+<text x='451.64' y='191.68' text-anchor='middle' style='font-size: 10.40px;fill: #898781; font-family: "DejaVu Sans";' textLength='6.61px' lengthAdjust='spacingAndGlyphs'>3</text>
+<text x='544.39' y='191.68' text-anchor='middle' style='font-size: 10.40px;fill: #898781; font-family: "DejaVu Sans";' textLength='6.61px' lengthAdjust='spacingAndGlyphs'>4</text>
+<text x='386.72' y='205.60' text-anchor='middle' style='font-size: 11.70px;fill: #52514E; font-family: "DejaVu Sans";' textLength='56.04px' lengthAdjust='spacingAndGlyphs'>Countries</text>
+<text x='7.97' y='18.86' style='font-size: 14.95px; font-weight: bold;fill: #0B0B0B; font-family: "DejaVu Sans";' textLength='184.22px' lengthAdjust='spacingAndGlyphs'>Reasons for exclusion</text>
+</g>
+</svg>

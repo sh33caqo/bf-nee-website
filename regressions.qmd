@@ -1,0 +1,133 @@
+---
+title: "Regional regressions"
+subtitle: "How loss and attribution weight explain country footprints, by world region"
+---
+
+```{r}
+#| include: false
+source("R/setup.R")
+library(broom)
+
+df_model <- ct %>%
+  filter(continent != "Other", loss_constrained_km2 > 0, bfnee_km2 > 0) %>%
+  # effective attribution weight of cropland + pasture part
+  mutate(weight_eff = bfnee_km2 / loss_constrained_km2,
+         log_bfnee = log(bfnee_km2),
+         log_loss = log(loss_constrained_km2),
+         log_weight = log(weight_eff))
+
+fit_region <- function(x) lm(log_bfnee ~ log_loss + log_weight, data = x)
+
+regions_ok <- df_model %>% count(continent) %>% filter(n >= 6) %>% pull(continent)
+df_model <- df_model %>% filter(continent %in% regions_ok)
+```
+
+## Model
+
+Per country $\text{BF-NEE} = R^{crop} \sum_c S_c P_c + R^{past} P^{past} = R \cdot w$, with the
+effective attribution weight $w = \text{BF-NEE}/R$ (cropland and pasture part combined).
+A log-log model
+
+$$
+\log(\text{BF-NEE}) = \beta_0 + \beta_1 \log(R) + \beta_2 \log(w) + \varepsilon
+$$
+
+has $\beta_1 = \beta_2 = 1$ and $R^2 = 1$ by construction. Deviations therefore point to
+data problems – not to substantive effects. The model serves as a **consistency check**;
+the interesting part is how much each component varies between regions.
+
+Only countries with BF-NEE > 0 are used (log scale); regions need ≥ 6 observations.
+
+```{r}
+#| fig-height: 5.6
+ggplot(df_model, aes(loss_constrained_km2, bfnee_km2, colour = continent)) +
+  geom_point(alpha = 0.7, size = 1.8) +
+  geom_smooth(method = "lm", se = FALSE, linewidth = 0.7, colour = bf_ink$secondary) +
+  facet_wrap(~ continent) +
+  scale_x_log10(labels = fmt_area) +
+  scale_y_log10(labels = fmt_area) +
+  scale_colour_manual(values = continent_colors, guide = "none") +
+  labs(title = "BF-NEE vs. agriculture-constrained loss",
+       subtitle = "Country × period observations · both axes logarithmic",
+       x = "Constrained loss (km², log)", y = "BF-NEE (km², log)") +
+  theme_bfnee(grid = "xy")
+```
+
+## Which component varies more?
+
+```{r}
+#| fig-height: 4.4
+var_d <- df_model %>%
+  group_by(continent) %>%
+  summarise(`Constrained loss` = sd(log_loss), `Attribution weight` = sd(log_weight),
+            .groups = "drop") %>%
+  pivot_longer(-continent, names_to = "component", values_to = "sd_log")
+
+ggplot(var_d, aes(sd_log, continent, fill = component)) +
+  geom_col(position = position_dodge(width = 0.75), width = 0.7) +
+  scale_fill_manual(values = c("Constrained loss" = bf_brand$primary,
+                               "Attribution weight" = "#eb6834"), name = NULL) +
+  scale_y_discrete(limits = rev) +
+  labs(title = "Spread of the two components between countries",
+       subtitle = "Standard deviation on the log scale – the larger spread dominates differences in BF-NEE",
+       x = "SD of log value", y = NULL) +
+  theme_bfnee(grid = "x")
+```
+
+## Coefficients
+
+```{r}
+#| fig-height: 4
+models <- df_model %>%
+  group_by(continent) %>%
+  group_modify(~ {
+    m <- fit_region(.x)
+    tidy(m) %>% mutate(r_squared = glance(m)$r.squared, n_obs = nobs(m))
+  }) %>%
+  ungroup()
+
+coefs <- models %>%
+  filter(term != "(Intercept)") %>%
+  mutate(term = recode(term, log_loss = "β₁ log(constrained loss)",
+                       log_weight = "β₂ log(weight)"))
+
+ggplot(coefs, aes(estimate, continent, colour = continent)) +
+  geom_vline(xintercept = 1, colour = bf_ink$muted, linetype = "dashed") +
+  geom_errorbarh(aes(xmin = estimate - 1.96 * std.error, xmax = estimate + 1.96 * std.error),
+                 height = 0.2, linewidth = 0.6) +
+  geom_point(size = 2.6) +
+  facet_wrap(~ term) +
+  scale_colour_manual(values = continent_colors, guide = "none") +
+  scale_y_discrete(limits = rev) +
+  labs(title = "Estimated coefficients (95% CI)",
+       subtitle = "Expected value 1 (dashed)",
+       x = "Estimate", y = NULL) +
+  theme_bfnee(grid = "x")
+```
+
+```{r}
+models %>%
+  transmute(Region = continent, Term = term, Estimate = estimate, SE = std.error,
+            `p value` = p.value, `R²` = r_squared, N = n_obs) %>%
+  round_df(3) %>%
+  bf_table(page_length = 15)
+```
+
+## Largest residuals
+
+Observations far from the fitted line usually indicate an inconsistency in the data
+(e.g. weights or loss on a different scale).
+
+```{r}
+df_model %>%
+  group_by(continent) %>%
+  group_modify(~ augment(fit_region(.x), data = .x)) %>%
+  ungroup() %>%
+  arrange(desc(abs(.resid))) %>%
+  transmute(Region = continent, Country = country_name, Period = period,
+            `BF-NEE (km²)` = bfnee_km2, `Constrained loss (km²)` = loss_constrained_km2,
+            `Effective weight` = weight_eff, Residual = .resid) %>%
+  head(30) %>%
+  round_df(3) %>%
+  bf_table()
+```

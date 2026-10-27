@@ -1,0 +1,45 @@
+#!/bin/bash
+#SBATCH --job-name=bfnee_web_data
+#SBATCH --partition=paula
+#SBATCH --mem=120G
+#SBATCH --cpus-per-task=1
+#SBATCH --time=12:00:00
+#SBATCH --output=/home/sc.uni-leipzig.de/sh33caqo/Symobio/bf-nee-website/data-raw/build_data_%j.out
+#SBATCH --error=/home/sc.uni-leipzig.de/sh33caqo/Symobio/bf-nee-website/data-raw/build_data_%j.err
+
+# ---------------------------------------------------------
+# Builds the website tables (step 1) and the Shiny map data
+# (step 2) from the BF-NEE pipeline outputs.
+#
+#   cd ~/Symobio/bf-nee-website
+#   sbatch data-raw/build_data.job
+#
+# Only tables:   sbatch --export=ALL,SKIP_MAP=1 data-raw/build_data.job
+# Only map:      sbatch --export=ALL,SKIP_TABLES=1 data-raw/build_data.job
+# ---------------------------------------------------------
+
+set -euo pipefail
+
+PROJECT_DIR="/home/sc.uni-leipzig.de/sh33caqo/Symobio/bf-nee-website"
+
+export BFNEE_PROJECT_DIR="${PROJECT_DIR}"
+export BFNEE_PROCESSED_DIR="/home/sc.uni-leipzig.de/sh33caqo/Symobio/Data/Processed"
+export TMPDIR="/home/sc.uni-leipzig.de/sh33caqo/Symobio/tmp"
+mkdir -p "${TMPDIR}"
+
+module load R
+
+cd "${PROJECT_DIR}"
+
+if [[ "${SKIP_TABLES:-0}" != "1" ]]; then
+  echo "== Step 1: website tables ($(date))"
+  Rscript data-raw/01_build_website_data.R
+fi
+
+if [[ "${SKIP_MAP:-0}" != "1" ]]; then
+  echo "== Step 2: map data ($(date))"
+  Rscript data-raw/02_build_map_data.R
+fi
+
+echo "== Finished ($(date))"
+ls -lh data/

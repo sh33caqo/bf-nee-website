@@ -1,0 +1,27 @@
+# R
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+*.Rproj
+
+# Quarto build caches (the rendered site in docs/ IS committed)
+/.quarto/
+_freeze/
+/*_files/
+/_site/
+
+# Shiny: map data are built on the cluster and uploaded with deploy.R
+shiny/global_map/data/
+shiny/global_map/rsconnect/
+rsconnect/
+
+# Cluster logs
+data-raw/*.out
+data-raw/*.err
+
+# Secrets – never commit
+.Renviron
+*.dcf
+
+.DS_Store

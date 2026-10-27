@@ -1,0 +1,191 @@
+---
+title: "Global trends"
+subtitle: "From gross natural ecosystem loss to the consumption-attributed footprint"
+---
+
+```{r}
+#| include: false
+source("R/setup.R")
+```
+
+All figures sum over the `r length(valid_iso3)` producing countries that pass the
+[data checks](coverage.qmd).
+
+## From loss to footprint
+
+Three steps narrow the observed loss down to the footprint: gross natural loss
+(*unconstrained*), the part that coincides with cropland expansion in the same cell
+(*agriculture-constrained*), and finally the share of it that is linked to German
+final demand (*BF-NEE*).
+
+```{r}
+#| fig-height: 4.6
+cascade <- global_period %>%
+  select(period,
+         `Unconstrained natural loss` = loss_unconstrained_km2,
+         `Agricultural expansion` = agri_gain_km2,
+         `Agriculture-constrained loss` = loss_constrained_km2) %>%
+  pivot_longer(-period, names_to = "measure", values_to = "km2") %>%
+  mutate(measure = factor(measure, levels = c("Unconstrained natural loss",
+                                              "Agricultural expansion",
+                                              "Agriculture-constrained loss")))
+
+p <- ggplot(cascade, aes(period, km2, fill = measure,
+                         text = paste0(measure, "<br>", period, ": ", fmt_km2(km2)))) +
+  geom_col(position = position_dodge(width = 0.8), width = 0.75,
+           colour = bf_ink$surface, linewidth = 0.5) +
+  scale_fill_manual(values = measure_colors, name = NULL) +
+  scale_y_continuous(labels = fmt_area, expand = expansion(mult = c(0, 0.06))) +
+  labs(title = "Natural ecosystem loss and agricultural expansion",
+       subtitle = "Sum over all valid producing countries",
+       x = NULL, y = "Area (km²)")
+
+bf_interactive(p)
+```
+
+```{r}
+#| fig-height: 3.8
+p <- ggplot(global_period, aes(period, share_attributed, group = 1,
+                               text = paste0(period, ": ", fmt_pct(share_attributed)))) +
+  geom_line(colour = bf_brand$primary) +
+  geom_point(colour = bf_brand$primary, size = 3) +
+  scale_y_continuous(labels = fmt_pct, limits = c(0, NA),
+                     expand = expansion(mult = c(0, 0.2))) +
+  labs(title = "Share of natural loss that coincides with agricultural expansion",
+       subtitle = "Agriculture-constrained loss / unconstrained loss",
+       x = NULL, y = NULL)
+
+bf_interactive(p)
+```
+
+```{r}
+#| eval: !expr has_pasture
+#| fig-height: 4.4
+basis <- global_period %>%
+  select(period,
+         `Cropland` = loss_cropland_km2,
+         `Intensive pasture` = loss_pasture_km2) %>%
+  pivot_longer(-period, names_to = "basis", values_to = "km2") %>%
+  group_by(period) %>% mutate(share = km2 / sum(km2)) %>% ungroup() %>%
+  mutate(basis = factor(basis, levels = names(basis_colors)))
+
+p <- ggplot(basis, aes(period, km2, fill = basis,
+                       text = paste0(basis, "<br>", period, ": ", fmt_km2(km2),
+                                     " (", fmt_pct(share), ")"))) +
+  geom_col(width = 0.7, colour = bf_ink$surface, linewidth = 0.5) +
+  scale_fill_manual(values = basis_colors, name = NULL) +
+  scale_y_continuous(labels = fmt_area, expand = expansion(mult = c(0, 0.05))) +
+  labs(title = "Agriculture-constrained loss by land use",
+       subtitle = "Split per grid cell by the expansion of cropland vs. intensive pasture",
+       x = NULL, y = "Area (km²)")
+
+bf_interactive(p)
+```
+
+## BF-NEE over time
+
+```{r}
+#| fig-height: 4.2
+p <- ggplot(global_period, aes(period, bfnee_km2, group = 1,
+                               text = paste0(period, ": ", fmt_km2(bfnee_km2),
+                                             "<br>", n_countries, " countries"))) +
+  geom_area(fill = measure_colors[["BF-NEE"]], alpha = 0.12) +
+  geom_line(colour = measure_colors[["BF-NEE"]]) +
+  geom_point(colour = measure_colors[["BF-NEE"]], size = 3) +
+  scale_y_continuous(labels = fmt_area, limits = c(0, NA),
+                     expand = expansion(mult = c(0, 0.2))) +
+  labs(title = "BF-NEE: loss attributed to German final demand",
+       subtitle = "Sum over all valid producing countries",
+       x = NULL, y = "BF-NEE (km²)")
+
+bf_interactive(p)
+```
+
+### By ecosystem group
+
+```{r}
+#| fig-height: 4.8
+eco_period <- ce %>%
+  group_by(period, eco_group) %>%
+  summarise(bfnee_km2 = sum(bfnee_km2, na.rm = TRUE), .groups = "drop") %>%
+  group_by(period) %>%
+  mutate(share = bfnee_km2 / sum(bfnee_km2)) %>%
+  ungroup()
+
+p <- ggplot(eco_period, aes(period, bfnee_km2, fill = eco_group,
+                            text = paste0(eco_group, "<br>", period, ": ",
+                                          fmt_km2(bfnee_km2), " (", fmt_pct(share), ")"))) +
+  geom_col(width = 0.7, colour = bf_ink$surface, linewidth = 0.5) +
+  scale_fill_manual(values = eco_group_colors, name = NULL, drop = TRUE) +
+  scale_y_continuous(labels = fmt_area, expand = expansion(mult = c(0, 0.05))) +
+  labs(title = "BF-NEE by ecosystem group",
+       subtitle = "Ecosystem-specific footprints add up to the total",
+       x = NULL, y = "BF-NEE (km²)")
+
+bf_interactive(p)
+```
+
+More detail on the [Ecosystems](ecosystems.qmd) page.
+
+```{r}
+#| eval: !expr has_pasture
+#| fig-height: 4.2
+bb <- global_period %>%
+  select(period, `Cropland` = bfnee_cropland_km2, `Intensive pasture` = bfnee_pasture_km2) %>%
+  pivot_longer(-period, names_to = "basis", values_to = "km2") %>%
+  group_by(period) %>% mutate(share = km2 / sum(km2)) %>% ungroup() %>%
+  mutate(basis = factor(basis, levels = names(basis_colors)))
+
+p <- ggplot(bb, aes(period, km2, fill = basis,
+                    text = paste0(basis, "<br>", period, ": ", fmt_km2(km2),
+                                  " (", fmt_pct(share), ")"))) +
+  geom_col(width = 0.7, colour = bf_ink$surface, linewidth = 0.5) +
+  scale_fill_manual(values = basis_colors, name = NULL) +
+  scale_y_continuous(labels = fmt_area, expand = expansion(mult = c(0, 0.05))) +
+  labs(title = "BF-NEE by land use",
+       subtitle = "Crops (S × P) vs. grazing livestock (P of cattle, sheep & goats)",
+       x = NULL, y = "BF-NEE (km²)")
+
+bf_interactive(p)
+```
+
+## Effect of the agricultural constraint
+
+How much smaller is BF-NEE when only loss linked to agricultural expansion is
+attributed, compared with attributing all natural loss?
+
+```{r}
+#| fig-height: 4
+comp <- global_period %>%
+  select(period, `BF-NEE (constrained)` = bfnee_km2,
+         `Without constraint` = bfnee_unconstrained_km2) %>%
+  pivot_longer(-period, names_to = "variant", values_to = "km2") %>%
+  mutate(variant = factor(variant, levels = c("Without constraint", "BF-NEE (constrained)")))
+
+p <- ggplot(comp, aes(period, km2, fill = variant,
+                      text = paste0(variant, "<br>", period, ": ", fmt_km2(km2)))) +
+  geom_col(position = position_dodge(width = 0.8), width = 0.75,
+           colour = bf_ink$surface, linewidth = 0.5) +
+  scale_fill_manual(values = c("Without constraint" = bf_ink$other,
+                               "BF-NEE (constrained)" = measure_colors[["BF-NEE"]]),
+                    name = NULL) +
+  scale_y_continuous(labels = fmt_area, expand = expansion(mult = c(0, 0.06))) +
+  labs(title = "BF-NEE with and without the agricultural-expansion constraint",
+       x = NULL, y = "BF-NEE (km²)")
+
+bf_interactive(p)
+```
+
+## Table
+
+```{r}
+global_period %>%
+  transmute(Period = period, Countries = n_countries,
+            `Unconstrained loss (km²)` = round(loss_unconstrained_km2),
+            `Agricultural expansion (km²)` = round(agri_gain_km2),
+            `Constrained loss (km²)` = round(loss_constrained_km2),
+            `Share attributed` = round(share_attributed, 3),
+            `BF-NEE (km²)` = round(bfnee_km2, 1),
+            `BF-NEE without constraint (km²)` = round(bfnee_unconstrained_km2, 1)) %>%
+  bf_table(page_length = 4)
+```

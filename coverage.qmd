@@ -1,0 +1,181 @@
+---
+title: "Data & checks"
+subtitle: "Coverage of the analysis and consistency checks per country"
+---
+
+```{r}
+#| include: false
+source("R/setup.R")
+
+n_all <- nrow(countries)
+n_valid <- sum(countries$valid_for_analysis)
+```
+
+::: {.metric-grid}
+
+::: {.metric-card}
+[`r n_all`]{.metric-value}
+
+[country folders with pipeline output]{.metric-label}
+:::
+
+::: {.metric-card}
+[`r sum(countries$is_v3)`]{.metric-value}
+
+[with v3 results]{.metric-label}
+:::
+
+::: {.metric-card}
+[`r n_valid`]{.metric-value}
+
+[valid for analysis]{.metric-label}
+
+[used on all result pages]{.metric-note}
+:::
+
+::: {.metric-card}
+[`r build_info$built_at`]{.metric-value style="font-size:1.15rem"}
+
+[data built]{.metric-label}
+:::
+
+:::
+
+## Validity rules
+
+A country is used on the result pages if all of the following hold:
+
+| Check | Rule |
+|---|---|
+| Output present | BF-NEE summary for all 4 periods |
+| Pipeline v3 | summary contains the v3 columns (cropland / pasture split) |
+| Scale | LandSHIFT cell area ≤ 1,000 km² (old outputs were in m²) |
+| Commodity data | LandSHIFT crop areas available (commodity shares not all missing) |
+| Class split | ecosystem-class losses add up to the constrained total (rel. error < 10⁻⁶) |
+| Constraint | constrained loss ≤ unconstrained loss in every period |
+| Land-use split | BF-NEE of cropland + pasture = total BF-NEE |
+| GlobES coupling | adjusted GlobES composition sums to 1 in every cell (step 04) |
+
+## Countries not used
+
+```{r}
+excl <- countries %>%
+  filter(!valid_for_analysis) %>%
+  transmute(ISO3 = iso3, Country = coalesce(country_name, iso3), Reason = reason_invalid)
+
+if (nrow(excl) == 0) {
+  cat("All countries pass the checks.")
+} else {
+  bf_table(excl)
+}
+```
+
+```{r}
+#| fig-height: 3
+if (nrow(excl) > 0) {
+  excl %>%
+    count(Reason) %>%
+    mutate(Reason = forcats::fct_reorder(Reason, n)) %>%
+    ggplot(aes(n, Reason)) +
+    geom_col(fill = bf_ink$other, width = 0.6) +
+    geom_text(aes(label = n), hjust = -0.3, size = 3.4, colour = bf_ink$secondary) +
+    scale_x_continuous(expand = expansion(mult = c(0, 0.15))) +
+    labs(title = "Reasons for exclusion", x = "Countries", y = NULL) +
+    theme_bfnee(grid = "x")
+}
+```
+
+## Pipeline status
+
+Latest checkpoint of every step and country (`Pipeline_Status`).
+
+```{r}
+#| fig-height: 3.6
+if (!is.null(pipeline_status)) {
+  ps <- pipeline_status %>%
+    mutate(step = factor(step, levels = unique(step)),
+           status = factor(status, levels = c("success", "failed", "not run")))
+
+  ps %>%
+    count(step, status) %>%
+    ggplot(aes(n, step, fill = status)) +
+    geom_col(width = 0.7, colour = bf_ink$surface, linewidth = 0.4) +
+    scale_fill_manual(values = c(success = "#0ca30c", failed = "#d03b3b", `not run` = bf_ink$other),
+                      name = NULL, drop = FALSE) +
+    scale_y_discrete(limits = rev) +
+    labs(title = "Checkpoints per pipeline step", x = "Countries", y = NULL) +
+    theme_bfnee(grid = "x")
+}
+```
+
+```{r}
+if (!is.null(pipeline_status)) {
+  pipeline_status %>%
+    filter(status != "success") %>%
+    transmute(ISO3 = iso3, Step = step, Status = status, Time = time,
+              Error = substr(coalesce(error, ""), 1, 200)) %>%
+    bf_table(page_length = 10)
+}
+```
+
+## GlobES–LandSHIFT coupling (step 04)
+
+After the coupling every cell must sum to one, the GlobES cropland classes must equal
+LandSHIFT cropland, and 14.2 must equal LandSHIFT intensive pasture. Small pasture
+differences occur only where LandSHIFT cropland + pasture exceed the cell and are scaled down.
+Cells without any GlobES cover (sum 0) are set to NA in step 05 and ignored here.
+
+```{r}
+#| fig-height: 3.8
+if (!is.null(coupling_checks) && nrow(coupling_checks) > 0) {
+  cc_long <- coupling_checks %>%
+    filter(iso3 %in% countries$iso3) %>%
+    transmute(iso3, year,
+              `|Σ classes − 1|` = pmax(ifelse(class_sum_min == 0, 0, abs(class_sum_min - 1)),
+                                       abs(class_sum_max - 1)),
+              `|cropland − LandSHIFT|` = crop_diff_max_abs,
+              `|pasture − LandSHIFT|` = pasture_diff_max_abs) %>%
+    pivot_longer(-c(iso3, year), names_to = "check", values_to = "max_abs") %>%
+    mutate(max_abs = pmax(max_abs, 1e-17))
+
+  ggplot(cc_long, aes(factor(year), max_abs)) +
+    geom_jitter(width = 0.15, height = 0, alpha = 0.6, colour = bf_brand$primary, size = 1.6) +
+    facet_wrap(~ check) +
+    scale_y_log10() +
+    labs(title = "Largest deviation per country and year",
+         subtitle = "Fractions of a grid cell, log scale",
+         x = NULL, y = "Max. absolute deviation") +
+    theme_bfnee(grid = "xy")
+}
+```
+
+## Consistency of the valid countries
+
+```{r}
+#| fig-height: 4
+chk <- ct %>%
+  mutate(rel_error = pmax(class_sum_rel_error, 1e-17))
+
+ggplot(chk, aes(period, rel_error)) +
+  geom_hline(yintercept = 1e-6, colour = "#d03b3b", linetype = "dashed", linewidth = 0.5) +
+  geom_jitter(width = 0.15, height = 0, alpha = 0.6, colour = bf_brand$primary, size = 1.8) +
+  annotate("text", x = 0.6, y = 1e-6, label = "tolerance 10⁻⁶", vjust = -0.6, hjust = 0,
+           colour = "#d03b3b", size = 3.2) +
+  scale_y_log10() +
+  labs(title = "Ecosystem classes add up to the total",
+       subtitle = "Relative difference between Σ classes and total constrained loss, per country",
+       x = NULL, y = "Relative difference (log)")
+```
+
+## All countries
+
+```{r}
+countries %>%
+  transmute(ISO3 = iso3, Country = coalesce(country_name, iso3), Region = continent,
+            Valid = valid_for_analysis, `v3` = is_v3, Periods = n_transitions,
+            `Scale OK` = scale_ok, `Commodity data` = has_commodity_shares,
+            `Classes add up` = classes_add_up,
+            `Max cell area (km²)` = round(cell_area_max_km2, 1),
+            Reason = reason_invalid) %>%
+  bf_table(page_length = 15)
+```

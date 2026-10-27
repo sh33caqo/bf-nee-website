@@ -1,0 +1,153 @@
+---
+title: "Commodities"
+subtitle: "Which expanding crops carry the footprint – and in which ecosystems"
+---
+
+```{r}
+#| include: false
+source("R/setup.R")
+
+comm_period <- cc %>%
+  group_by(period, commodity, commodity_group, commodity_label) %>%
+  summarise(bfnee_km2 = sum(bfnee_km2, na.rm = TRUE), .groups = "drop") %>%
+  group_by(period) %>%
+  mutate(share = bfnee_km2 / sum(bfnee_km2, na.rm = TRUE)) %>%
+  ungroup()
+```
+
+Each country's agriculture-constrained loss on **cropland** is distributed to the
+crops that expanded in that country and period ($S_c$,
+[method](method.qmd#commodity-shares)), weighted with the share of their production
+that ends up in German final demand ($P_c$). The loss linked to **intensive pasture**
+is attributed to *Grazing livestock* ([method](method.qmd#pasture)).
+
+## Footprint by commodity
+
+```{r}
+#| fig-height: 4.8
+d <- comm_period %>%
+  group_by(period, commodity_label) %>%
+  summarise(bfnee_km2 = sum(bfnee_km2), share = sum(share), .groups = "drop")
+
+p <- ggplot(d, aes(period, bfnee_km2, fill = commodity_label,
+                   text = paste0(commodity_label, "<br>",
+                                 period, ": ", fmt_km2(bfnee_km2), " (", fmt_pct(share), ")"))) +
+  geom_col(width = 0.7, colour = bf_ink$surface, linewidth = 0.5) +
+  scale_fill_manual(values = commodity_colors_lab, name = NULL) +
+  scale_y_continuous(labels = fmt_area, expand = expansion(mult = c(0, 0.05))) +
+  labs(title = "BF-NEE by commodity",
+       subtitle = "Seven largest commodity groups named, others in grey",
+       x = NULL, y = "BF-NEE (km²)")
+
+bf_interactive(p)
+```
+
+```{r}
+#| fig-height: 5.4
+d <- comm_period %>%
+  filter(period == latest_period, bfnee_km2 > 0) %>%
+  mutate(label = forcats::fct_reorder(label_commodity(commodity), bfnee_km2))
+
+ggplot(d, aes(bfnee_km2, label, fill = commodity_group)) +
+  geom_col(width = 0.72) +
+  geom_text(aes(label = paste0(fmt_km2(bfnee_km2), "  ·  ", fmt_pct(share))),
+            hjust = -0.06, size = 3.2, colour = bf_ink$secondary) +
+  scale_fill_manual(values = commodity_colors, guide = "none") +
+  scale_x_continuous(labels = fmt_area, expand = expansion(mult = c(0, 0.3))) +
+  labs(title = paste("All commodities,", latest_period),
+       subtitle = "Value and share of the total footprint",
+       x = "BF-NEE (km²)", y = NULL) +
+  theme_bfnee(grid = "x")
+```
+
+## Commodities × ecosystems
+
+Because the constrained loss keeps its ecosystem class, every commodity's footprint
+can be split by ecosystem group: $\text{BF-NEE}_{c,g} = \sum_r R_{r,g}\,S_{c,r}\,P_{c,r}$.
+
+```{r}
+#| fig-height: 5.4
+if (!is.null(country_commodity_ecosystem)) {
+  # exact values from step 08 (cropland and pasture basis)
+  comm_eco <- country_commodity_ecosystem %>%
+    filter(iso3 %in% valid_iso3) %>%
+    mutate(period = factor(transition_label(transition), levels = periods),
+           eco_group = factor(eco_group, levels = eco_group_levels)) %>%
+    group_by(period, commodity, eco_group) %>%
+    summarise(bfnee_km2 = sum(bfnee_km2, na.rm = TRUE), .groups = "drop")
+} else {
+  r_group <- ce %>%
+    group_by(iso3, period, eco_group) %>%
+    summarise(loss_constrained_km2 = sum(loss_constrained_km2, na.rm = TRUE), .groups = "drop")
+
+  comm_eco <- cc %>%
+    select(iso3, period, commodity, weight) %>%
+    inner_join(r_group, by = c("iso3", "period"), relationship = "many-to-many") %>%
+    mutate(bfnee_km2 = loss_constrained_km2 * weight) %>%
+    group_by(period, commodity, eco_group) %>%
+    summarise(bfnee_km2 = sum(bfnee_km2, na.rm = TRUE), .groups = "drop")
+}
+
+d <- comm_eco %>%
+  filter(period == latest_period) %>%
+  group_by(commodity) %>%
+  filter(sum(bfnee_km2) > 0) %>%
+  mutate(share = bfnee_km2 / sum(bfnee_km2), total = sum(bfnee_km2)) %>%
+  ungroup() %>%
+  mutate(label = forcats::fct_reorder(label_commodity(commodity), total))
+
+ggplot(d, aes(share, label, fill = eco_group)) +
+  geom_col(width = 0.72, colour = bf_ink$surface, linewidth = 0.4) +
+  scale_fill_manual(values = eco_group_colors, name = NULL) +
+  scale_x_continuous(labels = fmt_pct, expand = expansion(mult = c(0, 0.01))) +
+  labs(title = paste("Ecosystem composition of each commodity's footprint,", latest_period),
+       subtitle = "Commodities ordered by total BF-NEE (largest at the top)",
+       x = "Share of the commodity's BF-NEE", y = NULL) +
+  theme_bfnee(grid = "x") +
+  guides(fill = guide_legend(nrow = 2))
+```
+
+## Which crops expand?
+
+Commodity shares $S_c$ come from the **increase** in crop area. This is the summed
+increase of each crop across all valid countries (decreases are not counted).
+
+```{r}
+#| fig-height: 4.8
+if (!is.null(commodity_expansion)) {
+
+  exp_d <- commodity_expansion %>%
+    filter(iso3 %in% valid_iso3) %>%
+    mutate(period = factor(transition_label(transition), levels = periods),
+           commodity_group = fold_commodity(commodity)) %>%
+    group_by(period, commodity_group) %>%
+    summarise(expansion = sum(pmax(delta_area, 0), na.rm = TRUE), .groups = "drop")
+
+  p <- ggplot(exp_d, aes(period, expansion, fill = commodity_group,
+                         text = paste0(label_commodity(as.character(commodity_group)), "<br>",
+                                       period, ": +", fmt_area(expansion)))) +
+    geom_col(width = 0.7, colour = bf_ink$surface, linewidth = 0.5) +
+    scale_fill_manual(values = commodity_colors_lab, name = NULL) +
+    scale_y_continuous(labels = fmt_area, expand = expansion(mult = c(0, 0.05))) +
+    labs(title = "Crop area expansion",
+         subtitle = "Sum of positive area changes (LandSHIFT units)",
+         x = NULL, y = "Area increase")
+
+  bf_interactive(p)
+}
+```
+
+## Table
+
+```{r}
+cc %>%
+  group_by(Period = period, Commodity = commodity) %>%
+  summarise(`Countries with S > 0` = sum(S > 0, na.rm = TRUE),
+            `Mean S (expanding countries)` = mean(S[S > 0], na.rm = TRUE),
+            `Mean P` = mean(P, na.rm = TRUE),
+            `BF-NEE (km²)` = sum(bfnee_km2, na.rm = TRUE),
+            .groups = "drop") %>%
+  arrange(Period, desc(`BF-NEE (km²)`)) %>%
+  round_df(2) %>%
+  bf_table()
+```

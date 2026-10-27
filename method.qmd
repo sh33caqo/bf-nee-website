@@ -1,0 +1,206 @@
+---
+title: "Method"
+subtitle: "How BF-NEE links natural ecosystem loss to agricultural production and final demand"
+---
+
+```{r}
+#| include: false
+source("R/setup.R")
+library(knitr)
+```
+
+## Overview
+
+BF-NEE combines three data sets that each play a distinct role:
+
+| Data set | Role |
+|---|---|
+| **LandSHIFT** | Cropland extent per grid cell; crop composition per country |
+| **GlobES** | Composition of ecosystem classes (IUCN habitat scheme) and its change |
+| **GLORIA** (MRIO) | Share of each crop's production that ends up in German final demand |
+
+The analysis covers the years 1995, 2000, 2005, 2010 and 2015 and therefore four
+five-year periods. Each period $y-1 \rightarrow y$ is combined with the commodity and
+GLORIA factors of its **end year** $y$.
+
+## 1 · Harmonising cropland
+
+LandSHIFT is the authoritative source for cropland. In every grid cell the GlobES
+agricultural classes (14.1 arable land, 15.8 seasonally flooded agricultural land)
+are rescaled to the LandSHIFT cropland fraction $L_{p,y}$, and all other classes are
+rescaled so that the cell still sums to one. Six anthropogenic classes (14.4, 14.5,
+15.4, 15.5, 15.6, 15.11) are removed beforehand.
+
+::: {.equation-box}
+$$
+\sum_{a \in A} G'_{p,a,y} = L_{p,y}, \qquad \sum_e G'_{p,e,y} = 1, \qquad
+A_{p,e,y} = G'_{p,e,y}\,A_p
+$$
+:::
+
+## 1b · Intensive pasture  {#pasture}
+
+::: {.callout-tip appearance="simple"}
+**Since v3.** Intensive pasture is part of the agricultural land.
+:::
+
+LandSHIFT assigns a grazing fraction to every cell with livestock, both
+**intensive** pastures and **extensive** grazing on natural vegetation such as
+savanna. LandSHIFT separates the two only by stocking density, using the
+country mean as the threshold. BF-NEE follows this with **one fixed threshold
+per country**: the mean stocking density of the grazing land in 1995–2015,
+weighted by grazing area. A cell's grazing fraction counts as intensive pasture
+$L^{past}_{p,y}$ if its stocking density is above that threshold. Extensive grazing
+stays part of the natural GlobES cover.
+
+GlobES is coupled to both agricultural land uses separately:
+
+::: {.equation-box}
+$$
+\sum_{a \in \{14.1,\,15.8\}} G'_{p,a,y} = L^{crop}_{p,y}, \qquad
+G'_{p,14.2,y} = L^{past}_{p,y}, \qquad
+G'_{p,e,y} = \tilde G_{p,e,y}\,\frac{1 - L^{crop}_{p,y} - L^{past}_{p,y}}{1 - \tilde G^{crop}_{p,y} - \tilde G^{past}_{p,y}}
+$$
+:::
+
+Pastureland (14.2) is therefore an agricultural class and no longer counted as natural.
+
+## 2 · Loss of natural ecosystems
+
+For every natural ecosystem class $e$ the gross loss between two observations is
+
+::: {.equation-box}
+$$
+\text{Loss}_{p,e,y} = \max\!\left(-\Delta A_{p,e,y},\,0\right), \qquad
+N_{p,y} = \sum_{e \in N} \text{Loss}_{p,e,y}
+$$
+:::
+
+Expansion of one natural class does not offset the loss of another.
+
+## 3 · Agricultural-expansion constraint
+
+Not every ecosystem change is caused by agriculture. Only loss that coincides with
+a **net increase of agricultural land (cropland + intensive pasture) in the same grid
+cell and period** is attributed. Pasture converted to cropland is not counted as
+expansion:
+
+::: {.equation-box}
+$$
+\text{Gain}^{agri}_{p,y} = \max\!\left(\Delta A^{crop}_{p,y} + \Delta A^{past}_{p,y},\,0\right), \qquad
+R_{p,y} = \min\!\left(N_{p,y},\ \text{Gain}^{agri}_{p,y}\right)
+$$
+:::
+
+$R$ is split in every cell into a cropland and a pasture part in proportion to the
+positive changes of the two land uses:
+
+::: {.equation-box}
+$$
+s^{past}_{p,y} = \frac{\max(\Delta A^{past}_{p,y},0)}{\max(\Delta A^{crop}_{p,y},0) + \max(\Delta A^{past}_{p,y},0)}, \qquad
+R^{past}_{p,y} = s^{past}_{p,y} R_{p,y}, \quad R^{crop}_{p,y} = (1 - s^{past}_{p,y}) R_{p,y}
+$$
+:::
+
+## 4 · Keeping the ecosystem classes  {#class-split}
+
+::: {.callout-tip appearance="simple"}
+**Since v2.** Previously the constraint was applied to the total $N_{p,y}$ only,
+so the information on *which* ecosystem was lost disappeared.
+:::
+
+The constrained loss $R_{p,y}$ is split onto the ecosystem classes in proportion to
+their original loss in the same cell:
+
+::: {.equation-box}
+$$
+R_{p,e,y} =
+\begin{cases}
+R_{p,y}\,\dfrac{\text{Loss}_{p,e,y}}{N_{p,y}} & N_{p,y} > 0\\[4pt]
+0 & \text{otherwise}
+\end{cases}
+\qquad\Rightarrow\qquad \sum_e R_{p,e,y} = R_{p,y}
+$$
+:::
+
+*Example:* a cell loses 10 km² forest and 5 km² savanna, but cropland grows by only
+6 km². Then 4 km² are attributed to forest and 2 km² to savanna. Footprints for
+forests, savannas, wetlands or tropical moist forests therefore add up exactly to
+the total footprint.
+
+## 5 · Commodity shares from expansion  {#commodity-shares}
+
+::: {.callout-tip appearance="simple"}
+**Since v2.** Previously the *static* share of each crop in total cropland was used.
+:::
+
+Ecosystems are converted by crops that **expand**, not by fields that already exist.
+For each country and period, the share of crop $c$ is its area increase relative to
+the summed increase of all expanding crops:
+
+::: {.equation-box}
+$$
+S_{c,r,y} =
+\frac{\max\!\left(A_{c,r,y} - A_{c,r,y-1},\,0\right)}
+     {\sum_{c'} \max\!\left(A_{c',r,y} - A_{c',r,y-1},\,0\right)}
+$$
+:::
+
+Crops whose area shrank get $S = 0$; the shares of a period sum to one. If no crop
+expanded, all shares are zero and nothing is attributed.
+
+## 6 · Attribution and indicator
+
+The cropland part is attributed to crops with the commodity share and the GLORIA
+production share $P_{c,r,y}$ (share of production in country $r$ that is used for
+German final demand). The pasture part is attributed to *Grazing livestock*, whose
+$P^{past}$ is the mean of the GLORIA sectors *Raising of cattle* and *Raising of sheep
+and goats*:
+
+::: {.equation-box}
+$$
+L_{p,e,c,y} = R^{crop}_{p,e,y}\,S_{c,r,y}\,P_{c,r,y}, \qquad
+L_{p,e,past,y} = R^{past}_{p,e,y}\,P^{past}_{r,y}, \qquad
+\text{BF-NEE}_y = \sum_p \sum_e \Big(\sum_c L_{p,e,c,y} + L_{p,e,past,y}\Big)
+$$
+:::
+
+Summing $L_{p,e,c,y}$ over any subset gives the footprint of that subset – e.g. of
+one ecosystem group, one country or one commodity. All values are areas in km².
+
+## Ecosystem groups
+
+For the website the IUCN classes are grouped as follows. *Tropical moist forest* is
+reported additionally (classes 1.6 and 1.9; it is part of *Forest*).
+
+```{r}
+lookup <- read_csv("data/lookup/ecosystem_classes.csv", show_col_types = FALSE,
+                   col_types = cols(.default = col_character()))
+
+lookup %>%
+  group_by(`Group` = eco_group) %>%
+  summarise(`IUCN classes` = paste(ecosystem_class, collapse = ", "), .groups = "drop") %>%
+  mutate(Group = factor(Group, levels = eco_group_levels)) %>%
+  arrange(Group) %>%
+  kable()
+```
+
+::: {.callout-warning appearance="simple"}
+**Note on modified habitats.** Since v3, pastureland (14.2) is agricultural land.
+Plantations (14.3), heavily degraded former forest (14.6) and several artificial
+aquatic classes are still **not** excluded and therefore count as "natural". They
+are shown as a separate group so they can be judged – or excluded – explicitly.
+:::
+
+## Limitations
+
+- Commodity and GLORIA factors are national, not pixel-specific: the indicator does
+  not identify the crop planted on a specific converted pixel.
+- The constraint is spatially conservative – loss is attributed only where cropland
+  grows in the same cell and five-year period. Transitions that happen and reverse
+  between snapshots are not captured.
+- Only intensive pasture is agricultural land; the split between intensive and extensive
+  grazing depends on the country-mean threshold. Cattle and sheep/goats are weighted
+  equally in $P^{past}$ (no per-cell information on species).
+- The LandSHIFT–GLORIA concordance is not one-to-one (e.g. pulses and oil crops share
+  one GLORIA sector).

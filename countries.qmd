@@ -1,0 +1,158 @@
+---
+title: "Countries"
+subtitle: "Producing countries where natural ecosystem loss is attributed to German final demand"
+---
+
+```{r}
+#| include: false
+source("R/setup.R")
+
+country_period <- ct %>%
+  group_by(period) %>%
+  mutate(share_global = bfnee_km2 / sum(bfnee_km2, na.rm = TRUE)) %>%
+  ungroup()
+
+top_latest <- country_period %>%
+  filter(period == latest_period, bfnee_km2 > 0) %>%
+  slice_max(bfnee_km2, n = 20)
+```
+
+## Largest footprints
+
+```{r}
+#| fig-height: 6.2
+d <- top_latest %>% mutate(country_name = forcats::fct_reorder(country_name, bfnee_km2))
+
+ggplot(d, aes(bfnee_km2, country_name, fill = continent)) +
+  geom_col(width = 0.72) +
+  geom_text(aes(label = paste0(fmt_km2(bfnee_km2), "  ·  ", fmt_pct(share_global))),
+            hjust = -0.06, size = 3.2, colour = bf_ink$secondary) +
+  scale_fill_manual(values = continent_colors, name = NULL, drop = TRUE) +
+  scale_x_continuous(labels = fmt_area, expand = expansion(mult = c(0, 0.28))) +
+  labs(title = paste("Top 20 producing countries by BF-NEE,", latest_period),
+       subtitle = "Value and share of the global footprint",
+       x = "BF-NEE (km²)", y = NULL) +
+  theme_bfnee(grid = "x")
+```
+
+## Concentration
+
+```{r}
+#| fig-height: 4
+conc <- country_period %>%
+  filter(bfnee_km2 > 0) %>%
+  group_by(period) %>%
+  arrange(desc(bfnee_km2), .by_group = TRUE) %>%
+  mutate(rank = row_number(), cum_share = cumsum(share_global)) %>%
+  ungroup()
+
+p <- ggplot(conc, aes(rank, cum_share, colour = period, group = period,
+                      text = paste0(period, "<br>Top ", rank, " countries: ",
+                                    fmt_pct(cum_share), " of BF-NEE"))) +
+  geom_step(linewidth = 0.9) +
+  scale_colour_manual(values = setNames(c("#86b6ef", "#3987e5", "#1c5cab", "#0d366b")[seq_along(periods)], periods),
+                      name = NULL) +
+  scale_y_continuous(labels = fmt_pct, limits = c(0, 1)) +
+  scale_x_continuous(breaks = c(1, 5, 10, 20, 50, 100)) +
+  labs(title = "How concentrated is the footprint?",
+       subtitle = "Cumulative share of global BF-NEE by country rank",
+       x = "Number of countries (ranked by BF-NEE)", y = NULL)
+
+bf_interactive(p)
+```
+
+## Trajectories
+
+```{r}
+#| fig-height: 5.4
+top8 <- country_period %>%
+  group_by(iso3) %>%
+  summarise(total = sum(bfnee_km2, na.rm = TRUE), .groups = "drop") %>%
+  slice_max(total, n = 8) %>%
+  pull(iso3)
+
+d <- country_period %>%
+  filter(iso3 %in% top8) %>%
+  mutate(country_name = stringr::str_trunc(country_name, 24),
+         country_name = factor(country_name,
+                               levels = unique(country_name[order(-ave(bfnee_km2, iso3, FUN = sum))])))
+
+p <- ggplot(d, aes(period, bfnee_km2, group = country_name, colour = continent,
+                   text = paste0(country_name, "<br>", period, ": ", fmt_km2(bfnee_km2)))) +
+  geom_line() +
+  geom_point() +
+  facet_wrap(~ country_name, ncol = 4, scales = "free_y") +
+  scale_colour_manual(values = continent_colors, guide = "none") +
+  scale_y_continuous(labels = fmt_area, limits = c(0, NA)) +
+  labs(title = "BF-NEE of the 8 largest producing countries",
+       subtitle = "Sum over all periods decides the selection · each panel has its own scale",
+       x = NULL, y = "BF-NEE (km²)") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 8))
+
+bf_interactive(p) |> plotly::layout(showlegend = FALSE)
+```
+
+## What drives a country's footprint?
+
+BF-NEE of a country is its agriculture-constrained loss multiplied by its attribution
+weight $\sum_c S_c P_c$. Countries can rank high because they lose a lot of
+ecosystems, because a large share of their expanding crops ends up in German final
+demand – or both.
+
+```{r}
+#| fig-height: 5.4
+d <- country_period %>%
+  filter(period == latest_period, loss_constrained_km2 > 0, weight_sum > 0)
+
+p <- ggplot(d, aes(loss_constrained_km2, weight_sum, size = bfnee_km2, colour = continent,
+                   text = paste0("<b>", country_name, "</b>",
+                                 "<br>Constrained loss: ", fmt_km2(loss_constrained_km2),
+                                 "<br>Weight ΣS·P: ", signif(weight_sum, 3),
+                                 "<br>BF-NEE: ", fmt_km2(bfnee_km2)))) +
+  geom_point(alpha = 0.85, stroke = 0.5) +
+  scale_x_log10(labels = fmt_area) +
+  scale_y_log10(labels = function(x) format(x, scientific = FALSE, drop0trailing = TRUE)) +
+  scale_size_area(max_size = 14, guide = "none") +
+  scale_colour_manual(values = continent_colors, name = NULL) +
+  labs(title = paste("Ecosystem loss vs. attribution weight,", latest_period),
+       subtitle = "Bubble size = BF-NEE · both axes logarithmic",
+       x = "Agriculture-constrained loss (km², log)",
+       y = "Attribution weight Σ S·P (log)") +
+  theme_bfnee(grid = "xy")
+
+bf_interactive(p)
+```
+
+## Regions
+
+```{r}
+#| fig-height: 4.4
+reg <- country_period %>%
+  group_by(period, continent) %>%
+  summarise(bfnee_km2 = sum(bfnee_km2, na.rm = TRUE), .groups = "drop")
+
+p <- ggplot(reg, aes(period, bfnee_km2, fill = continent,
+                     text = paste0(continent, "<br>", period, ": ", fmt_km2(bfnee_km2)))) +
+  geom_col(width = 0.7, colour = bf_ink$surface, linewidth = 0.5) +
+  scale_fill_manual(values = continent_colors, name = NULL, drop = TRUE) +
+  scale_y_continuous(labels = fmt_area, expand = expansion(mult = c(0, 0.05))) +
+  labs(title = "BF-NEE by world region", x = NULL, y = "BF-NEE (km²)")
+
+bf_interactive(p)
+```
+
+## All countries
+
+```{r}
+country_period %>%
+  transmute(ISO3 = iso3, Country = country_name, Region = continent, Period = period,
+            `Unconstrained loss (km²)` = loss_unconstrained_km2,
+            `Agricultural expansion (km²)` = agri_gain_km2,
+            `Constrained loss (km²)` = loss_constrained_km2,
+            `Weight ΣS·P` = weight_sum,
+            `BF-NEE (km²)` = bfnee_km2,
+            `Share of global BF-NEE` = share_global) %>%
+  arrange(desc(`BF-NEE (km²)`)) %>%
+  round_df(2) %>%
+  bf_table()
+```

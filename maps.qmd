@@ -1,0 +1,28 @@
+---
+title: "Interactive map"
+subtitle: "BF-NEE by grid cell, period, ecosystem group and commodity"
+page-layout: full
+toc: false
+---
+
+Choose a period, an ecosystem group and a commodity. The map shows either the
+agriculture-constrained natural ecosystem loss or the BF-NEE (loss × attribution
+weight of the producing country). Hover over a cell for its value; select a country
+to zoom in and see its totals.
+
+```{=html}
+<iframe class="map-frame"
+        src="https://sh33caqo.shinyapps.io/bf-nee-global-map/"
+        title="Interactive BF-NEE map"
+        loading="lazy"
+        allowfullscreen></iframe>
+```
+
+::: {.callout-note appearance="simple" collapse="true"}
+## About the map data
+
+Cells are aggregated for the web (about 18 km); values are km² per displayed cell.
+Totals in the side panel come from the country tables, not from the display raster.
+The map data are built on the cluster with `data-raw/02_build_map_data.R` and
+uploaded with `shiny/global_map/deploy.R`.
+:::

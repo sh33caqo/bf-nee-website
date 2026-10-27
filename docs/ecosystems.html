@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Ecosystems – BF-NEE</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-baae5a45780b1e5f478c1a1a4471a6e2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<link href="site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="site_libs/plotly-binding-4.10.4/plotly.js"></script>
+<script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="site_libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
+<script src="site_libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+<link href="site_libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="site_libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+<link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="site_libs/datatables-binding-0.33/datatables.js"></script>
+<link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="site_libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
+<link href="site_libs/dt-ext-buttons-1.13.6/css/buttons.dataTables.min.css" rel="stylesheet">
+<script src="site_libs/dt-ext-buttons-1.13.6/js/dataTables.buttons.min.js"></script>
+<script src="site_libs/dt-ext-buttons-1.13.6/js/buttons.html5.min.js"></script>
+<script src="site_libs/dt-ext-buttons-1.13.6/js/buttons.colVis.min.js"></script>
+<script src="site_libs/dt-ext-buttons-1.13.6/js/buttons.print.min.js"></script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">BF-NEE</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Overview</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./method.html"> 
+<span class="menu-text">Method</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-results" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Results</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-results">    
+        <li>
+    <a class="dropdown-item" href="./global.html">
+ <span class="dropdown-text">Global trends</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./landuse.html">
+ <span class="dropdown-text">Cropland &amp; pasture</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./ecosystems.html">
+ <span class="dropdown-text">Ecosystems</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./countries.html">
+ <span class="dropdown-text">Countries</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./commodities.html">
+ <span class="dropdown-text">Commodities</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./regressions.html">
+ <span class="dropdown-text">Regional regressions</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./maps.html"> 
+<span class="menu-text">Map</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./coverage.html"> 
+<span class="menu-text">Data &amp; checks</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/sh33caqo/bf-nee-website"> <i class="bi bi-github" role="img" aria-label="GitHub repository">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#footprint-by-ecosystem-group" id="toc-footprint-by-ecosystem-group" class="nav-link active" data-scroll-target="#footprint-by-ecosystem-group">Footprint by ecosystem group</a></li>
+  <li><a href="#change-over-time" id="toc-change-over-time" class="nav-link" data-scroll-target="#change-over-time">Change over time</a></li>
+  <li><a href="#how-much-of-each-groups-loss-is-linked-to-agriculture" id="toc-how-much-of-each-groups-loss-is-linked-to-agriculture" class="nav-link" data-scroll-target="#how-much-of-each-groups-loss-is-linked-to-agriculture">How much of each group’s loss is linked to agriculture?</a></li>
+  <li><a href="#tropical-moist-forests" id="toc-tropical-moist-forests" class="nav-link" data-scroll-target="#tropical-moist-forests">Tropical moist forests</a></li>
+  <li><a href="#ecosystem-groups-by-world-region" id="toc-ecosystem-groups-by-world-region" class="nav-link" data-scroll-target="#ecosystem-groups-by-world-region">Ecosystem groups by world region</a></li>
+  <li><a href="#top-ecosystem-classes" id="toc-top-ecosystem-classes" class="nav-link" data-scroll-target="#top-ecosystem-classes">Top ecosystem classes</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Ecosystems</h1>
+<p class="subtitle lead">Which natural ecosystems are lost to agricultural expansion linked to German final demand</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>The agriculture-constrained loss is split onto the ecosystem classes in proportion to their original loss (<a href="./method.html#class-split">method</a>), so the footprints of all groups add up to the total BF-NEE.</p>
+<section id="footprint-by-ecosystem-group" class="level2">
+<h2 class="anchored" data-anchor-id="footprint-by-ecosystem-group">Footprint by ecosystem group</h2>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="ecosystems_files/figure-html/unnamed-chunk-2-1.svg" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="change-over-time" class="level2">
+<h2 class="anchored" data-anchor-id="change-over-time">Change over time</h2>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-7c121c49e7bee4a1dbc7" style="width:100%;height:537.6px;"></div>
+<script type="application/json" data-for="htmlwidget-7c121c49e7bee4a1dbc7">{"x":{"data":[{"x":[1,2,3,4],"y":[7440.2488448720414,5441.0749601242296,4444.0419613254653,2777.206999995451],"text":["Forest<br>1995–2000: 7,440 km² (51% of total)","Forest<br>2000–2005: 5,440 km² (40% of total)","Forest<br>2005–2010: 4,440 km² (43% of total)","Forest<br>2010–2015: 2,780 km² (35% of total)"],"type":"scatter","mode":"lines+markers","line":{"width":3.4015748031496069,"color":"rgba(0,131,0,1)","dash":"solid"},"hoveron":"points","name":"Forest","legendgroup":"Forest","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(0,131,0,1)","opacity":1,"size":9.0708661417322833,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,131,0,1)"}},"frame":null},{"x":[1,2,3,4],"y":[1067.8493132720141,1431.6542444907902,1498.6648179167287,1257.4981301316952],"text":["Wetlands<br>1995–2000: 1,070 km² (7% of total)","Wetlands<br>2000–2005: 1,430 km² (11% of total)","Wetlands<br>2005–2010: 1,500 km² (15% of total)","Wetlands<br>2010–2015: 1,260 km² (16% of total)"],"type":"scatter","mode":"lines+markers","line":{"width":3.4015748031496069,"color":"rgba(42,120,214,1)","dash":"solid"},"hoveron":"points","name":"Wetlands","legendgroup":"Wetlands","showlegend":true,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(42,120,214,1)","opacity":1,"size":9.0708661417322833,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(42,120,214,1)"}},"frame":null},{"x":[1,2,3,4],"y":[2220.2729485591822,1607.2130266574757,1215.2796018274064,870.330684195608],"text":["Shrubland<br>1995–2000: 2,220 km² (15% of total)","Shrubland<br>2000–2005: 1,610 km² (12% of total)","Shrubland<br>2005–2010: 1,220 km² (12% of total)","Shrubland<br>2010–2015: 870 km² (11% of total)"],"type":"scatter","mode":"lines+markers","line":{"width":3.4015748031496069,"color":"rgba(235,104,52,1)","dash":"solid"},"hoveron":"points","name":"Shrubland","legendgroup":"Shrubland","showlegend":true,"xaxis":"x3","yaxis":"y3","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(235,104,52,1)","opacity":1,"size":9.0708661417322833,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(235,104,52,1)"}},"frame":null},{"x":[1,2,3,4],"y":[1075.037410580079,996.20143628529559,860.14920313105006,608.79976122472146],"text":["Grassland<br>1995–2000: 1,080 km² (7% of total)","Grassland<br>2000–2005: 996 km² (7% of total)","Grassland<br>2005–2010: 860 km² (8% of total)","Grassland<br>2010–2015: 609 km² (8% of total)"],"type":"scatter","mode":"lines+markers","line":{"width":3.4015748031496069,"color":"rgba(27,175,122,1)","dash":"solid"},"hoveron":"points","name":"Grassland","legendgroup":"Grassland","showlegend":true,"xaxis":"x4","yaxis":"y4","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(27,175,122,1)","opacity":1,"size":9.0708661417322833,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(27,175,122,1)"}},"frame":null},{"x":[1,2,3,4],"y":[953.98373683284137,1820.6820440953045,606.06304093693109,928.63804555377624],"text":["Savanna<br>1995–2000: 954 km² (7% of total)","Savanna<br>2000–2005: 1,820 km² (13% of total)","Savanna<br>2005–2010: 606 km² (6% of total)","Savanna<br>2010–2015: 929 km² (12% of total)"],"type":"scatter","mode":"lines+markers","line":{"width":3.4015748031496069,"color":"rgba(237,161,0,1)","dash":"solid"},"hoveron":"points","name":"Savanna","legendgroup":"Savanna","showlegend":true,"xaxis":"x","yaxis":"y5","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(237,161,0,1)","opacity":1,"size":9.0708661417322833,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(237,161,0,1)"}},"frame":null},{"x":[1,2,3,4],"y":[404.78173575211162,747.68609856110265,261.96171148477271,219.2862659446975],"text":["Desert and rocky<br>1995–2000: 405 km² (3% of total)","Desert and rocky<br>2000–2005: 748 km² (5% of total)","Desert and rocky<br>2005–2010: 262 km² (3% of total)","Desert and rocky<br>2010–2015: 219 km² (3% of total)"],"type":"scatter","mode":"lines+markers","line":{"width":3.4015748031496069,"color":"rgba(232,123,164,1)","dash":"solid"},"hoveron":"points","name":"Desert and rocky","legendgroup":"Desert and rocky","showlegend":true,"xaxis":"x2","yaxis":"y6","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(232,123,164,1)","opacity":1,"size":9.0708661417322833,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(232,123,164,1)"}},"frame":null},{"x":[1,2,3,4],"y":[219.91786603165093,193.87128643648509,165.12100310022674,159.70361518501699],"text":["Marine and coastal<br>1995–2000: 220 km² (2% of total)","Marine and coastal<br>2000–2005: 194 km² (1% of total)","Marine and coastal<br>2005–2010: 165 km² (2% of total)","Marine and coastal<br>2010–2015: 160 km² (2% of total)"],"type":"scatter","mode":"lines+markers","line":{"width":3.4015748031496069,"color":"rgba(98,80,214,1)","dash":"solid"},"hoveron":"points","name":"Marine and coastal","legendgroup":"Marine and coastal","showlegend":true,"xaxis":"x3","yaxis":"y7","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(98,80,214,1)","opacity":1,"size":9.0708661417322833,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(98,80,214,1)"}},"frame":null},{"x":[1,2,3,4],"y":[1179.9061591840039,1373.4344039180739,1166.7272240240561,1004.8315405668822],"text":["Modified (counted as natural)<br>1995–2000: 1,180 km² (8% of total)","Modified (counted as natural)<br>2000–2005: 1,370 km² (10% of total)","Modified (counted as natural)<br>2005–2010: 1,170 km² (11% of total)","Modified (counted as natural)<br>2010–2015: 1,000 km² (13% of total)"],"type":"scatter","mode":"lines+markers","line":{"width":3.4015748031496069,"color":"rgba(227,73,72,1)","dash":"solid"},"hoveron":"points","name":"Modified (counted as natural)","legendgroup":"Modified (counted as natural)","showlegend":true,"xaxis":"x4","yaxis":"y8","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(227,73,72,1)","opacity":1,"size":9.0708661417322833,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(227,73,72,1)"}},"frame":null}],"layout":{"margin":{"t":105,"r":10,"b":10,"l":10},"plot_bgcolor":"rgba(0,0,0,0)","paper_bgcolor":"rgba(0,0,0,0)","font":{"color":"rgba(0,0,0,1)","family":"system-ui, -apple-system, 'Segoe UI', sans-serif","size":17.268576172685766},"title":{"text":"<b>BF-NEE per ecosystem group<\/b><br><span style='font-size:12px;color:#52514e'>Each panel has its own scale<\/span>","font":{"color":"#0b0b0b","family":"","size":15},"x":0,"xref":"paper","xanchor":"left","y":1,"yref":"container","yanchor":"top","pad":{"t":14}},"xaxis":{"domain":[0,0.17943976428263295],"automargin":true,"type":"linear","autorange":false,"range":[0.40000000000000002,4.5999999999999996],"tickmode":"array","ticktext":["1995–2000","2000–2005","2005–2010","2010–2015"],"tickvals":[1,2,3,4],"categoryorder":"array","categoryarray":["1995–2000","2000–2005","2005–2010","2010–2015"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":4.3171440431714414,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(137,135,129,1)","family":"","size":10.62681610626816},"tickangle":-45,"showline":true,"linecolor":"rgba(195,194,183,1)","linewidth":0.5313408053134081,"showgrid":false,"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"y5","title":"","hoverformat":".2f"},"yaxis":{"domain":[0.57180220574829499,1],"automargin":true,"type":"linear","autorange":false,"range":[-372.0124422436021,7812.2612871156434],"tickmode":"array","ticktext":["0","2,000","4,000","6,000"],"tickvals":[0,2000,4000,6000],"categoryorder":"array","categoryarray":["0","2,000","4,000","6,000"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":4.3171440431714414,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(137,135,129,1)","family":"","size":13.814860938148612},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(225,224,217,1)","gridwidth":0.46492320464923209,"zeroline":false,"anchor":"x","title":"","hoverformat":".2f"},"annotations":[{"text":"BF-NEE (km²)","x":0,"y":0.5,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(82,81,78,1)","family":"","size":15.541718555417191},"xref":"paper","yref":"paper","textangle":-90,"xanchor":"right","yanchor":"center","annotationType":"axis","xshift":-46.625155666251565},{"text":"Forest","x":0.089719882141316473,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(82,81,78,1)","family":"","size":15.541718555417191},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"bottom"},{"text":"Wetlands","x":0.375,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(82,81,78,1)","family":"","size":15.541718555417191},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"bottom"},{"text":"Shrubland","x":0.625,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(82,81,78,1)","family":"","size":15.541718555417191},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"bottom"},{"text":"Grassland","x":0.91028011785868346,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(82,81,78,1)","family":"","size":15.541718555417191},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"bottom"},{"text":"Savanna","x":0.089719882141316473,"y":0.42819779425170501,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(82,81,78,1)","family":"","size":15.541718555417191},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"bottom"},{"text":"Desert and rocky","x":0.375,"y":0.42819779425170501,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(82,81,78,1)","family":"","size":15.541718555417191},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"bottom"},{"text":"Marine and coastal","x":0.625,"y":0.42819779425170501,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(82,81,78,1)","family":"","size":15.541718555417191},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"bottom"},{"text":"Modified (counted as natural)","x":0.91028011785868346,"y":0.42819779425170501,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(82,81,78,1)","family":"","size":15.541718555417191},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"bottom"}],"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":0.17943976428263295,"y0":0.57180220574829499,"y1":1},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":0.17943976428263295,"y0":0,"y1":29.356579493565803,"yanchor":1,"ysizemode":"pixel"},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0.32056023571736703,"x1":0.42943976428263297,"y0":0.57180220574829499,"y1":1},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0.32056023571736703,"x1":0.42943976428263297,"y0":0,"y1":29.356579493565803,"yanchor":1,"ysizemode":"pixel"},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0.57056023571736703,"x1":0.67943976428263297,"y0":0.57180220574829499,"y1":1},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0.57056023571736703,"x1":0.67943976428263297,"y0":0,"y1":29.356579493565803,"yanchor":1,"ysizemode":"pixel"},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0.82056023571736703,"x1":1,"y0":0.57180220574829499,"y1":1},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0.82056023571736703,"x1":1,"y0":0,"y1":29.356579493565803,"yanchor":1,"ysizemode":"pixel"},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":0.17943976428263295,"y0":0,"y1":0.42819779425170501},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":0.17943976428263295,"y0":0,"y1":29.356579493565803,"yanchor":0.42819779425170501,"ysizemode":"pixel"},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0.32056023571736703,"x1":0.42943976428263297,"y0":0,"y1":0.42819779425170501},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0.32056023571736703,"x1":0.42943976428263297,"y0":0,"y1":29.356579493565803,"yanchor":0.42819779425170501,"ysizemode":"pixel"},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0.57056023571736703,"x1":0.67943976428263297,"y0":0,"y1":0.42819779425170501},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0.57056023571736703,"x1":0.67943976428263297,"y0":0,"y1":29.356579493565803,"yanchor":0.42819779425170501,"ysizemode":"pixel"},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0.82056023571736703,"x1":1,"y0":0,"y1":0.42819779425170501},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0.82056023571736703,"x1":1,"y0":0,"y1":29.356579493565803,"yanchor":0.42819779425170501,"ysizemode":"pixel"}],"xaxis2":{"type":"linear","autorange":false,"range":[0.40000000000000002,4.5999999999999996],"tickmode":"array","ticktext":["1995–2000","2000–2005","2005–2010","2010–2015"],"tickvals":[1,2,3,4],"categoryorder":"array","categoryarray":["1995–2000","2000–2005","2005–2010","2010–2015"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":4.3171440431714414,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(137,135,129,1)","family":"","size":10.62681610626816},"tickangle":-45,"showline":true,"linecolor":"rgba(195,194,183,1)","linewidth":0.5313408053134081,"showgrid":false,"domain":[0.32056023571736703,0.42943976428263297],"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"y6","title":"","hoverformat":".2f"},"yaxis2":{"type":"linear","autorange":false,"range":[-74.933240895836434,1573.5980588125651],"tickmode":"array","ticktext":["0","500","1,000","1,500"],"tickvals":[0,500,1000,1500],"categoryorder":"array","categoryarray":["0","500","1,000","1,500"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":4.3171440431714414,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(137,135,129,1)","family":"","size":13.814860938148612},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"domain":[0.57180220574829499,1],"gridcolor":"rgba(225,224,217,1)","gridwidth":0.46492320464923209,"zeroline":false,"anchor":"x2","title":"","hoverformat":".2f"},"xaxis3":{"type":"linear","autorange":false,"range":[0.40000000000000002,4.5999999999999996],"tickmode":"array","ticktext":["1995–2000","2000–2005","2005–2010","2010–2015"],"tickvals":[1,2,3,4],"categoryorder":"array","categoryarray":["1995–2000","2000–2005","2005–2010","2010–2015"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":4.3171440431714414,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(137,135,129,1)","family":"","size":10.62681610626816},"tickangle":-45,"showline":true,"linecolor":"rgba(195,194,183,1)","linewidth":0.5313408053134081,"showgrid":false,"domain":[0.57056023571736703,0.67943976428263297],"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"y7","title":"","hoverformat":".2f"},"yaxis3":{"type":"linear","autorange":false,"range":[-111.01364742795911,2331.2865959871415],"tickmode":"array","ticktext":["0","500","1,000","1,500","2,000"],"tickvals":[0,499.99999999999989,1000,1500,2000.0000000000002],"categoryorder":"array","categoryarray":["0","500","1,000","1,500","2,000"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":4.3171440431714414,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(137,135,129,1)","family":"","size":13.814860938148612},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"domain":[0.57180220574829499,1],"gridcolor":"rgba(225,224,217,1)","gridwidth":0.46492320464923209,"zeroline":false,"anchor":"x3","title":"","hoverformat":".2f"},"xaxis4":{"type":"linear","autorange":false,"range":[0.40000000000000002,4.5999999999999996],"tickmode":"array","ticktext":["1995–2000","2000–2005","2005–2010","2010–2015"],"tickvals":[1,2,3,4],"categoryorder":"array","categoryarray":["1995–2000","2000–2005","2005–2010","2010–2015"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":4.3171440431714414,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(137,135,129,1)","family":"","size":10.62681610626816},"tickangle":-45,"showline":true,"linecolor":"rgba(195,194,183,1)","linewidth":0.5313408053134081,"showgrid":false,"domain":[0.82056023571736703,1],"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"y8","title":"","hoverformat":".2f"},"yaxis4":{"type":"linear","autorange":false,"range":[-53.751870529003952,1128.789281109083],"tickmode":"array","ticktext":["0","300","600","900"],"tickvals":[0,300,600,900],"categoryorder":"array","categoryarray":["0","300","600","900"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":4.3171440431714414,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(137,135,129,1)","family":"","size":13.814860938148612},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"domain":[0.57180220574829499,1],"gridcolor":"rgba(225,224,217,1)","gridwidth":0.46492320464923209,"zeroline":false,"anchor":"x4","title":"","hoverformat":".2f"},"yaxis5":{"type":"linear","autorange":false,"range":[-91.034102204765233,1911.7161463000698],"tickmode":"array","ticktext":["0","500","1,000","1,500"],"tickvals":[0,499.99999999999994,1000.0000000000001,1500],"categoryorder":"array","categoryarray":["0","500","1,000","1,500"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":4.3171440431714414,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(137,135,129,1)","family":"","size":13.814860938148612},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"domain":[0,0.42819779425170501],"gridcolor":"rgba(225,224,217,1)","gridwidth":0.46492320464923209,"zeroline":false,"anchor":"x","title":"","hoverformat":".2f"},"yaxis6":{"type":"linear","autorange":false,"range":[-37.384304928055137,785.0704034891578],"tickmode":"array","ticktext":["0","200","400","600"],"tickvals":[0,200.00000000000003,400,600],"categoryorder":"array","categoryarray":["0","200","400","600"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":4.3171440431714414,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(137,135,129,1)","family":"","size":13.814860938148612},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"domain":[0,0.42819779425170501],"gridcolor":"rgba(225,224,217,1)","gridwidth":0.46492320464923209,"zeroline":false,"anchor":"x2","title":"","hoverformat":".2f"},"yaxis7":{"type":"linear","autorange":false,"range":[-10.995893301582548,230.91375933323349],"tickmode":"array","ticktext":["0","50","100","150","200"],"tickvals":[0,49.999999999999993,100,150,200],"categoryorder":"array","categoryarray":["0","50","100","150","200"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":4.3171440431714414,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(137,135,129,1)","family":"","size":13.814860938148612},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"domain":[0,0.42819779425170501],"gridcolor":"rgba(225,224,217,1)","gridwidth":0.46492320464923209,"zeroline":false,"anchor":"x3","title":"","hoverformat":".2f"},"yaxis8":{"type":"linear","autorange":false,"range":[-68.671720195903703,1442.1061241139776],"tickmode":"array","ticktext":["0","500","1,000"],"tickvals":[0,500,999.99999999999989],"categoryorder":"array","categoryarray":["0","500","1,000"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":4.3171440431714414,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(137,135,129,1)","family":"","size":13.814860938148612},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"domain":[0,0.42819779425170501],"gridcolor":"rgba(225,224,217,1)","gridwidth":0.46492320464923209,"zeroline":false,"anchor":"x4","title":"","hoverformat":".2f"},"showlegend":false,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(82,81,78,1)","family":"","size":14.6782897467829},"title":{"text":"","font":{"color":"rgba(82,81,78,1)","family":"","size":14.6782897467829}},"orientation":"h","x":0,"xanchor":"left","y":1.02,"yanchor":"bottom"},"hovermode":"closest","barmode":"relative","hoverlabel":{"bgcolor":"white","bordercolor":"#c3c2b7","font":{"color":"#0b0b0b"}}},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false,"displaylogo":false,"modeBarButtonsToRemove":["lasso2d","select2d","autoScale2d","toggleSpikelines"]},"source":"A","attrs":{"16270018b4f03f":{"x":{},"y":{},"colour":{},"text":{},"type":"scatter"},"1627003ff67fb1":{"x":{},"y":{},"colour":{},"text":{}}},"cur_data":"16270018b4f03f","visdat":{"16270018b4f03f":["function (y) ","x"],"1627003ff67fb1":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="how-much-of-each-groups-loss-is-linked-to-agriculture" class="level2">
+<h2 class="anchored" data-anchor-id="how-much-of-each-groups-loss-is-linked-to-agriculture">How much of each group’s loss is linked to agriculture?</h2>
+<p>Share of the gross loss of an ecosystem group that coincides with cropland expansion in the same cell and period.</p>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-d6d2fc49494a11b2ea76" style="width:100%;height:422.4px;"></div>
+<script type="application/json" data-for="htmlwidget-d6d2fc49494a11b2ea76">{"x":{"data":[{"x":[1,2,3,4],"y":[0.20292203540286236,0.37022282205002049,0.38840678596049649,0.37597239422423556],"text":["Forest<br>1995–2000: 20%<br>constrained 349k km² of 1.72M km²","Forest<br>2000–2005: 37%<br>constrained 393k km² of 1.06M km²","Forest<br>2005–2010: 39%<br>constrained 329k km² of 846k km²","Forest<br>2010–2015: 38%<br>constrained 265k km² of 704k km²"],"type":"scatter","mode":"lines+markers","line":{"width":3.4015748031496069,"color":"rgba(0,131,0,1)","dash":"solid"},"hoveron":"points","name":"Forest","legendgroup":"Forest","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(0,131,0,1)","opacity":1,"size":9.0708661417322833,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,131,0,1)"}},"frame":null},{"x":[1,2,3,4],"y":[0.076743050757738587,0.1646423075338582,0.1730380371009542,0.19372793471524141],"text":["Wetlands<br>1995–2000: 8%<br>constrained 72.8k km² of 948k km²","Wetlands<br>2000–2005: 16%<br>constrained 112k km² of 678k km²","Wetlands<br>2005–2010: 17%<br>constrained 123k km² of 713k km²","Wetlands<br>2010–2015: 19%<br>constrained 128k km² of 659k km²"],"type":"scatter","mode":"lines+markers","line":{"width":3.4015748031496069,"color":"rgba(42,120,214,1)","dash":"solid"},"hoveron":"points","name":"Wetlands","legendgroup":"Wetlands","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(42,120,214,1)","opacity":1,"size":9.0708661417322833,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(42,120,214,1)"}},"frame":null},{"x":[1,2,3,4],"y":[0.091218303331669207,0.31907722491685725,0.33541126278063771,0.4923307679362634],"text":["Shrubland<br>1995–2000: 9%<br>constrained 149k km² of 1.63M km²","Shrubland<br>2000–2005: 32%<br>constrained 138k km² of 433k km²","Shrubland<br>2005–2010: 34%<br>constrained 137k km² of 409k km²","Shrubland<br>2010–2015: 49%<br>constrained 122k km² of 248k km²"],"type":"scatter","mode":"lines+markers","line":{"width":3.4015748031496069,"color":"rgba(235,104,52,1)","dash":"solid"},"hoveron":"points","name":"Shrubland","legendgroup":"Shrubland","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(235,104,52,1)","opacity":1,"size":9.0708661417322833,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(235,104,52,1)"}},"frame":null},{"x":[1,2,3,4],"y":[0.15230746743408477,0.36157475201639871,0.34078508344184011,0.44968761208383379],"text":["Grassland<br>1995–2000: 15%<br>constrained 92.1k km² of 605k km²","Grassland<br>2000–2005: 36%<br>constrained 119k km² of 330k km²","Grassland<br>2005–2010: 34%<br>constrained 99.9k km² of 293k km²","Grassland<br>2010–2015: 45%<br>constrained 91.7k km² of 204k km²"],"type":"scatter","mode":"lines+markers","line":{"width":3.4015748031496069,"color":"rgba(27,175,122,1)","dash":"solid"},"hoveron":"points","name":"Grassland","legendgroup":"Grassland","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(27,175,122,1)","opacity":1,"size":9.0708661417322833,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(27,175,122,1)"}},"frame":null},{"x":[1,2,3,4],"y":[0.070385542428446496,0.24352440993913338,0.41624804308789354,0.38408558966931455],"text":["Savanna<br>1995–2000: 7%<br>constrained 97.1k km² of 1.38M km²","Savanna<br>2000–2005: 24%<br>constrained 130k km² of 534k km²","Savanna<br>2005–2010: 42%<br>constrained 104k km² of 250k km²","Savanna<br>2010–2015: 38%<br>constrained 147k km² of 382k km²"],"type":"scatter","mode":"lines+markers","line":{"width":3.4015748031496069,"color":"rgba(237,161,0,1)","dash":"solid"},"hoveron":"points","name":"Savanna","legendgroup":"Savanna","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(237,161,0,1)","opacity":1,"size":9.0708661417322833,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(237,161,0,1)"}},"frame":null},{"x":[1,2,3,4],"y":[0.088561876336151743,0.16956584513564993,0.12440575234021375,0.18921386580897032],"text":["Desert and rocky<br>1995–2000: 9%<br>constrained 30.6k km² of 346k km²","Desert and rocky<br>2000–2005: 17%<br>constrained 53.9k km² of 318k km²","Desert and rocky<br>2005–2010: 12%<br>constrained 26.8k km² of 215k km²","Desert and rocky<br>2010–2015: 19%<br>constrained 30.4k km² of 161k km²"],"type":"scatter","mode":"lines+markers","line":{"width":3.4015748031496069,"color":"rgba(232,123,164,1)","dash":"solid"},"hoveron":"points","name":"Desert and rocky","legendgroup":"Desert and rocky","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(232,123,164,1)","opacity":1,"size":9.0708661417322833,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(232,123,164,1)"}},"frame":null},{"x":[1,2,3,4],"y":[0.1544756850146583,0.25854708994197362,0.36738264610208449,0.28866394267152573],"text":["Marine and coastal<br>1995–2000: 15%<br>constrained 8,610 km² of 55.8k km²","Marine and coastal<br>2000–2005: 26%<br>constrained 9,210 km² of 35.6k km²","Marine and coastal<br>2005–2010: 37%<br>constrained 15.4k km² of 41.9k km²","Marine and coastal<br>2010–2015: 29%<br>constrained 11.3k km² of 39.1k km²"],"type":"scatter","mode":"lines+markers","line":{"width":3.4015748031496069,"color":"rgba(98,80,214,1)","dash":"solid"},"hoveron":"points","name":"Marine and coastal","legendgroup":"Marine and coastal","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(98,80,214,1)","opacity":1,"size":9.0708661417322833,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(98,80,214,1)"}},"frame":null},{"x":[1,2,3,4],"y":[0.18217821807435558,0.71602743664921698,0.61686276167173126,0.80647523143140776],"text":["Modified (counted as natural)<br>1995–2000: 18%<br>constrained 73.8k km² of 405k km²","Modified (counted as natural)<br>2000–2005: 72%<br>constrained 101k km² of 141k km²","Modified (counted as natural)<br>2005–2010: 62%<br>constrained 119k km² of 193k km²","Modified (counted as natural)<br>2010–2015: 81%<br>constrained 119k km² of 147k km²"],"type":"scatter","mode":"lines+markers","line":{"width":3.4015748031496069,"color":"rgba(227,73,72,1)","dash":"solid"},"hoveron":"points","name":"Modified (counted as natural)","legendgroup":"Modified (counted as natural)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(227,73,72,1)","opacity":1,"size":9.0708661417322833,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(227,73,72,1)"}},"frame":null}],"layout":{"margin":{"t":80,"r":10,"b":10,"l":10},"plot_bgcolor":"rgba(0,0,0,0)","paper_bgcolor":"rgba(0,0,0,0)","font":{"color":"rgba(0,0,0,1)","family":"system-ui, -apple-system, 'Segoe UI', sans-serif","size":17.268576172685762},"title":{"text":"<b>Share of gross loss attributed to agricultural expansion<\/b>","font":{"color":"#0b0b0b","family":"","size":15},"x":0,"xref":"paper","xanchor":"left","y":1,"yref":"container","yanchor":"top","pad":{"t":14}},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.40000000000000002,4.5999999999999996],"tickmode":"array","ticktext":["1995–2000","2000–2005","2005–2010","2010–2015"],"tickvals":[1,2,3,4],"categoryorder":"array","categoryarray":["1995–2000","2000–2005","2005–2010","2010–2015"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":4.3171440431714405,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(137,135,129,1)","family":"","size":13.814860938148611},"tickangle":-0,"showline":true,"linecolor":"rgba(195,194,183,1)","linewidth":0.53134080531340799,"showgrid":false,"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"y","title":{"text":"","font":{"color":"rgba(82,81,78,1)","family":"","size":15.541718555417191}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-0.040323761571570388,0.84679899300297812],"tickmode":"array","ticktext":["0%","20%","40%","60%","80%"],"tickvals":[0,0.20000000000000004,0.40000000000000002,0.60000000000000009,0.80000000000000004],"categoryorder":"array","categoryarray":["0%","20%","40%","60%","80%"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":4.3171440431714414,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(137,135,129,1)","family":"","size":13.814860938148612},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(225,224,217,1)","gridwidth":0.46492320464923209,"zeroline":false,"anchor":"x","title":{"text":"","font":{"color":"rgba(82,81,78,1)","family":"","size":15.541718555417191}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(82,81,78,1)","family":"","size":14.6782897467829},"title":{"text":"","font":{"color":"rgba(82,81,78,1)","family":"","size":14.6782897467829}},"orientation":"h","x":0,"xanchor":"left","y":1.02,"yanchor":"bottom"},"hovermode":"closest","barmode":"relative","hoverlabel":{"bgcolor":"white","bordercolor":"#c3c2b7","font":{"color":"#0b0b0b"}}},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false,"displaylogo":false,"modeBarButtonsToRemove":["lasso2d","select2d","autoScale2d","toggleSpikelines"]},"source":"A","attrs":{"16270055804198":{"x":{},"y":{},"colour":{},"text":{},"type":"scatter"},"162700230a3f9b":{"x":{},"y":{},"colour":{},"text":{}}},"cur_data":"16270055804198","visdat":{"16270055804198":["function (y) ","x"],"162700230a3f9b":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="tropical-moist-forests" class="level2">
+<h2 class="anchored" data-anchor-id="tropical-moist-forests">Tropical moist forests</h2>
+<p>Subtropical/tropical moist lowland (1.6) and moist montane forest (1.9).</p>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-5f8008cb7dd1d817cd0e" style="width:100%;height:384px;"></div>
+<script type="application/json" data-for="htmlwidget-5f8008cb7dd1d817cd0e">{"x":{"data":[{"x":[0.997,1,1.0029999999999999,1.9970000000000001,2,2.0030000000000001,2.9969999999999999,3,3.0030000000000001,3.9969999999999999,4,4.0030000000000001,4.0030000000000001,4.0030000000000001,4,3.9969999999999999,3.0030000000000001,3,2.9969999999999999,2.0030000000000001,2,1.9970000000000001,1.0029999999999999,1,0.997,0.997],"y":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,451.30156106524271,452.36774488597939,805.62998415671427,806.69616797745095,808.85767871832707,1525.0382375285737,1527.1997482694499,1528.1655443305845,1848.1659725865607,1849.1317686476953,0,0],"text":"1995–2000: 1,850 km² (13% of total BF-NEE)","type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(0,131,0,0.12)","hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2,3,4],"y":[1849.1317686476953,1527.1997482694499,806.69616797745095,451.30156106524271],"text":["1995–2000: 1,850 km² (13% of total BF-NEE)","2000–2005: 1,530 km² (11% of total BF-NEE)","2005–2010: 807 km² (8% of total BF-NEE)","2010–2015: 451 km² (6% of total BF-NEE)"],"type":"scatter","mode":"lines+markers","line":{"width":3.4015748031496069,"color":"rgba(0,131,0,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(0,131,0,1)","opacity":1,"size":11.338582677165356,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,131,0,1)"}},"frame":null}],"layout":{"margin":{"t":80,"r":10,"b":10,"l":10},"plot_bgcolor":"rgba(0,0,0,0)","paper_bgcolor":"rgba(0,0,0,0)","font":{"color":"rgba(0,0,0,1)","family":"system-ui, -apple-system, 'Segoe UI', sans-serif","size":17.268576172685766},"title":{"text":"<b>BF-NEE in tropical moist forests<\/b>","font":{"color":"#0b0b0b","family":"","size":15},"x":0,"xref":"paper","xanchor":"left","y":1,"yref":"container","yanchor":"top","pad":{"t":14}},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.40000000000000002,4.5999999999999996],"tickmode":"array","ticktext":["1995–2000","2000–2005","2005–2010","2010–2015"],"tickvals":[1,2,3,4],"categoryorder":"array","categoryarray":["1995–2000","2000–2005","2005–2010","2010–2015"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":4.3171440431714414,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(137,135,129,1)","family":"","size":13.814860938148611},"tickangle":-0,"showline":true,"linecolor":"rgba(195,194,183,1)","linewidth":0.5313408053134081,"showgrid":false,"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"y","title":{"text":"","font":{"color":"rgba(82,81,78,1)","family":"","size":15.541718555417191}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0,2034.0449455124649],"tickmode":"array","ticktext":["0","500","1,000","1,500","2,000"],"tickvals":[0,500,1000,1500,2000],"categoryorder":"array","categoryarray":["0","500","1,000","1,500","2,000"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":4.3171440431714414,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(137,135,129,1)","family":"","size":13.814860938148612},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(225,224,217,1)","gridwidth":0.46492320464923209,"zeroline":false,"anchor":"x","title":{"text":"BF-NEE (km²)","font":{"color":"rgba(82,81,78,1)","family":"","size":15.541718555417191}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(82,81,78,1)","family":"","size":14.6782897467829},"orientation":"h","x":0,"xanchor":"left","y":1.02,"yanchor":"bottom","title":{"text":""}},"hovermode":"closest","barmode":"relative","hoverlabel":{"bgcolor":"white","bordercolor":"#c3c2b7","font":{"color":"#0b0b0b"}}},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false,"displaylogo":false,"modeBarButtonsToRemove":["lasso2d","select2d","autoScale2d","toggleSpikelines"]},"source":"A","attrs":{"16270071f53517":{"x":{},"y":{},"text":{},"type":"scatter"},"16270018dbdf99":{"x":{},"y":{},"text":{}},"1627007687b8ed":{"x":{},"y":{},"text":{}}},"cur_data":"16270071f53517","visdat":{"16270071f53517":["function (y) ","x"],"16270018dbdf99":["function (y) ","x"],"1627007687b8ed":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="ecosystems_files/figure-html/unnamed-chunk-6-1.svg" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="ecosystem-groups-by-world-region" class="level2">
+<h2 class="anchored" data-anchor-id="ecosystem-groups-by-world-region">Ecosystem groups by world region</h2>
+<p>Share of each region’s footprint that falls on each ecosystem group (2010–2015).</p>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="ecosystems_files/figure-html/unnamed-chunk-7-1.svg" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="top-ecosystem-classes" class="level2">
+<h2 class="anchored" data-anchor-id="top-ecosystem-classes">Top ecosystem classes</h2>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="ecosystems_files/figure-html/unnamed-chunk-8-1.svg" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-c1c0383d9ebc777fa8bb" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-c1c0383d9ebc777fa8bb">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[["1995–2000","2005–2010","2000–2005","2010–2015","1995–2000","2000–2005","2000–2005","1995–2000","2000–2005","1995–2000","2005–2010","2010–2015","2005–2010","2000–2005","1995–2000","2010–2015","2000–2005","1995–2000","1995–2000","2000–2005","2000–2005","2000–2005","2005–2010","2000–2005","2005–2010","2005–2010","2005–2010","2010–2015","2005–2010","2005–2010","2000–2005","2005–2010","2010–2015","2005–2010","2000–2005","2010–2015","2010–2015","2010–2015","2000–2005","1995–2000","2000–2005","1995–2000","2005–2010","2010–2015","2000–2005","1995–2000","1995–2000","2000–2005","2010–2015","2010–2015","2000–2005","1995–2000","1995–2000","2005–2010","1995–2000","2000–2005","2010–2015","1995–2000","2005–2010","2005–2010","1995–2000","2005–2010","1995–2000","2000–2005","2010–2015","2005–2010","1995–2000","2005–2010","2010–2015","2010–2015","2000–2005","2000–2005","1995–2000","2010–2015","1995–2000","1995–2000","1995–2000","2010–2015","2005–2010","2005–2010","2000–2005","2005–2010","2005–2010","2000–2005","1995–2000","2000–2005","2000–2005","2005–2010","2005–2010","1995–2000","2000–2005","2010–2015","2010–2015","2010–2015","1995–2000","2010–2015","1995–2000","2000–2005","1995–2000","2000–2005","2005–2010","2005–2010","1995–2000","2010–2015","2005–2010","2000–2005","1995–2000","1995–2000","2010–2015","2010–2015","2010–2015","1995–2000","2000–2005","2010–2015","2010–2015","1995–2000","2000–2005","2005–2010","2010–2015","2005–2010","2005–2010","2000–2005","2005–2010","2010–2015","2005–2010","2000–2005","2010–2015","2005–2010","1995–2000","2005–2010","2010–2015","1995–2000","1995–2000","2000–2005","2005–2010","2010–2015","1995–2000","2000–2005","1995–2000","2000–2005","2000–2005","2005–2010","2010–2015","1995–2000","2005–2010","1995–2000","1995–2000","2010–2015","2005–2010","2005–2010","2000–2005","2010–2015","1995–2000","2000–2005","2010–2015","1995–2000","2000–2005","2000–2005","1995–2000","2010–2015","2005–2010","2005–2010","2010–2015","2010–2015","2005–2010","2000–2005","2000–2005","2000–2005","2010–2015","2010–2015","2010–2015","2010–2015","1995–2000","2000–2005","2010–2015","2000–2005","2005–2010","1995–2000","2005–2010","1995–2000","2005–2010","2000–2005","2005–2010","2005–2010","2005–2010","2000–2005","2010–2015","2000–2005","2000–2005","1995–2000","2010–2015","2010–2015","2005–2010","2000–2005","2000–2005","1995–2000","1995–2000","2000–2005","2005–2010","2010–2015","2000–2005","2005–2010","2000–2005","2000–2005","2000–2005","1995–2000","1995–2000","2005–2010","1995–2000","1995–2000","1995–2000","2005–2010","2010–2015","2010–2015","2010–2015","2010–2015","2010–2015","1995–2000","2005–2010","2000–2005","2010–2015","1995–2000","1995–2000","1995–2000","1995–2000","2000–2005","2005–2010","2005–2010","2005–2010","2005–2010","2005–2010","2010–2015","2010–2015","2010–2015","2010–2015","2010–2015"],["1.4","1.4","1.4","1.4","1.6","1.6","2.1","3.4","14.3","14.3","14.3","14.3","1.6","1.5","4.4","2.1","3.4","2.1","3.5","2.2","4.4","1.8","1.5","3.5","4.4","3.4","5.1","4.4","1.8","2.1","5.1","3.5","1.6","5.2","8.3","3.4","5.1","5.2","5.4","5.1","5.2","2.2","5.4","3.5","14.6","5.4","1.8","8.1","5.4","2.2","4.5","4.5","8.3","14.6","14.6","3.6","1.5","5.2","2.2","5.5","3.6","4.5","5.5","5.5","5.5","8.3","3.8","3.6","14.6","8.3","4.6","1.9","3.3","4.5","8.1","3.7","4.6","1.8","4.7","5.6","3.8","4.6","3.7","5.6","1.1","3.7","8.2","8.1","1.9","9.10","4.7","5.6","3.6","8.1","1.9","3.7","12.5","9.10","4.7","12.4","3.8","9.10","8.2","3.8","12.4","12.5","6.0","5.6","9.10","1.9","12.4","12.4","6.0","4.6","4.7","10.1","1.1","1.1","12.5","12.5","3.3","3.3","6.0","10.1","10.1","10.1","12.7","13.5","5.14","8.2","8.2","13.5","1.5","13.5","5.14","13.5","5.17","5.11","12.7","5.14","12.7","5.17","5.14","5.11","5.16","5.8","1.7","6.0","5.15","5.11","5.17","5.16","5.16","1.7","5.17","5.15","5.15","13.4","13.4","1.7","1.7","12.7","5.8","5.15","5.8","5.8","5.16","4.1","5.11","1.1","15.2","13.4","15.2","1.3","3.3","15.2","4.1","5.7","13.4","4.1","15.2","3.1","11.1","10.2","5.7","5.7","5.7","4.3","5.10","3.1","15.13","12.6","3.1","11.1","10.2","9.8","5.10","3.2","9.8","9.8","1.2","5.10","9.8","12.6","15.13","11.1","10.2","15.13","12.6","15.13","1.2","12.6","11.1","10.2","4.1","3.1","5.10","10.3","10.3","10.3","1.2","1.3","3.2","4.2","4.3","4.2","1.2","1.3","3.2","4.2","4.3","1.3","10.3","3.2","4.2","4.3"],["Temperate forest","Temperate forest","Temperate forest","Temperate forest","Subtropical/tropical moist lowland forest","Subtropical/tropical moist lowland forest","Dry savanna","Temperate shrubland","Plantations","Plantations","Plantations","Plantations","Subtropical/tropical moist lowland forest","Subtropical/tropical dry forest","Temperate grassland","Dry savanna","Temperate shrubland","Dry savanna","Subtropical/tropical dry shrubland","Moist savanna","Temperate grassland","Subtropical/tropical swamp forest","Subtropical/tropical dry forest","Subtropical/tropical dry shrubland","Temperate grassland","Temperate shrubland","Permanent rivers/streams/creeks","Temperate grassland","Subtropical/tropical swamp forest","Dry savanna","Permanent rivers/streams/creeks","Subtropical/tropical dry shrubland","Subtropical/tropical moist lowland forest","Seasonal/intermittent/irregular rivers/streams/creeks","Cold desert","Temperate shrubland","Permanent rivers/streams/creeks","Seasonal/intermittent/irregular rivers/streams/creeks","Bogs, marshes, swamps, fens, peatlands","Permanent rivers/streams/creeks","Seasonal/intermittent/irregular rivers/streams/creeks","Moist savanna","Bogs, marshes, swamps, fens, peatlands","Subtropical/tropical dry shrubland","Subtropical/tropical heavily degraded former forest","Bogs, marshes, swamps, fens, peatlands","Subtropical/tropical swamp forest","Hot desert","Bogs, marshes, swamps, fens, peatlands","Moist savanna","Subtropical/tropical dry lowland grassland","Subtropical/tropical dry lowland grassland","Cold desert","Subtropical/tropical heavily degraded former forest","Subtropical/tropical heavily degraded former forest","Subtropical/tropical moist shrubland","Subtropical/tropical dry forest","Seasonal/intermittent/irregular rivers/streams/creeks","Moist savanna","Permanent freshwater lakes","Subtropical/tropical moist shrubland","Subtropical/tropical dry lowland grassland","Permanent freshwater lakes","Permanent freshwater lakes","Permanent freshwater lakes","Cold desert","Mediterranean-type shrubby vegetation","Subtropical/tropical moist shrubland","Subtropical/tropical heavily degraded former forest","Cold desert","Subtropical/tropical seasonally wet/flooded lowland grassland","Subtropical/tropical moist montane forest","Boreal shrubland","Subtropical/tropical dry lowland grassland","Hot desert","Subtropical/tropical high altitude shrubland","Subtropical/tropical seasonally wet/flooded lowland grassland","Subtropical/tropical swamp forest","Subtropical/tropical high altitude grassland","Seasonal/intermittent freshwater lakes","Mediterranean-type shrubby vegetation","Subtropical/tropical seasonally wet/flooded lowland grassland","Subtropical/tropical high altitude shrubland","Seasonal/intermittent freshwater lakes","Boreal forest","Subtropical/tropical high altitude shrubland","Temperate desert","Hot desert","Subtropical/tropical moist montane forest","Marine neritic – estuaries","Subtropical/tropical high altitude grassland","Seasonal/intermittent freshwater lakes","Subtropical/tropical moist shrubland","Hot desert","Subtropical/tropical moist montane forest","Subtropical/tropical high altitude shrubland","Marine intertidal – salt marshes","Marine neritic – estuaries","Subtropical/tropical high altitude grassland","Marine intertidal – mud shoreline and intertidal mud flats","Mediterranean-type shrubby vegetation","Marine neritic – estuaries","Temperate desert","Mediterranean-type shrubby vegetation","Marine intertidal – mud shoreline and intertidal mud flats","Marine intertidal – salt marshes","Rocky areas","Seasonal/intermittent freshwater lakes","Marine neritic – estuaries","Subtropical/tropical moist montane forest","Marine intertidal – mud shoreline and intertidal mud flats","Marine intertidal – mud shoreline and intertidal mud flats","Rocky areas","Subtropical/tropical seasonally wet/flooded lowland grassland","Subtropical/tropical high altitude grassland","Marine oceanic – epipelagic","Boreal forest","Boreal forest","Marine intertidal – salt marshes","Marine intertidal – salt marshes","Boreal shrubland","Boreal shrubland","Rocky areas","Marine oceanic – epipelagic","Marine oceanic – epipelagic","Marine oceanic – epipelagic","Marine intertidal – mangrove submerged roots","Marine coastal/supratidal – coastal freshwater lakes","Permanent saline, brackish or alkaline lakes","Temperate desert","Temperate desert","Marine coastal/supratidal – coastal freshwater lakes","Subtropical/tropical dry forest","Marine coastal/supratidal – coastal freshwater lakes","Permanent saline, brackish or alkaline lakes","Marine coastal/supratidal – coastal freshwater lakes","Seasonal/intermittent saline, brackish or alkaline marshes/pools","Alpine wetlands","Marine intertidal – mangrove submerged roots","Permanent saline, brackish or alkaline lakes","Marine intertidal – mangrove submerged roots","Seasonal/intermittent saline, brackish or alkaline marshes/pools","Permanent saline, brackish or alkaline lakes","Alpine wetlands","Permanent saline, brackish or alkaline marshes/pools","Seasonal/intermittent freshwater marshes/pools","Subtropical/tropical mangrove vegetation above high tide level","Rocky areas","Seasonal/intermittent saline, brackish or alkaline lakes and flats","Alpine wetlands","Seasonal/intermittent saline, brackish or alkaline marshes/pools","Permanent saline, brackish or alkaline marshes/pools","Permanent saline, brackish or alkaline marshes/pools","Subtropical/tropical mangrove vegetation above high tide level","Seasonal/intermittent saline, brackish or alkaline marshes/pools","Seasonal/intermittent saline, brackish or alkaline lakes and flats","Seasonal/intermittent saline, brackish or alkaline lakes and flats","Marine coastal/supratidal – coastal brackish/saline lagoons/marine lakes","Marine coastal/supratidal – coastal brackish/saline lagoons/marine lakes","Subtropical/tropical mangrove vegetation above high tide level","Subtropical/tropical mangrove vegetation above high tide level","Marine intertidal – mangrove submerged roots","Seasonal/intermittent freshwater marshes/pools","Seasonal/intermittent saline, brackish or alkaline lakes and flats","Seasonal/intermittent freshwater marshes/pools","Seasonal/intermittent freshwater marshes/pools","Permanent saline, brackish or alkaline marshes/pools","Tundra","Alpine wetlands","Boreal forest","Ponds (below 8 ha)","Marine coastal/supratidal – coastal brackish/saline lagoons/marine lakes","Ponds (below 8 ha)","Subantarctic forest","Boreal shrubland","Ponds (below 8 ha)","Tundra","Permanent freshwater marshes/pools","Marine coastal/supratidal – coastal brackish/saline lagoons/marine lakes","Tundra","Ponds (below 8 ha)","Subarctic shrubland","Marine deep benthic – continental slope/bathyl zone","Marine oceanic – mesopelagic","Permanent freshwater marshes/pools","Permanent freshwater marshes/pools","Permanent freshwater marshes/pools","Subantarctic grassland","Tundra wetlands","Subarctic shrubland","Mari/brackish-culture ponds","Marine intertidal – tidepools","Subarctic shrubland","Marine deep benthic – continental slope/bathyl zone","Marine oceanic – mesopelagic","Marine neritic – coral reef","Tundra wetlands","Subantarctic shrubland","Marine neritic – coral reef","Marine neritic – coral reef","Subarctic forest","Tundra wetlands","Marine neritic – coral reef","Marine intertidal – tidepools","Mari/brackish-culture ponds","Marine deep benthic – continental slope/bathyl zone","Marine oceanic – mesopelagic","Mari/brackish-culture ponds","Marine intertidal – tidepools","Mari/brackish-culture ponds","Subarctic forest","Marine intertidal – tidepools","Marine deep benthic – continental slope/bathyl zone","Marine oceanic – mesopelagic","Tundra","Subarctic shrubland","Tundra wetlands","Marine oceanic – bathypelagic","Marine oceanic – bathypelagic","Marine oceanic – bathypelagic","Subarctic forest","Subantarctic forest","Subantarctic shrubland","Subarctic grassland","Subantarctic grassland","Subarctic grassland","Subarctic forest","Subantarctic forest","Subantarctic shrubland","Subarctic grassland","Subantarctic grassland","Subantarctic forest","Marine oceanic – bathypelagic","Subantarctic shrubland","Subarctic grassland","Subantarctic grassland"],["Forest","Forest","Forest","Forest","Forest","Forest","Savanna","Shrubland","Modified (counted as natural)","Modified (counted as natural)","Modified (counted as natural)","Modified (counted as natural)","Forest","Forest","Grassland","Savanna","Shrubland","Savanna","Shrubland","Savanna","Grassland","Forest","Forest","Shrubland","Grassland","Shrubland","Wetlands","Grassland","Forest","Savanna","Wetlands","Shrubland","Forest","Wetlands","Desert and rocky","Shrubland","Wetlands","Wetlands","Wetlands","Wetlands","Wetlands","Savanna","Wetlands","Shrubland","Modified (counted as natural)","Wetlands","Forest","Desert and rocky","Wetlands","Savanna","Grassland","Grassland","Desert and rocky","Modified (counted as natural)","Modified (counted as natural)","Shrubland","Forest","Wetlands","Savanna","Wetlands","Shrubland","Grassland","Wetlands","Wetlands","Wetlands","Desert and rocky","Shrubland","Shrubland","Modified (counted as natural)","Desert and rocky","Grassland","Forest","Shrubland","Grassland","Desert and rocky","Shrubland","Grassland","Forest","Grassland","Wetlands","Shrubland","Grassland","Shrubland","Wetlands","Forest","Shrubland","Desert and rocky","Desert and rocky","Forest","Marine and coastal","Grassland","Wetlands","Shrubland","Desert and rocky","Forest","Shrubland","Marine and coastal","Marine and coastal","Grassland","Marine and coastal","Shrubland","Marine and coastal","Desert and rocky","Shrubland","Marine and coastal","Marine and coastal","Desert and rocky","Wetlands","Marine and coastal","Forest","Marine and coastal","Marine and coastal","Desert and rocky","Grassland","Grassland","Marine and coastal","Forest","Forest","Marine and coastal","Marine and coastal","Shrubland","Shrubland","Desert and rocky","Marine and coastal","Marine and coastal","Marine and coastal","Marine and coastal","Marine and coastal","Wetlands","Desert and rocky","Desert and rocky","Marine and coastal","Forest","Marine and coastal","Wetlands","Marine and coastal","Wetlands","Wetlands","Marine and coastal","Wetlands","Marine and coastal","Wetlands","Wetlands","Wetlands","Wetlands","Wetlands","Forest","Desert and rocky","Wetlands","Wetlands","Wetlands","Wetlands","Wetlands","Forest","Wetlands","Wetlands","Wetlands","Marine and coastal","Marine and coastal","Forest","Forest","Marine and coastal","Wetlands","Wetlands","Wetlands","Wetlands","Wetlands","Grassland","Wetlands","Forest","Modified (counted as natural)","Marine and coastal","Modified (counted as natural)","Forest","Shrubland","Modified (counted as natural)","Grassland","Wetlands","Marine and coastal","Grassland","Modified (counted as natural)","Shrubland","Marine and coastal","Marine and coastal","Wetlands","Wetlands","Wetlands","Grassland","Wetlands","Shrubland","Modified (counted as natural)","Marine and coastal","Shrubland","Marine and coastal","Marine and coastal","Marine and coastal","Wetlands","Shrubland","Marine and coastal","Marine and coastal","Forest","Wetlands","Marine and coastal","Marine and coastal","Modified (counted as natural)","Marine and coastal","Marine and coastal","Modified (counted as natural)","Marine and coastal","Modified (counted as natural)","Forest","Marine and coastal","Marine and coastal","Marine and coastal","Grassland","Shrubland","Wetlands","Marine and coastal","Marine and coastal","Marine and coastal","Forest","Forest","Shrubland","Grassland","Grassland","Grassland","Forest","Forest","Shrubland","Grassland","Grassland","Forest","Marine and coastal","Shrubland","Grassland","Grassland"],[340400,172500,214500,182400,729300,355200,291200,109300,88160,232900,130600,103000,277000,232500,178600,261600,100700,1172000,976400,243000,163100,106500,177800,198100,120800,59670,109300,101500,94040,175500,96720,212700,202600,162400,168300,49340,96830,158100,232500,138200,148800,207300,245100,96570,52600,414100,210800,98980,185200,120100,113400,264600,208400,62150,171600,37630,92450,172600,74650,59160,100000,110200,82770,61110,47110,115900,13290,55320,43170,89000,33820,22330,95540,60320,85500,325500,42190,54680,18970,45490,13060,40930,36830,40570,249100,34920,17960,67420,19910,10160,15290,56680,26250,50110,182300,25880,11400,7286,112700,7982,9174,9696,14440,6081,9889,8329,37310,48670,6681,14240,8700,11460,32890,24240,12050,10430,128900,102500,10040,10220,31750,41910,20190,4472,4552,4841,5220,4108,16280,11600,7565,4914,3162,2759,16980,2620,25070,6345,3820,10280,2987,17940,8653,6598,27770,5784,3553,14010,12090,5813,44490,8619,20680,2075,55940,13770,20090,974.7,2069,2186,2034,2183,4205,26120,3826,3124,8935,4694,7617,155600,750.9,915,715.9,105.7,33870,718.6,2230,1153,852,6816,754.7,6749,36.4,36.18,1187,1300,1358,27.63,3732,13490,22.44,25.64,3919,50,49.37,1149,2513,15.62,357.4,366.6,169.1,6433,343.9,19.72,17.2,172.4,170.8,10.19,20.25,14.91,217.8,10.63,41.53,40.85,5728,9947,2977,0.07806,0.03615,0.144,231.5,21.12,22.49,1.083,18.4,0.1959,61.38,7.951e-05,2.003,0.1083,5.581e-07,2.176,0.1417,7.077,0.5338000000000001,8.071],[107200,73180,105100,87440,187900,147100,90990,33130,74030,50560,86630,89960,113800,74670,49710,111900,40470,70900,58920,39100,60420,47190,79060,54800,39940,20990,33430,39870,46340,76930,29160,67790,100800,36840,26090,25200,35720,38740,28460,16930,30920,26210,26680,60160,27200,23180,28820,18600,27010,34740,33930,23730,16280,32590,23220,16550,45390,18410,27190,12590,14260,33440,6826,11710,13250,12690,5519,19500,28460,18820,16890,14240,19120,29490,9521,18020,9650,22240,11040,10180,5826,15220,21600,7558,8347,15440,5613,10110,10980,1601,7709,9024,14970,8437,13400,17980,1107,1877,8895,1579,3509,4221,2137,3558,3474,1716,2673,3479,2085,7899,1583,1712,3633,15280,7019,1435,4247,4381,1597,2315,3860,4922,2133,755.5,1360,1255,3813,3131,1031,1839,2112,1263,2486,1235,1064,1271,665.3,1099,1250,804.7,1361,755.8,1097,1087,652.1,341.4,679.7,1039,426.3,591.5,596.1,594.1,426.5,578.8,969.4,327.3,415.4,146,195.4,738.1,765.8,695,379.7,501.9,213.2,259.4,541.9,482,459.2,347.5,98.69,170.1,48.47,99.28,193,74.98999999999999,254.5,39.35,166.5,152.7,120.8,168.1,15.42,15.42,27.05,55.44,21.16,17.05,48.26,40.45,6.031,5.822,42.3,17.92,17.91,31.8,18.13,4.653,12.95,10.6,7.154,8.537000000000001,4.584,0.438,0.3687,9.441000000000001,9.43,0.9881,0.5211,0.8702,0.8781,0.4578,0.6978,0.4268,0.135,0.005964,0.001404,0.0009782,0.0005107,0.0001647,3.177e-06,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[5242,2592,2563,2032,1787,1419,1215,1098,1086,970.1,949.1,864.6,738.3,728.9,707.2,700.2,643.8,635.2,606.8,606,582.7,582.1,576.1,572,511.6,496.5,462.9,438.7,434.4,425,424.9,421,414.9,411.7,398.1,397.4,393.4,379,373.2,352.4,349.7,318.7,310.5,301.8,286,260.1,248.8,239.5,236,228.5,228,219.7,218,216.2,207.8,203.2,193.3,191.7,181.1,177.3,172,169.6,167.4,163.5,149.9,149.2,141.1,138.4,137.8,133.9,113.3,108.6,102.8,102.5,101.1,99.56999999999999,96.43000000000001,92.79000000000001,90.76000000000001,88.17,87.77,86.42,85.87,79,77.95,75.04000000000001,74.55,73.53,68.44,68.31999999999999,68.28,67.58,67.18000000000001,62.7,61.63,56.53,52.21,51.47,50.18,47.93,47.4,46.61,46.54,45.44,42.35,42.07,39.13,38.36,36.83,36.37,35.8,35.63,35.54,34.77,32.88,32.58,32.02,30.38,27.55,26.8,25.84,24.35,23.63,22.62,22.61,22.41,22.24,18.8,17.25,15.63,15.17,15.09,14.46,14.36,14.34,12.28,12.11,11.88,11.24,10.55,10.3,9.380000000000001,8.914999999999999,8.417999999999999,7.875,7.612,7.531,7.473,5.942,5.881,5.509,5.508,5.452,5.449,5.352,5.264,4.973,4.88,4.664,4.512,4.51,4.175,4.015,3.944,3.883,3.722,3.643,3.617,3.548,3.534,2.128,2.036,2.023,1.959,1.955,1.865,1.703,1.677,1.62,1.468,1.337,1.071,1.036,1.036,0.8348,0.7289,0.3402,0.3366,0.3242,0.2916,0.2809,0.2797,0.2639,0.1965,0.1965,0.1276,0.09307,0.09182999999999999,0.08408,0.05728,0.05327,0.04304,0.0313,0.03049,0.02933,0.02417,0.02414,0.01372,0.008926,0.008666999999999999,0.008559000000000001,0.00619,0.003409,0.00251,0.0003551,5.892e-05,2.233e-05,8.022999999999999e-06,6.672e-06,3.233e-07,7.709e-08,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]],"container":"<table class=\"compact hover\">\n  <thead>\n    <tr>\n      <th>Period<\/th>\n      <th>Class<\/th>\n      <th>Name<\/th>\n      <th>Group<\/th>\n      <th>Unconstrained loss (km²)<\/th>\n      <th>Constrained loss (km²)<\/th>\n      <th>BF-NEE (km²)<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":10,"dom":"Bfrtip","buttons":["csv"],"scrollX":true,"columnDefs":[{"className":"dt-right","targets":[4,5,6]},{"name":"Period","targets":0},{"name":"Class","targets":1},{"name":"Name","targets":2},{"name":"Group","targets":3},{"name":"Unconstrained loss (km²)","targets":4},{"name":"Constrained loss (km²)","targets":5},{"name":"BF-NEE (km²)","targets":6}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/sh33caqo\.github\.io\/bf-nee-website\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>BF-NEE · iDiv / Universität Leipzig</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Built with Quarto and R</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

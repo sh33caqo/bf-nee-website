@@ -1,0 +1,387 @@
+[
+  {
+    "objectID": "regressions.html",
+    "href": "regressions.html",
+    "title": "Regional regressions",
+    "section": "",
+    "text": "Per country \\text{BF-NEE} = R^{crop} \\sum_c S_c P_c + R^{past} P^{past} = R \\cdot w, with the effective attribution weight w = \\text{BF-NEE}/R (cropland and pasture part combined). A log-log model\n\n\\log(\\text{BF-NEE}) = \\beta_0 + \\beta_1 \\log(R) + \\beta_2 \\log(w) + \\varepsilon\n\nhas \\beta_1 = \\beta_2 = 1 and R^2 = 1 by construction. Deviations therefore point to data problems – not to substantive effects. The model serves as a consistency check; the interesting part is how much each component varies between regions.\nOnly countries with BF-NEE &gt; 0 are used (log scale); regions need ≥ 6 observations."
+  },
+  {
+    "objectID": "regressions.html#model",
+    "href": "regressions.html#model",
+    "title": "Regional regressions",
+    "section": "",
+    "text": "Per country \\text{BF-NEE} = R^{crop} \\sum_c S_c P_c + R^{past} P^{past} = R \\cdot w, with the effective attribution weight w = \\text{BF-NEE}/R (cropland and pasture part combined). A log-log model\n\n\\log(\\text{BF-NEE}) = \\beta_0 + \\beta_1 \\log(R) + \\beta_2 \\log(w) + \\varepsilon\n\nhas \\beta_1 = \\beta_2 = 1 and R^2 = 1 by construction. Deviations therefore point to data problems – not to substantive effects. The model serves as a consistency check; the interesting part is how much each component varies between regions.\nOnly countries with BF-NEE &gt; 0 are used (log scale); regions need ≥ 6 observations."
+  },
+  {
+    "objectID": "regressions.html#which-component-varies-more",
+    "href": "regressions.html#which-component-varies-more",
+    "title": "Regional regressions",
+    "section": "Which component varies more?",
+    "text": "Which component varies more?"
+  },
+  {
+    "objectID": "regressions.html#coefficients",
+    "href": "regressions.html#coefficients",
+    "title": "Regional regressions",
+    "section": "Coefficients",
+    "text": "Coefficients"
+  },
+  {
+    "objectID": "regressions.html#largest-residuals",
+    "href": "regressions.html#largest-residuals",
+    "title": "Regional regressions",
+    "section": "Largest residuals",
+    "text": "Largest residuals\nObservations far from the fitted line usually indicate an inconsistency in the data (e.g. weights or loss on a different scale)."
+  },
+  {
+    "objectID": "maps.html",
+    "href": "maps.html",
+    "title": "Interactive map",
+    "section": "",
+    "text": "Choose a period, an ecosystem group and a commodity. The map shows either the agriculture-constrained natural ecosystem loss or the BF-NEE (loss × attribution weight of the producing country). Hover over a cell for its value; select a country to zoom in and see its totals.\n\n\n\n\n\n\n\nAbout the map data\n\n\n\n\n\nCells are aggregated for the web (about 18 km); values are km² per displayed cell. Totals in the side panel come from the country tables, not from the display raster. The map data are built on the cluster with data-raw/02_build_map_data.R and uploaded with shiny/global_map/deploy.R."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Natural ecosystem loss behind consumption",
+    "section": "",
+    "text": "BF-NEE links the loss of natural ecosystems through agricultural expansion to the commodities grown on the new land and to final demand – here, consumption in Germany. Results are available for every producing country, time period, commodity and ecosystem type.\nExplore global trends Open the map"
+  },
+  {
+    "objectID": "index.html#explore",
+    "href": "index.html#explore",
+    "title": "Natural ecosystem loss behind consumption",
+    "section": "Explore",
+    "text": "Explore\n\n  \n    Global trends\n    Unconstrained loss, agricultural expansion, attributed loss and BF-NEE over time.\n  \n  \n    Cropland & pasture\n    Agricultural land, intensive vs. extensive grazing and the expansion behind the loss.\n  \n  \n    Ecosystems\n    Which ecosystem types are lost – forests, savannas, grasslands, wetlands, tropical moist forests.\n  \n  \n    Countries\n    Producing countries with the largest footprints and how they change.\n  \n  \n    Commodities\n    Which crops drive the footprint, and in which ecosystems.\n  \n  \n    Interactive map\n    Explore BF-NEE spatially by period, ecosystem group and commodity.\n  \n  \n    Data & checks\n    Coverage, validity flags and consistency checks of every country."
+  },
+  {
+    "objectID": "index.html#what-is-new-in-this-version",
+    "href": "index.html#what-is-new-in-this-version",
+    "title": "Natural ecosystem loss behind consumption",
+    "section": "What is new in this version",
+    "text": "What is new in this version\n\n\n\n\n\n\nv3 (data built 2026-10-26 14:34 CET)\n\nIntensive pasture (v3). Cropland and intensive pasture count as agricultural land. Loss linked to pasture expansion is attributed to grazing livestock.\nCommodity shares from expansion. A crop’s share is now its increase in area relative to the total increase of all expanding crops in the same period. Crops whose area shrank get a share of zero.\nAgricultural-expansion constraint. Only natural ecosystem loss that coincides with agricultural expansion in the same grid cell is attributed (Eq. 31–32).\nEcosystem classes are kept. The constrained loss is split back onto the ecosystem classes in proportion to their original loss, so footprints by ecosystem type add up exactly to the total footprint."
+  },
+  {
+    "objectID": "ecosystems.html",
+    "href": "ecosystems.html",
+    "title": "Ecosystems",
+    "section": "",
+    "text": "The agriculture-constrained loss is split onto the ecosystem classes in proportion to their original loss (method), so the footprints of all groups add up to the total BF-NEE."
+  },
+  {
+    "objectID": "ecosystems.html#footprint-by-ecosystem-group",
+    "href": "ecosystems.html#footprint-by-ecosystem-group",
+    "title": "Ecosystems",
+    "section": "Footprint by ecosystem group",
+    "text": "Footprint by ecosystem group"
+  },
+  {
+    "objectID": "ecosystems.html#change-over-time",
+    "href": "ecosystems.html#change-over-time",
+    "title": "Ecosystems",
+    "section": "Change over time",
+    "text": "Change over time"
+  },
+  {
+    "objectID": "ecosystems.html#how-much-of-each-groups-loss-is-linked-to-agriculture",
+    "href": "ecosystems.html#how-much-of-each-groups-loss-is-linked-to-agriculture",
+    "title": "Ecosystems",
+    "section": "How much of each group’s loss is linked to agriculture?",
+    "text": "How much of each group’s loss is linked to agriculture?\nShare of the gross loss of an ecosystem group that coincides with cropland expansion in the same cell and period."
+  },
+  {
+    "objectID": "ecosystems.html#tropical-moist-forests",
+    "href": "ecosystems.html#tropical-moist-forests",
+    "title": "Ecosystems",
+    "section": "Tropical moist forests",
+    "text": "Tropical moist forests\nSubtropical/tropical moist lowland (1.6) and moist montane forest (1.9)."
+  },
+  {
+    "objectID": "ecosystems.html#ecosystem-groups-by-world-region",
+    "href": "ecosystems.html#ecosystem-groups-by-world-region",
+    "title": "Ecosystems",
+    "section": "Ecosystem groups by world region",
+    "text": "Ecosystem groups by world region\nShare of each region’s footprint that falls on each ecosystem group (2010–2015)."
+  },
+  {
+    "objectID": "ecosystems.html#top-ecosystem-classes",
+    "href": "ecosystems.html#top-ecosystem-classes",
+    "title": "Ecosystems",
+    "section": "Top ecosystem classes",
+    "text": "Top ecosystem classes"
+  },
+  {
+    "objectID": "countries.html#concentration",
+    "href": "countries.html#concentration",
+    "title": "Countries",
+    "section": "Concentration",
+    "text": "Concentration"
+  },
+  {
+    "objectID": "countries.html#trajectories",
+    "href": "countries.html#trajectories",
+    "title": "Countries",
+    "section": "Trajectories",
+    "text": "Trajectories"
+  },
+  {
+    "objectID": "countries.html#what-drives-a-countrys-footprint",
+    "href": "countries.html#what-drives-a-countrys-footprint",
+    "title": "Countries",
+    "section": "What drives a country’s footprint?",
+    "text": "What drives a country’s footprint?\nBF-NEE of a country is its agriculture-constrained loss multiplied by its attribution weight \\sum_c S_c P_c. Countries can rank high because they lose a lot of ecosystems, because a large share of their expanding crops ends up in German final demand – or both."
+  },
+  {
+    "objectID": "countries.html#regions",
+    "href": "countries.html#regions",
+    "title": "Countries",
+    "section": "Regions",
+    "text": "Regions"
+  },
+  {
+    "objectID": "countries.html#all-countries",
+    "href": "countries.html#all-countries",
+    "title": "Countries",
+    "section": "All countries",
+    "text": "All countries"
+  },
+  {
+    "objectID": "commodities.html",
+    "href": "commodities.html",
+    "title": "Commodities",
+    "section": "",
+    "text": "Each country’s agriculture-constrained loss on cropland is distributed to the crops that expanded in that country and period (S_c, method), weighted with the share of their production that ends up in German final demand (P_c). The loss linked to intensive pasture is attributed to Grazing livestock (method)."
+  },
+  {
+    "objectID": "commodities.html#footprint-by-commodity",
+    "href": "commodities.html#footprint-by-commodity",
+    "title": "Commodities",
+    "section": "Footprint by commodity",
+    "text": "Footprint by commodity"
+  },
+  {
+    "objectID": "commodities.html#commodities-ecosystems",
+    "href": "commodities.html#commodities-ecosystems",
+    "title": "Commodities",
+    "section": "Commodities × ecosystems",
+    "text": "Commodities × ecosystems\nBecause the constrained loss keeps its ecosystem class, every commodity’s footprint can be split by ecosystem group: \\text{BF-NEE}_{c,g} = \\sum_r R_{r,g}\\,S_{c,r}\\,P_{c,r}."
+  },
+  {
+    "objectID": "commodities.html#which-crops-expand",
+    "href": "commodities.html#which-crops-expand",
+    "title": "Commodities",
+    "section": "Which crops expand?",
+    "text": "Which crops expand?\nCommodity shares S_c come from the increase in crop area. This is the summed increase of each crop across all valid countries (decreases are not counted)."
+  },
+  {
+    "objectID": "commodities.html#table",
+    "href": "commodities.html#table",
+    "title": "Commodities",
+    "section": "Table",
+    "text": "Table"
+  },
+  {
+    "objectID": "coverage.html",
+    "href": "coverage.html",
+    "title": "Data & checks",
+    "section": "",
+    "text": "155\ncountry folders with pipeline output\n\n\n155\nwith v3 results\n\n\n151\nvalid for analysis\nused on all result pages\n\n\n2026-10-26 14:34 CET\ndata built"
+  },
+  {
+    "objectID": "coverage.html#validity-rules",
+    "href": "coverage.html#validity-rules",
+    "title": "Data & checks",
+    "section": "Validity rules",
+    "text": "Validity rules\nA country is used on the result pages if all of the following hold:\n\n\n\n\n\n\n\nCheck\nRule\n\n\n\n\nOutput present\nBF-NEE summary for all 4 periods\n\n\nPipeline v3\nsummary contains the v3 columns (cropland / pasture split)\n\n\nScale\nLandSHIFT cell area ≤ 1,000 km² (old outputs were in m²)\n\n\nCommodity data\nLandSHIFT crop areas available (commodity shares not all missing)\n\n\nClass split\necosystem-class losses add up to the constrained total (rel. error &lt; 10⁻⁶)\n\n\nConstraint\nconstrained loss ≤ unconstrained loss in every period\n\n\nLand-use split\nBF-NEE of cropland + pasture = total BF-NEE\n\n\nGlobES coupling\nadjusted GlobES composition sums to 1 in every cell (step 04)"
+  },
+  {
+    "objectID": "coverage.html#countries-not-used",
+    "href": "coverage.html#countries-not-used",
+    "title": "Data & checks",
+    "section": "Countries not used",
+    "text": "Countries not used"
+  },
+  {
+    "objectID": "coverage.html#pipeline-status",
+    "href": "coverage.html#pipeline-status",
+    "title": "Data & checks",
+    "section": "Pipeline status",
+    "text": "Pipeline status\nLatest checkpoint of every step and country (Pipeline_Status)."
+  },
+  {
+    "objectID": "coverage.html#globeslandshift-coupling-step-04",
+    "href": "coverage.html#globeslandshift-coupling-step-04",
+    "title": "Data & checks",
+    "section": "GlobES–LandSHIFT coupling (step 04)",
+    "text": "GlobES–LandSHIFT coupling (step 04)\nAfter the coupling every cell must sum to one, the GlobES cropland classes must equal LandSHIFT cropland, and 14.2 must equal LandSHIFT intensive pasture. Small pasture differences occur only where LandSHIFT cropland + pasture exceed the cell and are scaled down. Cells without any GlobES cover (sum 0) are set to NA in step 05 and ignored here."
+  },
+  {
+    "objectID": "coverage.html#consistency-of-the-valid-countries",
+    "href": "coverage.html#consistency-of-the-valid-countries",
+    "title": "Data & checks",
+    "section": "Consistency of the valid countries",
+    "text": "Consistency of the valid countries"
+  },
+  {
+    "objectID": "coverage.html#all-countries",
+    "href": "coverage.html#all-countries",
+    "title": "Data & checks",
+    "section": "All countries",
+    "text": "All countries"
+  },
+  {
+    "objectID": "global.html",
+    "href": "global.html",
+    "title": "Global trends",
+    "section": "",
+    "text": "All figures sum over the 151 producing countries that pass the data checks."
+  },
+  {
+    "objectID": "global.html#from-loss-to-footprint",
+    "href": "global.html#from-loss-to-footprint",
+    "title": "Global trends",
+    "section": "From loss to footprint",
+    "text": "From loss to footprint\nThree steps narrow the observed loss down to the footprint: gross natural loss (unconstrained), the part that coincides with cropland expansion in the same cell (agriculture-constrained), and finally the share of it that is linked to German final demand (BF-NEE)."
+  },
+  {
+    "objectID": "global.html#bf-nee-over-time",
+    "href": "global.html#bf-nee-over-time",
+    "title": "Global trends",
+    "section": "BF-NEE over time",
+    "text": "BF-NEE over time\n\n\n\n\n\n\n\nBy ecosystem group\n\n\n\n\n\n\nMore detail on the Ecosystems page."
+  },
+  {
+    "objectID": "global.html#effect-of-the-agricultural-constraint",
+    "href": "global.html#effect-of-the-agricultural-constraint",
+    "title": "Global trends",
+    "section": "Effect of the agricultural constraint",
+    "text": "Effect of the agricultural constraint\nHow much smaller is BF-NEE when only loss linked to agricultural expansion is attributed, compared with attributing all natural loss?"
+  },
+  {
+    "objectID": "global.html#table",
+    "href": "global.html#table",
+    "title": "Global trends",
+    "section": "Table",
+    "text": "Table"
+  },
+  {
+    "objectID": "landuse.html",
+    "href": "landuse.html",
+    "title": "Cropland & pasture",
+    "section": "",
+    "text": "Agricultural land in BF-NEE consists of cropland (irrigated + rainfed) and intensive pasture. A cell’s grazing land counts as intensive if its stocking density is above the country mean of the grazing land (fixed per country, 1995–2015). Extensive grazing stays part of the natural ecosystem cover (method)."
+  },
+  {
+    "objectID": "landuse.html#agricultural-land-over-time",
+    "href": "landuse.html#agricultural-land-over-time",
+    "title": "Cropland & pasture",
+    "section": "Agricultural land over time",
+    "text": "Agricultural land over time"
+  },
+  {
+    "objectID": "landuse.html#expansion-of-cropland-and-pasture",
+    "href": "landuse.html#expansion-of-cropland-and-pasture",
+    "title": "Cropland & pasture",
+    "section": "Expansion of cropland and pasture",
+    "text": "Expansion of cropland and pasture\nNet agricultural expansion per grid cell, split into cropland and pasture (the quantity that limits the attributed loss)."
+  },
+  {
+    "objectID": "landuse.html#how-intensive-is-grazing",
+    "href": "landuse.html#how-intensive-is-grazing",
+    "title": "Cropland & pasture",
+    "section": "How intensive is grazing?",
+    "text": "How intensive is grazing?"
+  },
+  {
+    "objectID": "landuse.html#where-is-pasture-expansion-linked-to-ecosystem-loss",
+    "href": "landuse.html#where-is-pasture-expansion-linked-to-ecosystem-loss",
+    "title": "Cropland & pasture",
+    "section": "Where is pasture expansion linked to ecosystem loss?",
+    "text": "Where is pasture expansion linked to ecosystem loss?"
+  },
+  {
+    "objectID": "landuse.html#table",
+    "href": "landuse.html#table",
+    "title": "Cropland & pasture",
+    "section": "Table",
+    "text": "Table"
+  },
+  {
+    "objectID": "method.html",
+    "href": "method.html",
+    "title": "Method",
+    "section": "",
+    "text": "BF-NEE combines three data sets that each play a distinct role:\n\n\n\n\n\n\n\nData set\nRole\n\n\n\n\nLandSHIFT\nCropland extent per grid cell; crop composition per country\n\n\nGlobES\nComposition of ecosystem classes (IUCN habitat scheme) and its change\n\n\nGLORIA (MRIO)\nShare of each crop’s production that ends up in German final demand\n\n\n\nThe analysis covers the years 1995, 2000, 2005, 2010 and 2015 and therefore four five-year periods. Each period y-1 \\rightarrow y is combined with the commodity and GLORIA factors of its end year y."
+  },
+  {
+    "objectID": "method.html#overview",
+    "href": "method.html#overview",
+    "title": "Method",
+    "section": "",
+    "text": "BF-NEE combines three data sets that each play a distinct role:\n\n\n\n\n\n\n\nData set\nRole\n\n\n\n\nLandSHIFT\nCropland extent per grid cell; crop composition per country\n\n\nGlobES\nComposition of ecosystem classes (IUCN habitat scheme) and its change\n\n\nGLORIA (MRIO)\nShare of each crop’s production that ends up in German final demand\n\n\n\nThe analysis covers the years 1995, 2000, 2005, 2010 and 2015 and therefore four five-year periods. Each period y-1 \\rightarrow y is combined with the commodity and GLORIA factors of its end year y."
+  },
+  {
+    "objectID": "method.html#harmonising-cropland",
+    "href": "method.html#harmonising-cropland",
+    "title": "Method",
+    "section": "1 · Harmonising cropland",
+    "text": "1 · Harmonising cropland\nLandSHIFT is the authoritative source for cropland. In every grid cell the GlobES agricultural classes (14.1 arable land, 15.8 seasonally flooded agricultural land) are rescaled to the LandSHIFT cropland fraction L_{p,y}, and all other classes are rescaled so that the cell still sums to one. Six anthropogenic classes (14.4, 14.5, 15.4, 15.5, 15.6, 15.11) are removed beforehand.\n\n\n\\sum_{a \\in A} G'_{p,a,y} = L_{p,y}, \\qquad \\sum_e G'_{p,e,y} = 1, \\qquad\nA_{p,e,y} = G'_{p,e,y}\\,A_p"
+  },
+  {
+    "objectID": "method.html#pasture",
+    "href": "method.html#pasture",
+    "title": "Method",
+    "section": "1b · Intensive pasture",
+    "text": "1b · Intensive pasture\n\n\n\n\n\n\nSince v3. Intensive pasture is part of the agricultural land.\n\n\n\nLandSHIFT assigns a grazing fraction to every cell with livestock, both intensive pastures and extensive grazing on natural vegetation such as savanna. LandSHIFT separates the two only by stocking density, using the country mean as the threshold. BF-NEE follows this with one fixed threshold per country: the mean stocking density of the grazing land in 1995–2015, weighted by grazing area. A cell’s grazing fraction counts as intensive pasture L^{past}_{p,y} if its stocking density is above that threshold. Extensive grazing stays part of the natural GlobES cover.\nGlobES is coupled to both agricultural land uses separately:\n\n\n\\sum_{a \\in \\{14.1,\\,15.8\\}} G'_{p,a,y} = L^{crop}_{p,y}, \\qquad\nG'_{p,14.2,y} = L^{past}_{p,y}, \\qquad\nG'_{p,e,y} = \\tilde G_{p,e,y}\\,\\frac{1 - L^{crop}_{p,y} - L^{past}_{p,y}}{1 - \\tilde G^{crop}_{p,y} - \\tilde G^{past}_{p,y}}\n\n\nPastureland (14.2) is therefore an agricultural class and no longer counted as natural."
+  },
+  {
+    "objectID": "method.html#loss-of-natural-ecosystems",
+    "href": "method.html#loss-of-natural-ecosystems",
+    "title": "Method",
+    "section": "2 · Loss of natural ecosystems",
+    "text": "2 · Loss of natural ecosystems\nFor every natural ecosystem class e the gross loss between two observations is\n\n\n\\text{Loss}_{p,e,y} = \\max\\!\\left(-\\Delta A_{p,e,y},\\,0\\right), \\qquad\nN_{p,y} = \\sum_{e \\in N} \\text{Loss}_{p,e,y}\n\n\nExpansion of one natural class does not offset the loss of another."
+  },
+  {
+    "objectID": "method.html#agricultural-expansion-constraint",
+    "href": "method.html#agricultural-expansion-constraint",
+    "title": "Method",
+    "section": "3 · Agricultural-expansion constraint",
+    "text": "3 · Agricultural-expansion constraint\nNot every ecosystem change is caused by agriculture. Only loss that coincides with a net increase of agricultural land (cropland + intensive pasture) in the same grid cell and period is attributed. Pasture converted to cropland is not counted as expansion:\n\n\n\\text{Gain}^{agri}_{p,y} = \\max\\!\\left(\\Delta A^{crop}_{p,y} + \\Delta A^{past}_{p,y},\\,0\\right), \\qquad\nR_{p,y} = \\min\\!\\left(N_{p,y},\\ \\text{Gain}^{agri}_{p,y}\\right)\n\n\nR is split in every cell into a cropland and a pasture part in proportion to the positive changes of the two land uses:\n\n\ns^{past}_{p,y} = \\frac{\\max(\\Delta A^{past}_{p,y},0)}{\\max(\\Delta A^{crop}_{p,y},0) + \\max(\\Delta A^{past}_{p,y},0)}, \\qquad\nR^{past}_{p,y} = s^{past}_{p,y} R_{p,y}, \\quad R^{crop}_{p,y} = (1 - s^{past}_{p,y}) R_{p,y}"
+  },
+  {
+    "objectID": "method.html#class-split",
+    "href": "method.html#class-split",
+    "title": "Method",
+    "section": "4 · Keeping the ecosystem classes",
+    "text": "4 · Keeping the ecosystem classes\n\n\n\n\n\n\nSince v2. Previously the constraint was applied to the total N_{p,y} only, so the information on which ecosystem was lost disappeared.\n\n\n\nThe constrained loss R_{p,y} is split onto the ecosystem classes in proportion to their original loss in the same cell:\n\n\nR_{p,e,y} =\n\\begin{cases}\nR_{p,y}\\,\\dfrac{\\text{Loss}_{p,e,y}}{N_{p,y}} & N_{p,y} &gt; 0\\\\[4pt]\n0 & \\text{otherwise}\n\\end{cases}\n\\qquad\\Rightarrow\\qquad \\sum_e R_{p,e,y} = R_{p,y}\n\n\nExample: a cell loses 10 km² forest and 5 km² savanna, but cropland grows by only 6 km². Then 4 km² are attributed to forest and 2 km² to savanna. Footprints for forests, savannas, wetlands or tropical moist forests therefore add up exactly to the total footprint."
+  },
+  {
+    "objectID": "method.html#commodity-shares",
+    "href": "method.html#commodity-shares",
+    "title": "Method",
+    "section": "5 · Commodity shares from expansion",
+    "text": "5 · Commodity shares from expansion\n\n\n\n\n\n\nSince v2. Previously the static share of each crop in total cropland was used.\n\n\n\nEcosystems are converted by crops that expand, not by fields that already exist. For each country and period, the share of crop c is its area increase relative to the summed increase of all expanding crops:\n\n\nS_{c,r,y} =\n\\frac{\\max\\!\\left(A_{c,r,y} - A_{c,r,y-1},\\,0\\right)}\n     {\\sum_{c'} \\max\\!\\left(A_{c',r,y} - A_{c',r,y-1},\\,0\\right)}\n\n\nCrops whose area shrank get S = 0; the shares of a period sum to one. If no crop expanded, all shares are zero and nothing is attributed."
+  },
+  {
+    "objectID": "method.html#attribution-and-indicator",
+    "href": "method.html#attribution-and-indicator",
+    "title": "Method",
+    "section": "6 · Attribution and indicator",
+    "text": "6 · Attribution and indicator\nThe cropland part is attributed to crops with the commodity share and the GLORIA production share P_{c,r,y} (share of production in country r that is used for German final demand). The pasture part is attributed to Grazing livestock, whose P^{past} is the mean of the GLORIA sectors Raising of cattle and Raising of sheep and goats:\n\n\nL_{p,e,c,y} = R^{crop}_{p,e,y}\\,S_{c,r,y}\\,P_{c,r,y}, \\qquad\nL_{p,e,past,y} = R^{past}_{p,e,y}\\,P^{past}_{r,y}, \\qquad\n\\text{BF-NEE}_y = \\sum_p \\sum_e \\Big(\\sum_c L_{p,e,c,y} + L_{p,e,past,y}\\Big)\n\n\nSumming L_{p,e,c,y} over any subset gives the footprint of that subset – e.g. of one ecosystem group, one country or one commodity. All values are areas in km²."
+  },
+  {
+    "objectID": "method.html#ecosystem-groups",
+    "href": "method.html#ecosystem-groups",
+    "title": "Method",
+    "section": "Ecosystem groups",
+    "text": "Ecosystem groups\nFor the website the IUCN classes are grouped as follows. Tropical moist forest is reported additionally (classes 1.6 and 1.9; it is part of Forest).\n\n\n\n\n\n\n\n\n\nGroup\nIUCN classes\n\n\n\n\nForest\n1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9\n\n\nWetlands\n5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 5.9, 5.10, 5.11, 5.12, 5.13, 5.14, 5.15, 5.16, 5.17, 5.18\n\n\nShrubland\n3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8\n\n\nGrassland\n4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7\n\n\nSavanna\n2.1, 2.2\n\n\nDesert and rocky\n6.0, 6, 8.1, 8.2, 8.3\n\n\nMarine and coastal\n9.1, 9.8, 9.9, 9.10, 10.1, 10.2, 10.3, 10.4, 11.1, 11.2, 11.3, 11.4, 11.5, 12.1, 12.2, 12.3, 12.4, 12.5, 12.6, 12.7, 13.1, 13.2, 13.3, 13.4, 13.5\n\n\nModified (counted as natural)\n14.2, 14.3, 14.6, 15.1, 15.2, 15.3, 15.7, 15.9, 15.10, 15.12, 15.13, 16, 17, 18\n\n\n\n\n\n\n\n\n\n\n\nNote on modified habitats. Since v3, pastureland (14.2) is agricultural land. Plantations (14.3), heavily degraded former forest (14.6) and several artificial aquatic classes are still not excluded and therefore count as “natural”. They are shown as a separate group so they can be judged – or excluded – explicitly."
+  },
+  {
+    "objectID": "method.html#limitations",
+    "href": "method.html#limitations",
+    "title": "Method",
+    "section": "Limitations",
+    "text": "Limitations\n\nCommodity and GLORIA factors are national, not pixel-specific: the indicator does not identify the crop planted on a specific converted pixel.\nThe constraint is spatially conservative – loss is attributed only where cropland grows in the same cell and five-year period. Transitions that happen and reverse between snapshots are not captured.\nOnly intensive pasture is agricultural land; the split between intensive and extensive grazing depends on the country-mean threshold. Cattle and sheep/goats are weighted equally in P^{past} (no per-cell information on species).\nThe LandSHIFT–GLORIA concordance is not one-to-one (e.g. pulses and oil crops share one GLORIA sector)."
+  }
+]

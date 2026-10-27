@@ -1,0 +1,262 @@
+/* =========================================================
+   BF-NEE website styles
+   ========================================================= */
+
+:root {
+  --bf-primary: #1f5c4a;
+  --bf-primary-dark: #174638;
+  --bf-accent: #d99b3d;
+  --bf-surface: #fcfcfb;
+  --bf-page: #f9f9f7;
+  --bf-ink: #0b0b0b;
+  --bf-ink-2: #52514e;
+  --bf-muted: #898781;
+  --bf-border: rgba(11, 11, 11, 0.10);
+  --bf-shadow: 0 1px 2px rgba(11, 11, 11, 0.04), 0 6px 18px rgba(11, 11, 11, 0.05);
+}
+
+body {
+  line-height: 1.6;
+}
+
+main.content {
+  max-width: 1180px;
+}
+
+/* ---------------------------------------------------------
+   Navbar
+--------------------------------------------------------- */
+.navbar {
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
+}
+
+.navbar-brand .navbar-title {
+  font-weight: 750;
+  letter-spacing: 0.04em;
+}
+
+/* ---------------------------------------------------------
+   Headings
+--------------------------------------------------------- */
+h1.title {
+  font-weight: 750;
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  margin-top: 2.6rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid var(--bf-border);
+}
+
+.lead,
+.subtitle {
+  color: var(--bf-ink-2);
+  font-size: 1.12rem;
+}
+
+/* ---------------------------------------------------------
+   Hero (start page)
+--------------------------------------------------------- */
+.hero {
+  margin: 0.5rem 0 2rem 0;
+  padding: 3rem 2.6rem;
+  border-radius: 18px;
+  color: #fff;
+  background:
+    radial-gradient(1200px 400px at 90% -10%, rgba(217, 155, 61, 0.35), transparent 60%),
+    linear-gradient(135deg, #174638 0%, #1f5c4a 55%, #2b7560 100%);
+  box-shadow: 0 14px 40px rgba(23, 70, 56, 0.22);
+}
+
+.hero h1 {
+  color: #fff;
+  font-size: clamp(2rem, 4vw, 2.9rem);
+  font-weight: 780;
+  margin: 0 0 0.6rem 0;
+  border: none;
+}
+
+.hero p {
+  max-width: 760px;
+  font-size: 1.15rem;
+  opacity: 0.94;
+}
+
+.hero .btn {
+  margin: 1rem 0.5rem 0 0;
+  border-radius: 999px;
+  padding: 0.55rem 1.3rem;
+  font-weight: 600;
+}
+
+.hero .btn-light {
+  color: var(--bf-primary-dark);
+}
+
+.hero .btn-outline-light:hover {
+  color: var(--bf-primary-dark);
+}
+
+/* ---------------------------------------------------------
+   Metric tiles
+--------------------------------------------------------- */
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0 2rem 0;
+}
+
+.metric-card {
+  background: var(--bf-surface);
+  border: 1px solid var(--bf-border);
+  border-radius: 14px;
+  padding: 1.1rem 1.25rem;
+  box-shadow: var(--bf-shadow);
+}
+
+.metric-card .metric-value {
+  font-size: 2rem;
+  font-weight: 750;
+  line-height: 1.1;
+  color: var(--bf-ink);
+}
+
+.metric-card .metric-label {
+  margin-top: 0.35rem;
+  color: var(--bf-ink-2);
+  font-size: 0.92rem;
+}
+
+.metric-card .metric-note {
+  margin-top: 0.25rem;
+  color: var(--bf-muted);
+  font-size: 0.8rem;
+}
+
+/* ---------------------------------------------------------
+   Feature cards
+--------------------------------------------------------- */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin: 1.2rem 0 2rem 0;
+}
+
+.feature-card {
+  display: block;
+  padding: 1.2rem 1.3rem;
+  border: 1px solid var(--bf-border);
+  border-radius: 14px;
+  background: var(--bf-surface);
+  color: inherit;
+  text-decoration: none;
+  box-shadow: var(--bf-shadow);
+  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--bf-primary);
+  box-shadow: 0 10px 26px rgba(23, 70, 56, 0.12);
+  color: inherit;
+}
+
+.feature-card h3 {
+  margin: 0 0 0.35rem 0;
+  font-size: 1.08rem;
+  color: var(--bf-primary);
+}
+
+.feature-card p {
+  margin: 0;
+  color: var(--bf-ink-2);
+  font-size: 0.95rem;
+}
+
+/* ---------------------------------------------------------
+   Figures as cards
+--------------------------------------------------------- */
+.cell-output-display:has(img),
+.cell-output-display:has(svg),
+.cell-output-display:has(.plotly),
+.cell-output-display:has(.html-widget) {
+  background: var(--bf-surface);
+  border: 1px solid var(--bf-border);
+  border-radius: 14px;
+  padding: 0.9rem 1rem 0.6rem 1rem;
+  margin: 1rem 0 1.8rem 0;
+  box-shadow: var(--bf-shadow);
+}
+
+.cell-output-display img {
+  border-radius: 6px;
+}
+
+.figure-caption,
+figcaption {
+  color: var(--bf-muted);
+  font-size: 0.85rem;
+}
+
+/* ---------------------------------------------------------
+   Callouts / notes
+--------------------------------------------------------- */
+.callout {
+  border-radius: 10px;
+}
+
+.key-finding {
+  border-left: 4px solid var(--bf-accent);
+  background: #fff8ec;
+  padding: 0.9rem 1.1rem;
+  border-radius: 8px;
+  margin: 1.2rem 0;
+}
+
+/* ---------------------------------------------------------
+   Tables
+--------------------------------------------------------- */
+.dataTables_wrapper {
+  font-size: 0.9rem;
+}
+
+table.dataTable thead th {
+  border-bottom: 1px solid #c3c2b7 !important;
+  font-weight: 650;
+}
+
+table.dataTable td {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------------------------------------------------------
+   Equations
+--------------------------------------------------------- */
+.equation-box {
+  background: var(--bf-surface);
+  border: 1px solid var(--bf-border);
+  border-radius: 12px;
+  padding: 0.6rem 1.2rem;
+  margin: 1rem 0 1.4rem 0;
+  overflow-x: auto;
+}
+
+/* ---------------------------------------------------------
+   Map page
+--------------------------------------------------------- */
+.map-frame {
+  width: 100%;
+  height: 900px;
+  border: 1px solid var(--bf-border);
+  border-radius: 14px;
+  box-shadow: var(--bf-shadow);
+  background: var(--bf-surface);
+}
+
+@media (max-width: 768px) {
+  .hero { padding: 2rem 1.3rem; }
+  .map-frame { height: 1100px; }
+}

@@ -1,0 +1,73 @@
+project:
+  type: website
+  output-dir: docs
+  execute-dir: project
+  render:
+    - "*.qmd"
+    - "!README.md"
+
+website:
+  title: "BF-NEE"
+  description: "Consumption-attributed loss of natural ecosystems through agricultural expansion"
+  site-url: https://sh33caqo.github.io/bf-nee-website/
+  repo-url: https://github.com/sh33caqo/bf-nee-website
+  page-navigation: true
+  bread-crumbs: false
+
+  navbar:
+    pinned: true
+    left:
+      - href: index.qmd
+        text: Overview
+      - href: method.qmd
+        text: Method
+      - text: Results
+        menu:
+          - href: global.qmd
+            text: Global trends
+          - href: landuse.qmd
+            text: Cropland & pasture
+          - href: ecosystems.qmd
+            text: Ecosystems
+          - href: countries.qmd
+            text: Countries
+          - href: commodities.qmd
+            text: Commodities
+          - href: regressions.qmd
+            text: Regional regressions
+      - href: maps.qmd
+        text: Map
+      - href: coverage.qmd
+        text: Data & checks
+    right:
+      - icon: github
+        href: https://github.com/sh33caqo/bf-nee-website
+        aria-label: GitHub repository
+
+  page-footer:
+    left: "BF-NEE · iDiv / Universität Leipzig"
+    right: "Built with Quarto and R"
+
+format:
+  html:
+    theme:
+      light: [cosmo, theme.scss]
+    css: styles.css
+    toc: true
+    toc-depth: 2
+    toc-location: right
+    toc-title: "On this page"
+    code-fold: true
+    code-summary: "Show code"
+    code-tools: false
+    smooth-scroll: true
+    link-external-newwindow: true
+    fig-responsive: true
+    html-math-method: katex
+    lang: en
+
+execute:
+  freeze: false
+  echo: false
+  warning: false
+  message: false

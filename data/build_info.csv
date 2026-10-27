@@ -1,0 +1,2 @@
+built_at,source_dir,n_countries,n_countries_v3,n_countries_valid,pipeline_version
+2026-10-26 14:34 CET,/home/sc.uni-leipzig.de/sh33caqo/Symobio/Data/Processed,155,155,151,v3: cropland + intensive pasture; commodity shares from positive area change; constrained loss split by ecosystem class

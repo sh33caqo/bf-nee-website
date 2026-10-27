@@ -1,0 +1,128 @@
+---
+pagetitle: "BF-NEE · Overview"
+page-layout: full
+toc: false
+title-block-banner: false
+---
+
+```{r}
+#| label: setup
+#| include: false
+source("R/setup.R")
+
+g_latest <- global_period %>% filter(period == latest_period)
+
+forest_share <- ce %>%
+  filter(period == latest_period) %>%
+  summarise(f = sum(bfnee_km2[eco_group == "Forest"], na.rm = TRUE) /
+              sum(bfnee_km2, na.rm = TRUE)) %>%
+  pull(f)
+
+top_country <- ct %>%
+  filter(period == latest_period) %>%
+  slice_max(bfnee_km2, n = 1) %>%
+  pull(country_name)
+```
+
+::: {.hero}
+
+# Natural ecosystem loss behind consumption
+
+BF-NEE links the loss of natural ecosystems through **agricultural expansion** to
+the **commodities** grown on the new land and to **final demand** – here, consumption
+in Germany. Results are available for every producing country, time period,
+commodity and ecosystem type.
+
+[Explore global trends](global.qmd){.btn .btn-light}
+[Open the map](maps.qmd){.btn .btn-outline-light}
+
+:::
+
+::: {.metric-grid}
+
+::: {.metric-card}
+[`r fmt_km2(g_latest$bfnee_km2)`]{.metric-value}
+
+[BF-NEE `r latest_period`]{.metric-label}
+
+[ecosystem loss attributed to German final demand]{.metric-note}
+:::
+
+::: {.metric-card}
+[`r fmt_pct(g_latest$share_attributed)`]{.metric-value}
+
+[of natural ecosystem loss coincides with agricultural expansion]{.metric-label}
+
+[`r latest_period`, same grid cell and period]{.metric-note}
+:::
+
+::: {.metric-card}
+[`r fmt_pct(forest_share)`]{.metric-value}
+
+[of the footprint falls on forests]{.metric-label}
+
+[`r latest_period`]{.metric-note}
+:::
+
+::: {.metric-card}
+[`r length(valid_iso3)`]{.metric-value}
+
+[producing countries analysed]{.metric-label}
+
+[largest contributor `r latest_period`: `r top_country`]{.metric-note}
+:::
+
+:::
+
+## Explore
+
+```{=html}
+<div class="feature-grid">
+  <a class="feature-card" href="global.html">
+    <h3>Global trends</h3>
+    <p>Unconstrained loss, agricultural expansion, attributed loss and BF-NEE over time.</p>
+  </a>
+  <a class="feature-card" href="landuse.html">
+    <h3>Cropland &amp; pasture</h3>
+    <p>Agricultural land, intensive vs. extensive grazing and the expansion behind the loss.</p>
+  </a>
+  <a class="feature-card" href="ecosystems.html">
+    <h3>Ecosystems</h3>
+    <p>Which ecosystem types are lost – forests, savannas, grasslands, wetlands, tropical moist forests.</p>
+  </a>
+  <a class="feature-card" href="countries.html">
+    <h3>Countries</h3>
+    <p>Producing countries with the largest footprints and how they change.</p>
+  </a>
+  <a class="feature-card" href="commodities.html">
+    <h3>Commodities</h3>
+    <p>Which crops drive the footprint, and in which ecosystems.</p>
+  </a>
+  <a class="feature-card" href="maps.html">
+    <h3>Interactive map</h3>
+    <p>Explore BF-NEE spatially by period, ecosystem group and commodity.</p>
+  </a>
+  <a class="feature-card" href="coverage.html">
+    <h3>Data &amp; checks</h3>
+    <p>Coverage, validity flags and consistency checks of every country.</p>
+  </a>
+</div>
+```
+
+## What is new in this version
+
+::: {.callout-note appearance="simple"}
+**`r sub(":.*", "", build_info$pipeline_version)`** (data built `r build_info$built_at`)
+
+- **Intensive pasture (v3).** Cropland *and* intensive pasture count as agricultural
+  land. Loss linked to pasture expansion is attributed to grazing livestock.
+
+- **Commodity shares from expansion.** A crop's share is now its *increase* in area
+  relative to the total increase of all expanding crops in the same period. Crops
+  whose area shrank get a share of zero.
+- **Agricultural-expansion constraint.** Only natural ecosystem loss that coincides
+  with agricultural expansion in the same grid cell is attributed (Eq. 31–32).
+- **Ecosystem classes are kept.** The constrained loss is split back onto the
+  ecosystem classes in proportion to their original loss, so footprints by
+  ecosystem type add up exactly to the total footprint.
+:::

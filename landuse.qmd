@@ -1,0 +1,155 @@
+---
+title: "Cropland & pasture"
+subtitle: "Agricultural land in LandSHIFT and its role for natural ecosystem loss"
+---
+
+```{r}
+#| include: false
+source("R/setup.R")
+
+lu <- landuse %>%
+  filter(iso3 %in% valid_iso3) %>%
+  left_join(country_labels, by = "iso3") %>%
+  mutate(extensive_km2 = pmax(graze_km2 - pasture_int_km2, 0))
+
+latest_year <- max(lu$year, na.rm = TRUE)
+```
+
+Agricultural land in BF-NEE consists of **cropland** (irrigated + rainfed) and
+**intensive pasture**. A cell's grazing land counts as intensive if its stocking
+density is above the country mean of the grazing land (fixed per country, 1995–2015).
+Extensive grazing stays part of the natural ecosystem cover ([method](method.qmd#pasture)).
+
+## Agricultural land over time
+
+```{r}
+#| fig-height: 4.6
+g <- lu %>%
+  group_by(year) %>%
+  summarise(`Cropland` = sum(cropland_km2, na.rm = TRUE),
+            `Intensive pasture` = sum(pasture_int_km2, na.rm = TRUE),
+            `Extensive grazing (natural)` = sum(extensive_km2, na.rm = TRUE),
+            .groups = "drop") %>%
+  pivot_longer(-year, names_to = "type", values_to = "km2") %>%
+  mutate(type = factor(type, levels = c("Cropland", "Intensive pasture", "Extensive grazing (natural)")))
+
+p <- ggplot(g, aes(factor(year), km2, fill = type,
+                   text = paste0(type, "<br>", year, ": ", fmt_km2(km2)))) +
+  geom_col(width = 0.7, colour = bf_ink$surface, linewidth = 0.5) +
+  scale_fill_manual(values = c(basis_colors, "Extensive grazing (natural)" = bf_ink$other), name = NULL) +
+  scale_y_continuous(labels = fmt_area, expand = expansion(mult = c(0, 0.05))) +
+  labs(title = "LandSHIFT agricultural land and grazing",
+       subtitle = "Sum over all valid producing countries · only cropland and intensive pasture are agricultural land",
+       x = NULL, y = "Area (km²)")
+
+bf_interactive(p)
+```
+
+## Expansion of cropland and pasture
+
+Net agricultural expansion per grid cell, split into cropland and pasture
+(the quantity that limits the attributed loss).
+
+```{r}
+#| fig-height: 4.4
+ex <- global_period %>%
+  select(period, `Cropland` = agri_gain_cropland_km2, `Intensive pasture` = agri_gain_pasture_km2) %>%
+  pivot_longer(-period, names_to = "basis", values_to = "km2") %>%
+  group_by(period) %>% mutate(share = km2 / sum(km2)) %>% ungroup() %>%
+  mutate(basis = factor(basis, levels = names(basis_colors)))
+
+p <- ggplot(ex, aes(period, km2, fill = basis,
+                    text = paste0(basis, "<br>", period, ": +", fmt_km2(km2), " (", fmt_pct(share), ")"))) +
+  geom_col(width = 0.7, colour = bf_ink$surface, linewidth = 0.5) +
+  scale_fill_manual(values = basis_colors, name = NULL) +
+  scale_y_continuous(labels = fmt_area, expand = expansion(mult = c(0, 0.05))) +
+  labs(title = "Agricultural expansion by land use",
+       x = NULL, y = "Area increase (km²)")
+
+bf_interactive(p)
+```
+
+## How intensive is grazing?
+
+```{r}
+#| fig-height: 4
+reg <- lu %>%
+  filter(year == latest_year) %>%
+  group_by(continent) %>%
+  summarise(share = sum(pasture_int_km2, na.rm = TRUE) / sum(graze_km2, na.rm = TRUE),
+            graze_km2 = sum(graze_km2, na.rm = TRUE), .groups = "drop") %>%
+  filter(is.finite(share), graze_km2 > 0) %>%
+  mutate(continent = forcats::fct_reorder(continent, share))
+
+ggplot(reg, aes(share, continent, fill = continent)) +
+  geom_col(width = 0.65) +
+  geom_text(aes(label = fmt_pct(share)), hjust = -0.15, size = 3.4, colour = bf_ink$secondary) +
+  scale_fill_manual(values = continent_colors, guide = "none") +
+  scale_x_continuous(labels = fmt_pct, limits = c(0, 1), expand = expansion(mult = c(0, 0.02))) +
+  labs(title = paste("Share of grazing land classified as intensive,", latest_year),
+       subtitle = "Grazing area with a stocking density above the country mean",
+       x = NULL, y = NULL) +
+  theme_bfnee(grid = "x")
+```
+
+```{r}
+#| fig-height: 5.6
+thr <- lu %>%
+  filter(year == latest_year, is.finite(stocking_threshold_lu_per_ha), graze_km2 > 0) %>%
+  slice_max(graze_km2, n = 25) %>%
+  mutate(country_name = forcats::fct_reorder(country_name, stocking_threshold_lu_per_ha))
+
+p <- ggplot(thr, aes(stocking_threshold_lu_per_ha, country_name, colour = continent,
+                     text = paste0("<b>", country_name, "</b><br>Threshold: ",
+                                   signif(stocking_threshold_lu_per_ha, 3), " LU/ha<br>Grazing land: ",
+                                   fmt_km2(graze_km2), "<br>Intensive: ", fmt_pct(share_graze_intensive)))) +
+  geom_segment(aes(x = 0, xend = stocking_threshold_lu_per_ha, yend = country_name),
+               colour = bf_ink$grid, linewidth = 0.8) +
+  geom_point(size = 3) +
+  scale_colour_manual(values = continent_colors, name = NULL) +
+  labs(title = "Stocking-rate threshold of the 25 largest grazing countries",
+       subtitle = "Mean stocking density of the grazing land, 1995–2015",
+       x = "Threshold (livestock units per ha)", y = NULL) +
+  theme_bfnee(grid = "x")
+
+bf_interactive(p)
+```
+
+## Where is pasture expansion linked to ecosystem loss?
+
+```{r}
+#| fig-height: 5.6
+pc <- ct %>%
+  filter(period == latest_period) %>%
+  transmute(country_name, continent, `Cropland` = loss_cropland_km2,
+            `Intensive pasture` = loss_pasture_km2, total = loss_constrained_km2) %>%
+  slice_max(total, n = 15) %>%
+  pivot_longer(c(`Cropland`, `Intensive pasture`), names_to = "basis", values_to = "km2") %>%
+  mutate(country_name = forcats::fct_reorder(country_name, total),
+         basis = factor(basis, levels = names(basis_colors)))
+
+ggplot(pc, aes(km2, country_name, fill = basis)) +
+  geom_col(width = 0.7, colour = bf_ink$surface, linewidth = 0.4) +
+  scale_fill_manual(values = basis_colors, name = NULL) +
+  scale_x_continuous(labels = fmt_area, expand = expansion(mult = c(0, 0.05))) +
+  labs(title = paste("Agriculture-constrained loss by land use,", latest_period),
+       subtitle = "15 countries with the largest constrained loss",
+       x = "Area (km²)", y = NULL) +
+  theme_bfnee(grid = "x")
+```
+
+## Table
+
+```{r}
+lu %>%
+  filter(year == latest_year) %>%
+  transmute(ISO3 = iso3, Country = country_name, Region = continent,
+            `Threshold (LU/ha)` = stocking_threshold_lu_per_ha,
+            `Cropland (km²)` = cropland_km2,
+            `Grazing land (km²)` = graze_km2,
+            `Intensive pasture (km²)` = pasture_int_km2,
+            `Share intensive` = share_graze_intensive) %>%
+  arrange(desc(`Intensive pasture (km²)`)) %>%
+  round_df(2) %>%
+  bf_table()
+```

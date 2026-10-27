@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Commodities – BF-NEE</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-baae5a45780b1e5f478c1a1a4471a6e2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<link href="site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="site_libs/plotly-binding-4.10.4/plotly.js"></script>
+<script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="site_libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
+<script src="site_libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+<link href="site_libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="site_libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+<link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="site_libs/datatables-binding-0.33/datatables.js"></script>
+<link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="site_libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
+<link href="site_libs/dt-ext-buttons-1.13.6/css/buttons.dataTables.min.css" rel="stylesheet">
+<script src="site_libs/dt-ext-buttons-1.13.6/js/dataTables.buttons.min.js"></script>
+<script src="site_libs/dt-ext-buttons-1.13.6/js/buttons.html5.min.js"></script>
+<script src="site_libs/dt-ext-buttons-1.13.6/js/buttons.colVis.min.js"></script>
+<script src="site_libs/dt-ext-buttons-1.13.6/js/buttons.print.min.js"></script>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">BF-NEE</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Overview</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./method.html"> 
+<span class="menu-text">Method</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-results" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Results</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-results">    
+        <li>
+    <a class="dropdown-item" href="./global.html">
+ <span class="dropdown-text">Global trends</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./landuse.html">
+ <span class="dropdown-text">Cropland &amp; pasture</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./ecosystems.html">
+ <span class="dropdown-text">Ecosystems</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./countries.html">
+ <span class="dropdown-text">Countries</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./commodities.html">
+ <span class="dropdown-text">Commodities</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./regressions.html">
+ <span class="dropdown-text">Regional regressions</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./maps.html"> 
+<span class="menu-text">Map</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./coverage.html"> 
+<span class="menu-text">Data &amp; checks</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/sh33caqo/bf-nee-website"> <i class="bi bi-github" role="img" aria-label="GitHub repository">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#footprint-by-commodity" id="toc-footprint-by-commodity" class="nav-link active" data-scroll-target="#footprint-by-commodity">Footprint by commodity</a></li>
+  <li><a href="#commodities-ecosystems" id="toc-commodities-ecosystems" class="nav-link" data-scroll-target="#commodities-ecosystems">Commodities × ecosystems</a></li>
+  <li><a href="#which-crops-expand" id="toc-which-crops-expand" class="nav-link" data-scroll-target="#which-crops-expand">Which crops expand?</a></li>
+  <li><a href="#table" id="toc-table" class="nav-link" data-scroll-target="#table">Table</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Commodities</h1>
+<p class="subtitle lead">Which expanding crops carry the footprint – and in which ecosystems</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Each country’s agriculture-constrained loss on <strong>cropland</strong> is distributed to the crops that expanded in that country and period (<span class="math inline">S_c</span>, <a href="./method.html#commodity-shares">method</a>), weighted with the share of their production that ends up in German final demand (<span class="math inline">P_c</span>). The loss linked to <strong>intensive pasture</strong> is attributed to <em>Grazing livestock</em> (<a href="./method.html#pasture">method</a>).</p>
+<section id="footprint-by-commodity" class="level2">
+<h2 class="anchored" data-anchor-id="footprint-by-commodity">Footprint by commodity</h2>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-89cc96a4dbc2e993e128" style="width:100%;height:460.8px;"></div>
+<script type="application/json" data-for="htmlwidget-89cc96a4dbc2e993e128">{"x":{"data":[{"orientation":"v","width":[0.70000000000000007,0.70000000000000018,0.70000000000000018,0.69999999999999973],"base":[10564.237252924358,9582.3546752679667,6650.7430478945171,5650.7202388854512],"x":[1,2,3,4],"y":[3997.7607947531851,4029.4628661227143,3567.2655398227453,2175.5748315254568],"text":["Oil-bearing crops<br>1995–2000: 4,000 km² (27%)","Oil-bearing crops<br>2000–2005: 4,030 km² (30%)","Oil-bearing crops<br>2005–2010: 3,570 km² (35%)","Oil-bearing crops<br>2010–2015: 2,180 km² (28%)"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(42,120,214,1)","line":{"width":1.8897637795275593,"color":"rgba(252,252,251,1)"}},"name":"Oil-bearing crops","legendgroup":"Oil-bearing crops","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[0.70000000000000007,0.70000000000000018,0.70000000000000018,0.69999999999999973],"base":[9810.4114507898703,8510.6978851962849,6127.0054295444115,4467.5551105829882],"x":[1,2,3,4],"y":[753.82580213448819,1071.6567900716818,523.73761835010555,1183.165128302463],"text":["Cereals n.e.c.<br>1995–2000: 754 km² (5%)","Cereals n.e.c.<br>2000–2005: 1,070 km² (8%)","Cereals n.e.c.<br>2005–2010: 524 km² (5%)","Cereals n.e.c.<br>2010–2015: 1,180 km² (15%)"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(235,104,52,1)","line":{"width":1.8897637795275593,"color":"rgba(252,252,251,1)"}},"name":"Cereals n.e.c.","legendgroup":"Cereals n.e.c.","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[0.70000000000000007,0.70000000000000018,0.70000000000000018,0.69999999999999973],"base":[9705.2906890718914,8336.1045394914381,5987.9359342406024,4311.3245472058288],"x":[1,2,3,4],"y":[105.12076171797889,174.5933457048468,139.06949530380916,156.23056337715934],"text":["Sugar crops<br>1995–2000: 105 km² (1%)","Sugar crops<br>2000–2005: 175 km² (1%)","Sugar crops<br>2005–2010: 139 km² (1%)","Sugar crops<br>2010–2015: 156 km² (2%)"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(27,175,122,1)","line":{"width":1.8897637795275593,"color":"rgba(252,252,251,1)"}},"name":"Sugar crops","legendgroup":"Sugar crops","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[0.70000000000000007,0.70000000000000018,0.70000000000000018,0.69999999999999973],"base":[9016.0352229220134,8255.8521734728965,5850.322991648326,4085.6273811897754],"x":[1,2,3,4],"y":[689.25546614987798,80.252366018541579,137.61294259227634,225.69716601605342],"text":["Spice, beverage & pharma crops<br>1995–2000: 689 km² (5%)","Spice, beverage & pharma crops<br>2000–2005: 80.3 km² (1%)","Spice, beverage & pharma crops<br>2005–2010: 138 km² (1%)","Spice, beverage & pharma crops<br>2010–2015: 226 km² (3%)"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(237,161,0,1)","line":{"width":1.8897637795275593,"color":"rgba(252,252,251,1)"}},"name":"Spice, beverage & pharma crops","legendgroup":"Spice, beverage & pharma crops","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[0.70000000000000007,0.70000000000000018,0.70000000000000018,0.69999999999999973],"base":[8292.1079545206703,7024.2504230679715,5339.9886769895238,3682.5667295672897],"x":[1,2,3,4],"y":[723.9272684013431,1231.601750404925,510.33431465880221,403.06065162248569],"text":["Fruits<br>1995–2000: 724 km² (5%)","Fruits<br>2000–2005: 1,230 km² (9%)","Fruits<br>2005–2010: 510 km² (5%)","Fruits<br>2010–2015: 403 km² (5%)"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(232,123,164,1)","line":{"width":1.8897637795275593,"color":"rgba(252,252,251,1)"}},"name":"Fruits","legendgroup":"Fruits","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[0.70000000000000007,0.70000000000000018,0.70000000000000018,0.69999999999999973],"base":[7211.7057524172014,6381.4761997051264,4395.3080856941506,3123.2771760656551],"x":[1,2,3,4],"y":[1080.4022021034689,642.77422336284508,944.68059129537323,559.2895535016346],"text":["Wheat<br>1995–2000: 1,080 km² (7%)","Wheat<br>2000–2005: 643 km² (5%)","Wheat<br>2005–2010: 945 km² (9%)","Wheat<br>2010–2015: 559 km² (7%)"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(0,131,0,1)","line":{"width":1.8897637795275593,"color":"rgba(252,252,251,1)"}},"name":"Wheat","legendgroup":"Wheat","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[0.70000000000000007,0.70000000000000018,0.70000000000000018,0.69999999999999973],"base":[2755.1925905609796,2036.1531881931774,1678.0927833243686,1647.5588887880247],"x":[1,2,3,4],"y":[4456.5131618562218,4345.3230115119495,2717.215302369782,1475.7182872776305],"text":["Grazing livestock<br>1995–2000: 4,460 km² (31%)","Grazing livestock<br>2000–2005: 4,350 km² (32%)","Grazing livestock<br>2005–2010: 2,720 km² (27%)","Grazing livestock<br>2010–2015: 1,480 km² (19%)"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(98,80,214,1)","line":{"width":1.8897637795275593,"color":"rgba(252,252,251,1)"}},"name":"Grazing livestock","legendgroup":"Grazing livestock","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[0.70000000000000007,0.70000000000000018,0.70000000000000018,0.69999999999999973],"base":[0,0,0,0],"x":[1,2,3,4],"y":[2755.1925905609796,2036.1531881931774,1678.0927833243686,1647.5588887880247],"text":["Other<br>1995–2000: 2,760 km² (19%)","Other<br>2000–2005: 2,040 km² (15%)","Other<br>2005–2010: 1,680 km² (16%)","Other<br>2010–2015: 1,650 km² (21%)"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(181,179,171,1)","line":{"width":1.8897637795275593,"color":"rgba(252,252,251,1)"}},"name":"Other","legendgroup":"Other","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":105,"r":10,"b":10,"l":10},"plot_bgcolor":"rgba(0,0,0,0)","paper_bgcolor":"rgba(0,0,0,0)","font":{"color":"rgba(0,0,0,1)","family":"system-ui, -apple-system, 'Segoe UI', sans-serif","size":17.268576172685766},"title":{"text":"<b>BF-NEE by commodity<\/b><br><span style='font-size:12px;color:#52514e'>Seven largest commodity groups named, others in grey<\/span>","font":{"color":"#0b0b0b","family":"","size":15},"x":0,"xref":"paper","xanchor":"left","y":1,"yref":"container","yanchor":"top","pad":{"t":14}},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.40000000000000002,4.5999999999999996],"tickmode":"array","ticktext":["1995–2000","2000–2005","2005–2010","2010–2015"],"tickvals":[1,2,3,4],"categoryorder":"array","categoryarray":["1995–2000","2000–2005","2005–2010","2010–2015"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":4.3171440431714414,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(137,135,129,1)","family":"","size":13.814860938148612},"tickangle":-0,"showline":true,"linecolor":"rgba(195,194,183,1)","linewidth":0.5313408053134081,"showgrid":false,"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"y","title":{"text":"","font":{"color":"rgba(82,81,78,1)","family":"","size":15.541718555417191}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0,15290.097950061421],"tickmode":"array","ticktext":["0","5,000","10k","15k"],"tickvals":[0,5000,10000,15000],"categoryorder":"array","categoryarray":["0","5,000","10k","15k"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":4.3171440431714414,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(137,135,129,1)","family":"","size":13.814860938148612},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(225,224,217,1)","gridwidth":0.46492320464923209,"zeroline":false,"anchor":"x","title":{"text":"BF-NEE (km²)","font":{"color":"rgba(82,81,78,1)","family":"","size":15.541718555417191}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(82,81,78,1)","family":"","size":14.6782897467829},"title":{"text":"","font":{"color":"rgba(82,81,78,1)","family":"","size":14.6782897467829}},"orientation":"h","x":0,"xanchor":"left","y":1.02,"yanchor":"bottom"},"hovermode":"closest","barmode":"relative","hoverlabel":{"bgcolor":"white","bordercolor":"#c3c2b7","font":{"color":"#0b0b0b"}}},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false,"displaylogo":false,"modeBarButtonsToRemove":["lasso2d","select2d","autoScale2d","toggleSpikelines"]},"source":"A","attrs":{"15ece52b83a03e":{"x":{},"y":{},"fill":{},"text":{},"type":"bar"}},"cur_data":"15ece52b83a03e","visdat":{"15ece52b83a03e":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="commodities_files/figure-html/unnamed-chunk-3-1.svg" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="commodities-ecosystems" class="level2">
+<h2 class="anchored" data-anchor-id="commodities-ecosystems">Commodities × ecosystems</h2>
+<p>Because the constrained loss keeps its ecosystem class, every commodity’s footprint can be split by ecosystem group: <span class="math inline">\text{BF-NEE}_{c,g} = \sum_r R_{r,g}\,S_{c,r}\,P_{c,r}</span>.</p>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="commodities_files/figure-html/unnamed-chunk-4-1.svg" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="which-crops-expand" class="level2">
+<h2 class="anchored" data-anchor-id="which-crops-expand">Which crops expand?</h2>
+<p>Commodity shares <span class="math inline">S_c</span> come from the <strong>increase</strong> in crop area. This is the summed increase of each crop across all valid countries (decreases are not counted).</p>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-ee7f2cc7973fa2aa22d7" style="width:100%;height:460.8px;"></div>
+<script type="application/json" data-for="htmlwidget-ee7f2cc7973fa2aa22d7">{"x":{"data":[{"orientation":"v","width":[0.70000000000000007,0.70000000000000018,0.70000000000000018,0.69999999999999973],"base":[541411.50898140005,803840.45496320003,775963.20628269995,947284.72578970005],"x":[1,2,3,4],"y":[142505.8759959999,258047.30799999996,189157.98300000001,208598.47896999994],"text":["Oil-bearing crops<br>1995–2000: +143k","Oil-bearing crops<br>2000–2005: +258k","Oil-bearing crops<br>2005–2010: +189k","Oil-bearing crops<br>2010–2015: +209k"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(127,127,127,1)","line":{"width":1.8897637795275593,"color":"rgba(252,252,251,1)"}},"name":"Oil bearing crops","legendgroup":"Oil bearing crops","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[0.70000000000000007,0.70000000000000018,0.70000000000000018,0.69999999999999973],"base":[367326.86098140001,431880.34796320001,474845.64528270002,495697.15378970001],"x":[1,2,3,4],"y":[174084.64800000004,371960.10700000002,301117.56099999993,451587.57200000004],"text":["Cereals n.e.c.<br>1995–2000: +174k","Cereals n.e.c.<br>2000–2005: +372k","Cereals n.e.c.<br>2005–2010: +301k","Cereals n.e.c.<br>2010–2015: +452k"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(235,104,52,1)","line":{"width":1.8897637795275593,"color":"rgba(252,252,251,1)"}},"name":"Cereals n.e.c.","legendgroup":"Cereals n.e.c.","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[0.70000000000000007,0.70000000000000018,0.70000000000000018,0.69999999999999973],"base":[350300.8349814,403916.63850420003,437625.84329029999,464970.3555601],"x":[1,2,3,4],"y":[17026.026000000013,27963.709458999976,37219.801992400025,30726.798229600012],"text":["Sugar crops<br>1995–2000: +17k","Sugar crops<br>2000–2005: +28k","Sugar crops<br>2005–2010: +37.2k","Sugar crops<br>2010–2015: +30.7k"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(27,175,122,1)","line":{"width":1.8897637795275593,"color":"rgba(252,252,251,1)"}},"name":"Sugar crops","legendgroup":"Sugar crops","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[0.70000000000000007,0.70000000000000018,0.70000000000000018,0.69999999999999973],"base":[315968.82796700002,377253.76460300002,409585.1332936,426034.39947810001],"x":[1,2,3,4],"y":[34332.007014399976,26662.873901200015,28040.709996699996,38935.95608199999],"text":["Spice, beverage & pharma crops<br>1995–2000: +34.3k","Spice, beverage & pharma crops<br>2000–2005: +26.7k","Spice, beverage & pharma crops<br>2005–2010: +28k","Spice, beverage & pharma crops<br>2010–2015: +38.9k"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(127,127,127,1)","line":{"width":1.8897637795275593,"color":"rgba(252,252,251,1)"}},"name":"Spice - beverage - pharmaceutical crops","legendgroup":"Spice - beverage - pharmaceutical crops","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[0.70000000000000007,0.70000000000000018,0.70000000000000018,0.69999999999999973],"base":[270215.046967,331128.92560300004,373270.4803088,388102.3134321],"x":[1,2,3,4],"y":[45753.781000000017,46124.838999999978,36314.652984799992,37932.086046000011],"text":["Fruits<br>1995–2000: +45.8k","Fruits<br>2000–2005: +46.1k","Fruits<br>2005–2010: +36.3k","Fruits<br>2010–2015: +37.9k"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(232,123,164,1)","line":{"width":1.8897637795275593,"color":"rgba(252,252,251,1)"}},"name":"Fruits","legendgroup":"Fruits","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[0.70000000000000007,0.70000000000000018,0.70000000000000018,0.69999999999999973],"base":[210311.27296700003,237847.69160300001,279011.29430880002,347989.78143209999],"x":[1,2,3,4],"y":[59903.773999999976,93281.234000000026,94259.185999999987,40112.532000000007],"text":["Wheat<br>1995–2000: +59.9k","Wheat<br>2000–2005: +93.3k","Wheat<br>2005–2010: +94.3k","Wheat<br>2010–2015: +40.1k"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(0,131,0,1)","line":{"width":1.8897637795275593,"color":"rgba(252,252,251,1)"}},"name":"Wheat","legendgroup":"Wheat","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[0.70000000000000007,0.70000000000000018,0.70000000000000018,0.69999999999999973],"base":[0,0,0,0],"x":[1,2,3,4],"y":[210311.27296700003,237847.69160300001,279011.29430880002,347989.78143209999],"text":["Other<br>1995–2000: +210k","Other<br>2000–2005: +238k","Other<br>2005–2010: +279k","Other<br>2010–2015: +348k"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(181,179,171,1)","line":{"width":1.8897637795275593,"color":"rgba(252,252,251,1)"}},"name":"Other","legendgroup":"Other","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":105,"r":10,"b":10,"l":10},"plot_bgcolor":"rgba(0,0,0,0)","paper_bgcolor":"rgba(0,0,0,0)","font":{"color":"rgba(0,0,0,1)","family":"system-ui, -apple-system, 'Segoe UI', sans-serif","size":17.268576172685766},"title":{"text":"<b>Crop area expansion<\/b><br><span style='font-size:12px;color:#52514e'>Sum of positive area changes (LandSHIFT units)<\/span>","font":{"color":"#0b0b0b","family":"","size":15},"x":0,"xref":"paper","xanchor":"left","y":1,"yref":"container","yanchor":"top","pad":{"t":14}},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.40000000000000002,4.5999999999999996],"tickmode":"array","ticktext":["1995–2000","2000–2005","2005–2010","2010–2015"],"tickvals":[1,2,3,4],"categoryorder":"array","categoryarray":["1995–2000","2000–2005","2005–2010","2010–2015"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":4.3171440431714414,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(137,135,129,1)","family":"","size":13.814860938148612},"tickangle":-0,"showline":true,"linecolor":"rgba(195,194,183,1)","linewidth":0.5313408053134081,"showgrid":false,"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"y","title":{"text":"","font":{"color":"rgba(82,81,78,1)","family":"","size":15.541718555417191}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0,1213677.364997685],"tickmode":"array","ticktext":["0","300k","600k","900k","1.2M"],"tickvals":[0,300000,600000,900000,1200000],"categoryorder":"array","categoryarray":["0","300k","600k","900k","1.2M"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":4.3171440431714414,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(137,135,129,1)","family":"","size":13.814860938148612},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(225,224,217,1)","gridwidth":0.46492320464923209,"zeroline":false,"anchor":"x","title":{"text":"Area increase","font":{"color":"rgba(82,81,78,1)","family":"","size":15.541718555417191}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(82,81,78,1)","family":"","size":14.6782897467829},"title":{"text":"","font":{"color":"rgba(82,81,78,1)","family":"","size":14.6782897467829}},"orientation":"h","x":0,"xanchor":"left","y":1.02,"yanchor":"bottom"},"hovermode":"closest","barmode":"relative","hoverlabel":{"bgcolor":"white","bordercolor":"#c3c2b7","font":{"color":"#0b0b0b"}}},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false,"displaylogo":false,"modeBarButtonsToRemove":["lasso2d","select2d","autoScale2d","toggleSpikelines"]},"source":"A","attrs":{"15ece51b1e1fc5":{"x":{},"y":{},"fill":{},"text":{},"type":"bar"}},"cur_data":"15ece51b1e1fc5","visdat":{"15ece51b1e1fc5":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="table" class="level2">
+<h2 class="anchored" data-anchor-id="table">Table</h2>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-188051c833544a05b4b0" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-188051c833544a05b4b0">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[["1995–2000","1995–2000","1995–2000","1995–2000","1995–2000","1995–2000","1995–2000","1995–2000","1995–2000","1995–2000","1995–2000","1995–2000","1995–2000","1995–2000","1995–2000","1995–2000","2000–2005","2000–2005","2000–2005","2000–2005","2000–2005","2000–2005","2000–2005","2000–2005","2000–2005","2000–2005","2000–2005","2000–2005","2000–2005","2000–2005","2000–2005","2000–2005","2005–2010","2005–2010","2005–2010","2005–2010","2005–2010","2005–2010","2005–2010","2005–2010","2005–2010","2005–2010","2005–2010","2005–2010","2005–2010","2005–2010","2005–2010","2005–2010","2010–2015","2010–2015","2010–2015","2010–2015","2010–2015","2010–2015","2010–2015","2010–2015","2010–2015","2010–2015","2010–2015","2010–2015","2010–2015","2010–2015","2010–2015","2010–2015"],["Grazing livestock","Oil bearing crops","Pulses","Wheat","Cereals n.e.c.","Fruits","Spice - beverage - pharmaceutical crops","Nuts","Tobacco","Fibres","Roots and tubers","Vegetables","Sugar crops","Other crops n.e.c","Rice","Maize","Grazing livestock","Oil bearing crops","Fruits","Cereals n.e.c.","Pulses","Wheat","Tobacco","Nuts","Vegetables","Sugar crops","Roots and tubers","Spice - beverage - pharmaceutical crops","Fibres","Other crops n.e.c","Rice","Maize","Oil bearing crops","Grazing livestock","Wheat","Pulses","Cereals n.e.c.","Fruits","Nuts","Tobacco","Sugar crops","Spice - beverage - pharmaceutical crops","Roots and tubers","Vegetables","Other crops n.e.c","Fibres","Rice","Maize","Oil bearing crops","Grazing livestock","Cereals n.e.c.","Pulses","Wheat","Nuts","Fruits","Spice - beverage - pharmaceutical crops","Sugar crops","Tobacco","Other crops n.e.c","Roots and tubers","Vegetables","Fibres","Rice","Maize"],[151,74,61,59,65,87,63,61,57,33,76,94,61,18,53,0,151,92,76,91,76,60,50,58,87,64,79,67,28,17,52,0,89,151,61,67,74,85,59,49,58,61,79,100,18,33,61,0,85,151,80,78,47,67,79,66,76,49,19,72,84,36,50,0],[1,0.2138,0.2121,0.2531,0.3532,0.1476,0.153,0.07548000000000001,0.124,0.08416,0.224,0.1507,0.1068,0.1037,0.1103,null,1,0.2225,0.1383,0.3696,0.1374,0.2559,0.1568,0.07160999999999999,0.08472,0.1253,0.1385,0.1225,0.0963,0.1082,0.106,null,0.2609,1,0.2544,0.1385,0.3587,0.1277,0.07003,0.1124,0.0574,0.1438,0.1681,0.126,0.09415999999999999,0.06886,0.1473,null,0.2473,1,0.3866,0.1761,0.2077,0.07165000000000001,0.1695,0.1375,0.1024,0.08434,0.06684,0.2054,0.08794,0.07922,0.1215,null],[0.02359,0.03905,0.03905,0.01792,0.01942,0.04293,0.03459,0.04293,0.04541,0.04716,0.02021,0.02021,0.01952,0.01659,0.008632000000000001,0.02128,0.02339,0.04229,0.05008,0.02134,0.04229,0.01958,0.0498,0.05008,0.01866,0.02292,0.01866,0.02996,0.03855,0.01661,0.009705,0.0284,0.03818,0.02233,0.02386,0.03818,0.02032,0.0408,0.0408,0.04035,0.02042,0.02603,0.01458,0.01458,0.01967,0.02722,0.007614,0.02618,0.0365,0.02067,0.01888,0.0365,0.02283,0.03761,0.03761,0.02548,0.02072,0.05033,0.01911,0.01513,0.01513,0.02603,0.008156999999999999,0.02828],[4457,3998,1183,1080,753.8,723.9,689.3,542.6,398.9,234.5,165.3,142.3,105.1,79.29000000000001,9.621,0,4345,4029,1232,1072,642.9,642.8,568.6,425.9,179.1,174.6,107.6,80.25,61.74,35.71,14.55,0,3567,2717,944.7,620.8,523.7,510.3,477.4,211,139.1,137.6,103.3,100.3,74.97,54.7,35.65,0,2176,1476,1183,664.4,559.3,468.2,403.1,225.7,156.2,140.3,118.9,114.2,92.8,43.91,4.912,0]],"container":"<table class=\"compact hover\">\n  <thead>\n    <tr>\n      <th>Period<\/th>\n      <th>Commodity<\/th>\n      <th>Countries with S &gt; 0<\/th>\n      <th>Mean S (expanding countries)<\/th>\n      <th>Mean P<\/th>\n      <th>BF-NEE (km²)<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":10,"dom":"Bfrtip","buttons":["csv"],"scrollX":true,"columnDefs":[{"className":"dt-right","targets":[2,3,4,5]},{"name":"Period","targets":0},{"name":"Commodity","targets":1},{"name":"Countries with S > 0","targets":2},{"name":"Mean S (expanding countries)","targets":3},{"name":"Mean P","targets":4},{"name":"BF-NEE (km²)","targets":5}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/sh33caqo\.github\.io\/bf-nee-website\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>BF-NEE · iDiv / Universität Leipzig</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Built with Quarto and R</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

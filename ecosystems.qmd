@@ -1,0 +1,211 @@
+---
+title: "Ecosystems"
+subtitle: "Which natural ecosystems are lost to agricultural expansion linked to German final demand"
+---
+
+```{r}
+#| include: false
+source("R/setup.R")
+
+eco_group_period <- ce %>%
+  group_by(period, eco_group) %>%
+  summarise(
+    loss_unconstrained_km2 = sum(loss_unconstrained_km2, na.rm = TRUE),
+    loss_constrained_km2 = sum(loss_constrained_km2, na.rm = TRUE),
+    bfnee_km2 = sum(bfnee_km2, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  group_by(period) %>%
+  mutate(share = bfnee_km2 / sum(bfnee_km2)) %>%
+  ungroup()
+
+latest <- eco_group_period %>% filter(period == latest_period)
+```
+
+The agriculture-constrained loss is split onto the ecosystem classes in proportion
+to their original loss ([method](method.qmd#class-split)), so the footprints of all
+groups add up to the total BF-NEE.
+
+## Footprint by ecosystem group
+
+```{r}
+#| fig-height: 4.2
+d <- latest %>%
+  filter(bfnee_km2 > 0) %>%
+  mutate(eco_group = forcats::fct_reorder(eco_group, bfnee_km2))
+
+ggplot(d, aes(bfnee_km2, eco_group, fill = eco_group)) +
+  geom_col(width = 0.7) +
+  geom_text(aes(label = paste0(fmt_km2(bfnee_km2), "  ·  ", fmt_pct(share))),
+            hjust = -0.08, size = 3.4, colour = bf_ink$secondary) +
+  scale_fill_manual(values = eco_group_colors, guide = "none") +
+  scale_x_continuous(labels = fmt_area, expand = expansion(mult = c(0, 0.3))) +
+  labs(title = paste("BF-NEE by ecosystem group,", latest_period),
+       subtitle = "Value and share of the total footprint",
+       x = "BF-NEE (km²)", y = NULL) +
+  theme_bfnee(grid = "x")
+```
+
+## Change over time
+
+```{r}
+#| fig-height: 5.6
+p <- ggplot(eco_group_period %>% filter(eco_group %in% unique(latest$eco_group[latest$bfnee_km2 > 0])),
+            aes(period, bfnee_km2, colour = eco_group, group = eco_group,
+                text = paste0(eco_group, "<br>", period, ": ", fmt_km2(bfnee_km2),
+                              " (", fmt_pct(share), " of total)"))) +
+  geom_line() +
+  geom_point() +
+  facet_wrap(~ eco_group, scales = "free_y", ncol = 4) +
+  scale_colour_manual(values = eco_group_colors, guide = "none") +
+  scale_y_continuous(labels = fmt_area, limits = c(0, NA)) +
+  labs(title = "BF-NEE per ecosystem group",
+       subtitle = "Each panel has its own scale",
+       x = NULL, y = "BF-NEE (km²)") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 8))
+
+bf_interactive(p) |> plotly::layout(showlegend = FALSE)
+```
+
+## How much of each group's loss is linked to agriculture?
+
+Share of the gross loss of an ecosystem group that coincides with cropland expansion
+in the same cell and period.
+
+```{r}
+#| fig-height: 4.4
+d <- eco_group_period %>%
+  filter(loss_unconstrained_km2 > 0) %>%
+  mutate(share_attr = loss_constrained_km2 / loss_unconstrained_km2)
+
+p <- ggplot(d, aes(period, share_attr, colour = eco_group, group = eco_group,
+                   text = paste0(eco_group, "<br>", period, ": ", fmt_pct(share_attr),
+                                 "<br>constrained ", fmt_km2(loss_constrained_km2),
+                                 " of ", fmt_km2(loss_unconstrained_km2)))) +
+  geom_line() +
+  geom_point() +
+  scale_colour_manual(values = eco_group_colors, name = NULL) +
+  scale_y_continuous(labels = fmt_pct, limits = c(0, NA)) +
+  labs(title = "Share of gross loss attributed to agricultural expansion",
+       x = NULL, y = NULL)
+
+bf_interactive(p)
+```
+
+## Tropical moist forests
+
+Subtropical/tropical moist lowland (1.6) and moist montane forest (1.9).
+
+```{r}
+#| fig-height: 4
+tmf <- ce %>%
+  filter(tropical_moist_forest) %>%
+  group_by(period) %>%
+  summarise(bfnee_km2 = sum(bfnee_km2, na.rm = TRUE),
+            loss_constrained_km2 = sum(loss_constrained_km2, na.rm = TRUE),
+            .groups = "drop") %>%
+  left_join(global_period %>% select(period, total = bfnee_km2), by = "period") %>%
+  mutate(share = bfnee_km2 / total)
+
+p <- ggplot(tmf, aes(period, bfnee_km2, group = 1,
+                     text = paste0(period, ": ", fmt_km2(bfnee_km2), " (",
+                                   fmt_pct(share), " of total BF-NEE)"))) +
+  geom_area(fill = eco_group_colors[["Forest"]], alpha = 0.12) +
+  geom_line(colour = eco_group_colors[["Forest"]]) +
+  geom_point(colour = eco_group_colors[["Forest"]], size = 3) +
+  scale_y_continuous(labels = fmt_area, limits = c(0, NA),
+                     expand = expansion(mult = c(0, 0.1))) +
+  labs(title = "BF-NEE in tropical moist forests",
+       x = NULL, y = "BF-NEE (km²)")
+
+bf_interactive(p)
+```
+
+```{r}
+#| fig-height: 4.2
+tmf_countries <- ce %>%
+  filter(tropical_moist_forest, period == latest_period) %>%
+  group_by(country_name, continent) %>%
+  summarise(bfnee_km2 = sum(bfnee_km2, na.rm = TRUE), .groups = "drop") %>%
+  filter(bfnee_km2 > 0) %>%
+  slice_max(bfnee_km2, n = 12) %>%
+  mutate(country_name = forcats::fct_reorder(country_name, bfnee_km2))
+
+ggplot(tmf_countries, aes(bfnee_km2, country_name, fill = continent)) +
+  geom_col(width = 0.7) +
+  geom_text(aes(label = fmt_km2(bfnee_km2)), hjust = -0.1, size = 3.3,
+            colour = bf_ink$secondary) +
+  scale_fill_manual(values = continent_colors, name = NULL) +
+  scale_x_continuous(labels = fmt_area, expand = expansion(mult = c(0, 0.2))) +
+  labs(title = paste("Countries with the largest tropical moist forest footprint,", latest_period),
+       x = "BF-NEE (km²)", y = NULL) +
+  theme_bfnee(grid = "x")
+```
+
+## Ecosystem groups by world region
+
+Share of each region's footprint that falls on each ecosystem group (`r latest_period`).
+
+```{r}
+#| fig-height: 4.2
+heat <- ce %>%
+  filter(period == latest_period) %>%
+  group_by(continent, eco_group) %>%
+  summarise(bfnee_km2 = sum(bfnee_km2, na.rm = TRUE), .groups = "drop") %>%
+  group_by(continent) %>%
+  mutate(share = bfnee_km2 / sum(bfnee_km2)) %>%
+  ungroup() %>%
+  filter(is.finite(share)) %>%
+  complete(continent, eco_group, fill = list(share = 0, bfnee_km2 = 0)) %>%
+  group_by(continent) %>% filter(sum(bfnee_km2) > 0) %>% ungroup() %>%
+  group_by(eco_group) %>% filter(sum(bfnee_km2) > 0) %>% ungroup() %>%
+  mutate(continent = droplevels(continent), eco_group = droplevels(eco_group))
+
+ggplot(heat, aes(eco_group, continent, fill = share)) +
+  geom_tile(colour = bf_ink$surface, linewidth = 1.2) +
+  geom_text(aes(label = ifelse(share >= 0.005, fmt_pct(share), "")),
+            size = 3.2, colour = ifelse(heat$share > 0.45, "white", bf_ink$primary)) +
+  scale_fill_gradientn(colours = seq_ramp, labels = fmt_pct, name = "Share",
+                       limits = c(0, 1)) +
+  scale_y_discrete(limits = rev) +
+  labs(title = "Composition of the footprint by region",
+       x = NULL, y = NULL) +
+  theme_bfnee(grid = "none") +
+  theme(axis.text.x = element_text(angle = 30, hjust = 1),
+        legend.position = "right")
+```
+
+## Top ecosystem classes
+
+```{r}
+#| fig-height: 5.6
+top_classes <- ce %>%
+  filter(period == latest_period) %>%
+  group_by(ecosystem_class, ecosystem_name, eco_group) %>%
+  summarise(bfnee_km2 = sum(bfnee_km2, na.rm = TRUE), .groups = "drop") %>%
+  filter(bfnee_km2 > 0) %>%
+  slice_max(bfnee_km2, n = 15) %>%
+  mutate(label = paste0(ecosystem_name, " (", ecosystem_class, ")"),
+         label = forcats::fct_reorder(label, bfnee_km2))
+
+ggplot(top_classes, aes(bfnee_km2, label, fill = eco_group)) +
+  geom_col(width = 0.7) +
+  scale_fill_manual(values = eco_group_colors, name = NULL) +
+  scale_x_continuous(labels = fmt_area, expand = expansion(mult = c(0, 0.05))) +
+  labs(title = paste("Top 15 ecosystem classes by BF-NEE,", latest_period),
+       x = "BF-NEE (km²)", y = NULL) +
+  theme_bfnee(grid = "x")
+```
+
+```{r}
+ce %>%
+  group_by(Period = period, Class = ecosystem_class, Name = ecosystem_name,
+           Group = eco_group) %>%
+  summarise(`Unconstrained loss (km²)` = sum(loss_unconstrained_km2, na.rm = TRUE),
+            `Constrained loss (km²)` = sum(loss_constrained_km2, na.rm = TRUE),
+            `BF-NEE (km²)` = sum(bfnee_km2, na.rm = TRUE),
+            .groups = "drop") %>%
+  arrange(desc(`BF-NEE (km²)`)) %>%
+  round_df(2) %>%
+  bf_table()
+```

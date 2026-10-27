@@ -1,0 +1,89 @@
+ecosystem_class,ecosystem_name,eco_group,tropical_moist_forest
+1.1,Boreal forest,Forest,FALSE
+1.2,Subarctic forest,Forest,FALSE
+1.3,Subantarctic forest,Forest,FALSE
+1.4,Temperate forest,Forest,FALSE
+1.5,Subtropical/tropical dry forest,Forest,FALSE
+1.6,Subtropical/tropical moist lowland forest,Forest,TRUE
+1.7,Subtropical/tropical mangrove vegetation above high tide level,Forest,FALSE
+1.8,Subtropical/tropical swamp forest,Forest,FALSE
+1.9,Subtropical/tropical moist montane forest,Forest,TRUE
+2.1,Dry savanna,Savanna,FALSE
+2.2,Moist savanna,Savanna,FALSE
+3.1,Subarctic shrubland,Shrubland,FALSE
+3.2,Subantarctic shrubland,Shrubland,FALSE
+3.3,Boreal shrubland,Shrubland,FALSE
+3.4,Temperate shrubland,Shrubland,FALSE
+3.5,Subtropical/tropical dry shrubland,Shrubland,FALSE
+3.6,Subtropical/tropical moist shrubland,Shrubland,FALSE
+3.7,Subtropical/tropical high altitude shrubland,Shrubland,FALSE
+3.8,Mediterranean-type shrubby vegetation,Shrubland,FALSE
+4.1,Tundra,Grassland,FALSE
+4.2,Subarctic grassland,Grassland,FALSE
+4.3,Subantarctic grassland,Grassland,FALSE
+4.4,Temperate grassland,Grassland,FALSE
+4.5,Subtropical/tropical dry lowland grassland,Grassland,FALSE
+4.6,Subtropical/tropical seasonally wet/flooded lowland grassland,Grassland,FALSE
+4.7,Subtropical/tropical high altitude grassland,Grassland,FALSE
+5.1,Permanent rivers/streams/creeks,Wetlands,FALSE
+5.2,Seasonal/intermittent/irregular rivers/streams/creeks,Wetlands,FALSE
+5.3,Shrub dominated wetlands,Wetlands,FALSE
+5.4,"Bogs, marshes, swamps, fens, peatlands",Wetlands,FALSE
+5.5,Permanent freshwater lakes,Wetlands,FALSE
+5.6,Seasonal/intermittent freshwater lakes,Wetlands,FALSE
+5.7,Permanent freshwater marshes/pools,Wetlands,FALSE
+5.8,Seasonal/intermittent freshwater marshes/pools,Wetlands,FALSE
+5.9,Freshwater springs and oases,Wetlands,FALSE
+5.10,Tundra wetlands,Wetlands,FALSE
+5.11,Alpine wetlands,Wetlands,FALSE
+5.12,Geothermal wetlands,Wetlands,FALSE
+5.13,Permanent inland deltas,Wetlands,FALSE
+5.14,"Permanent saline, brackish or alkaline lakes",Wetlands,FALSE
+5.15,"Seasonal/intermittent saline, brackish or alkaline lakes and flats",Wetlands,FALSE
+5.16,"Permanent saline, brackish or alkaline marshes/pools",Wetlands,FALSE
+5.17,"Seasonal/intermittent saline, brackish or alkaline marshes/pools",Wetlands,FALSE
+5.18,Karst and other subterranean hydrological systems,Wetlands,FALSE
+6.0,Rocky areas,Desert and rocky,FALSE
+6,Rocky areas,Desert and rocky,FALSE
+8.1,Hot desert,Desert and rocky,FALSE
+8.2,Temperate desert,Desert and rocky,FALSE
+8.3,Cold desert,Desert and rocky,FALSE
+9.1,Marine neritic – pelagic,Marine and coastal,FALSE
+9.8,Marine neritic – coral reef,Marine and coastal,FALSE
+9.9,Marine neritic – seagrass,Marine and coastal,FALSE
+9.10,Marine neritic – estuaries,Marine and coastal,FALSE
+10.1,Marine oceanic – epipelagic,Marine and coastal,FALSE
+10.2,Marine oceanic – mesopelagic,Marine and coastal,FALSE
+10.3,Marine oceanic – bathypelagic,Marine and coastal,FALSE
+10.4,Marine oceanic – abyssopelagic,Marine and coastal,FALSE
+11.1,Marine deep benthic – continental slope/bathyl zone,Marine and coastal,FALSE
+11.2,Marine deep benthic – abyssal plain,Marine and coastal,FALSE
+11.3,Marine deep benthic – abyssal mountain/hills,Marine and coastal,FALSE
+11.4,Marine deep benthic – hadal/deep sea trench,Marine and coastal,FALSE
+11.5,Marine deep benthic – seamount,Marine and coastal,FALSE
+12.1,Marine intertidal – rocky shoreline,Marine and coastal,FALSE
+12.2,Marine intertidal – sandy shoreline/beaches,Marine and coastal,FALSE
+12.3,Marine intertidal – shingle/pebble shoreline,Marine and coastal,FALSE
+12.4,Marine intertidal – mud shoreline and intertidal mud flats,Marine and coastal,FALSE
+12.5,Marine intertidal – salt marshes,Marine and coastal,FALSE
+12.6,Marine intertidal – tidepools,Marine and coastal,FALSE
+12.7,Marine intertidal – mangrove submerged roots,Marine and coastal,FALSE
+13.1,Marine coastal/supratidal – sea cliffs and rocky offshore islands,Marine and coastal,FALSE
+13.2,Marine coastal/supratidal – coastal caves/karst,Marine and coastal,FALSE
+13.3,Marine coastal/supratidal – coastal sand dunes,Marine and coastal,FALSE
+13.4,Marine coastal/supratidal – coastal brackish/saline lagoons/marine lakes,Marine and coastal,FALSE
+13.5,Marine coastal/supratidal – coastal freshwater lakes,Marine and coastal,FALSE
+14.2,Pastureland,Modified (counted as natural),FALSE
+14.3,Plantations,Modified (counted as natural),FALSE
+14.6,Subtropical/tropical heavily degraded former forest,Modified (counted as natural),FALSE
+15.1,Water storage areas,Modified (counted as natural),FALSE
+15.2,Ponds (below 8 ha),Modified (counted as natural),FALSE
+15.3,Aquaculture ponds,Modified (counted as natural),FALSE
+15.7,Irrigated land,Modified (counted as natural),FALSE
+15.9,Canals and drainage channels/ditches,Modified (counted as natural),FALSE
+15.10,Karst and other subterranean hydrological systems (human-made),Modified (counted as natural),FALSE
+15.12,Mariculture cages,Modified (counted as natural),FALSE
+15.13,Mari/brackish-culture ponds,Modified (counted as natural),FALSE
+16,Introduced vegetation,Modified (counted as natural),FALSE
+17,Other,Modified (counted as natural),FALSE
+18,Unknown,Modified (counted as natural),FALSE
