@@ -71,6 +71,8 @@ if (nrow(excl) == 0) {
 ```
 
 ```{r}
+#| label: fig-exclusion
+#| fig-cap: !expr 'cap("Number of producing countries excluded from the analysis, by reason.", basis = FALSE, v31 = FALSE)'
 #| fig-height: 3
 if (nrow(excl) > 0) {
   excl %>%
@@ -90,6 +92,8 @@ if (nrow(excl) > 0) {
 Latest checkpoint of every step and country (`Pipeline_Status`).
 
 ```{r}
+#| label: fig-pipeline
+#| fig-cap: !expr 'cap("Latest checkpoint status of every pipeline step (scripts 01 to 08) for all countries, from the pipeline status files of the last full run.", basis = FALSE, v31 = FALSE)'
 #| fig-height: 3.6
 if (!is.null(pipeline_status)) {
   ps <- pipeline_status %>%
@@ -126,6 +130,8 @@ differences occur only where LandSHIFT cropland + pasture exceed the cell and ar
 Cells without any GlobES cover (sum 0) are set to NA in step 05 and ignored here.
 
 ```{r}
+#| label: fig-coupling
+#| fig-cap: !expr 'cap("Largest absolute deviation per country and year after coupling GlobES to LandSHIFT (step 04), as a fraction of a grid cell, log scale. Panels show the deviation of the class sum from 1, of the GlobES cropland classes from LandSHIFT cropland and of class 14.2 from LandSHIFT intensive pasture.", basis = FALSE, v31 = FALSE)'
 #| fig-height: 3.8
 if (!is.null(coupling_checks) && nrow(coupling_checks) > 0) {
   cc_long <- coupling_checks %>%
@@ -152,6 +158,8 @@ if (!is.null(coupling_checks) && nrow(coupling_checks) > 0) {
 ## Consistency of the valid countries
 
 ```{r}
+#| label: fig-consistency
+#| fig-cap: !expr 'cap("Relative difference between the sum over ecosystem classes and the total agriculture-constrained loss, per country and period, log scale. The dashed line marks the tolerance of 10⁻⁶. Checked on the tables shown on this website.", basis = FALSE)'
 #| fig-height: 4
 chk <- ct %>%
   mutate(rel_error = pmax(class_sum_rel_error, 1e-17))

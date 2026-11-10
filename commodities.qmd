@@ -15,6 +15,8 @@ comm_period <- cc %>%
   ungroup()
 ```
 
+{{< include _approx-note.qmd >}}
+
 Each country's agriculture-constrained loss on **cropland** is distributed to the
 crops that expanded in that country and period ($S_c$,
 [method](method.qmd#commodity-shares)), weighted with the share of their production
@@ -24,6 +26,8 @@ is attributed to *Grazing livestock* ([method](method.qmd#pasture)).
 ## Footprint by commodity
 
 ```{r}
+#| label: fig-commodity-trend
+#| fig-cap: !expr 'cap("BF-NEE per period by commodity, in km². The seven largest commodity groups are named; all other crops are combined in grey. Grazing livestock carries the loss linked to intensive pasture.")'
 #| fig-height: 4.8
 d <- comm_period %>%
   group_by(period, commodity_label) %>%
@@ -43,6 +47,8 @@ bf_interactive(p)
 ```
 
 ```{r}
+#| label: fig-commodity-latest
+#| fig-cap: !expr 'cap("BF-NEE of every commodity in ", latest_period, ", in km², with its share of the total footprint.")'
 #| fig-height: 5.4
 d <- comm_period %>%
   filter(period == latest_period, bfnee_km2 > 0) %>%
@@ -66,6 +72,8 @@ Because the constrained loss keeps its ecosystem class, every commodity's footpr
 can be split by ecosystem group: $\text{BF-NEE}_{c,g} = \sum_r R_{r,g}\,S_{c,r}\,P_{c,r}$.
 
 ```{r}
+#| label: fig-commodity-eco
+#| fig-cap: !expr 'cap("Ecosystem composition of each commodity’s BF-NEE in ", latest_period, ": share of the commodity’s footprint that falls on each ecosystem group. Commodities are ordered by total BF-NEE, largest at the top.")'
 #| fig-height: 5.4
 if (!is.null(country_commodity_ecosystem)) {
   # exact values from step 08 (cropland and pasture basis)
@@ -113,6 +121,8 @@ Commodity shares $S_c$ come from the **increase** in crop area. This is the summ
 increase of each crop across all valid countries (decreases are not counted).
 
 ```{r}
+#| label: fig-crop-expansion
+#| fig-cap: !expr 'cap("Summed increase of crop area per period across all valid producing countries, in LandSHIFT area units; decreases are not counted. These increases define the commodity shares S. Data: LandSHIFT.", basis = FALSE, v31 = FALSE)'
 #| fig-height: 4.8
 if (!is.null(commodity_expansion)) {
 

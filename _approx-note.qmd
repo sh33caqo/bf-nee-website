@@ -1,0 +1,8 @@
+::: {.callout-warning appearance="simple"}
+**Plantations no longer count as natural (v3.1, approximation).** Plantations
+(IUCN 14.3) and artificial aquatic classes are now treated as anthropogenic.
+Until the full pipeline can be rerun, natural ecosystem loss and BF-NEE are
+derived from the v3 results by removing these classes; the exact values lie
+between the values shown and the v3 values ([Method](method.qmd#plantations)).
+The interactive map still shows the v3 values.
+:::

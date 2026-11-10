@@ -37,7 +37,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-baae5a45780b1e5f478c1a1a4471a6e2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-9541e78fa99370dcd20a5f9259563e08.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -66,11 +66,10 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
-<link href="site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
 <script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
 <link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
-<script src="site_libs/datatables-binding-0.33/datatables.js"></script>
-<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="site_libs/datatables-binding-0.31/datatables.js"></script>
+<script src="site_libs/jquery-3.6.1/jquery-3.6.1.min.js"></script>
 <link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
 <link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet">
 <script src="site_libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
@@ -246,6 +245,16 @@ window.Quarto = {
 </header>
 
 
+<div class="callout callout-style-simple callout-warning">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Plantations no longer count as natural (v3.1, approximation).</strong> Plantations (IUCN 14.3) and artificial aquatic classes are now treated as anthropogenic. Until the full pipeline can be rerun, natural ecosystem loss and BF-NEE are derived from the v3 results by removing these classes; the exact values lie between the values shown and the v3 values (<a href="./method.html#plantations">Method</a>). The interactive map still shows the v3 values.</p>
+</div>
+</div>
+</div>
 <section id="model" class="level2">
 <h2 class="anchored" data-anchor-id="model">Model</h2>
 <p>Per country <span class="math inline">\text{BF-NEE} = R^{crop} \sum_c S_c P_c + R^{past} P^{past} = R \cdot w</span>, with the effective attribution weight <span class="math inline">w = \text{BF-NEE}/R</span> (cropland and pasture part combined). A log-log model</p>
@@ -256,9 +265,14 @@ window.Quarto = {
 <p>Only countries with BF-NEE &gt; 0 are used (log scale); regions need ≥ 6 observations.</p>
 <div class="cell" data-layout-align="left">
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-left">
-<figure class="figure">
-<p><img src="regressions_files/figure-html/unnamed-chunk-2-1.svg" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:100.0%"></p>
+<div id="fig-reg-scatter" class="quarto-float quarto-figure quarto-figure-left anchored" data-fig-align="left">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-reg-scatter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="regressions_files/figure-html/fig-reg-scatter-1.svg" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-reg-scatter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: BF-NEE against agriculture-constrained loss for every country and period with positive values, by world region, with a least-squares line per region. Both axes are logarithmic. Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending.
+</figcaption>
 </figure>
 </div>
 </div>
@@ -268,9 +282,14 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="which-component-varies-more">Which component varies more?</h2>
 <div class="cell" data-layout-align="left">
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-left">
-<figure class="figure">
-<p><img src="regressions_files/figure-html/unnamed-chunk-3-1.svg" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:100.0%"></p>
+<div id="fig-reg-spread" class="quarto-float quarto-figure quarto-figure-left anchored" data-fig-align="left">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-reg-spread-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="regressions_files/figure-html/fig-reg-spread-1.svg" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-reg-spread-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Standard deviation between countries of the log constrained loss and of the log effective attribution weight w = BF-NEE / R, by world region. The component with the larger spread explains more of the differences in BF-NEE between countries. Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending.
+</figcaption>
 </figure>
 </div>
 </div>
@@ -280,17 +299,22 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="coefficients">Coefficients</h2>
 <div class="cell" data-layout-align="left">
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-left">
-<figure class="figure">
-<p><img src="regressions_files/figure-html/unnamed-chunk-4-1.svg" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:100.0%"></p>
+<div id="fig-reg-coef" class="quarto-float quarto-figure quarto-figure-left anchored" data-fig-align="left">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-reg-coef-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="regressions_files/figure-html/fig-reg-coef-1.svg" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-reg-coef-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Estimated coefficients of log(BF-NEE) = β0 + β1 log(R) + β2 log(w) with 95 % confidence intervals, by world region. Because BF-NEE = R × w by definition, both coefficients equal 1 (dashed line); the model serves only as a consistency check. Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending.
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <div class="cell" data-layout-align="left">
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-60aa0175834ea2ec03f9" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-60aa0175834ea2ec03f9">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[["South America","South America","South America","Africa","Africa","Africa","Asia","Asia","Asia","North America","North America","North America","Europe","Europe","Europe","Oceania","Oceania","Oceania"],["(Intercept)","log_loss","log_weight","(Intercept)","log_loss","log_weight","(Intercept)","log_loss","log_weight","(Intercept)","log_loss","log_weight","(Intercept)","log_loss","log_weight","(Intercept)","log_loss","log_weight"],[-1.9759e-15,1,1,-6.2588e-16,1,1,-4.3343e-15,1,1,5.9758e-15,1,1,2.0621e-15,1,1,8.065600000000001e-15,1,1],[1.0297e-15,8.7389e-17,1.3177e-16,8.6767e-16,8.7715e-17,1.1639e-16,1.0994e-15,9.6072e-17,1.3411e-16,1.3433e-15,1.3267e-16,2.3689e-16,6.9998e-16,5.686e-17,1.6479e-16,5.4486e-15,3.0118e-16,9.1319e-16],[0.06272899999999999,0,0,0.47171,0,0,0.00011799,0,0,4.0627e-05,0,0,0.0037679,0,0,0.19887,4.703599999999999e-77,1.2053e-74],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[40,40,40,171,171,171,172,172,172,60,60,60,144,144,144,8,8,8]],"container":"<table class=\"compact hover\">\n  <thead>\n    <tr>\n      <th>Region<\/th>\n      <th>Term<\/th>\n      <th>Estimate<\/th>\n      <th>SE<\/th>\n      <th>p value<\/th>\n      <th>R²<\/th>\n      <th>N<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":15,"dom":"Bfrtip","buttons":["csv"],"scrollX":true,"columnDefs":[{"className":"dt-right","targets":[2,3,4,5,6]},{"name":"Region","targets":0},{"name":"Term","targets":1},{"name":"Estimate","targets":2},{"name":"SE","targets":3},{"name":"p value","targets":4},{"name":"R²","targets":5},{"name":"N","targets":6}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[10,15,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-3379f2f521e04c1cd198" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-3379f2f521e04c1cd198">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[["South America","South America","South America","Africa","Africa","Africa","Asia","Asia","Asia","North America","North America","North America","Europe","Europe","Europe","Oceania","Oceania","Oceania"],["(Intercept)","log_loss","log_weight","(Intercept)","log_loss","log_weight","(Intercept)","log_loss","log_weight","(Intercept)","log_loss","log_weight","(Intercept)","log_loss","log_weight","(Intercept)","log_loss","log_weight"],[-4.4939e-15,1,1,-2.1735e-15,1,1,7.585e-15,1,1,-0,1,1,-1.1842e-15,1,1,-5.0243e-15,1,1],[2.3093e-15,1.9457e-16,2.9223e-16,1.1099e-15,1.1347e-16,1.5026e-16,1.0083e-15,8.9639e-17,1.2377e-16,6.519e-16,6.481900000000001e-17,1.1744e-16,7.1428e-16,5.8414e-17,1.6873e-16,3.194e-15,1.7104e-16,5.4877e-16],[0.059284,0,0,0.051853,0,0,3.0244e-12,0,0,1,0,0,0.099551,0,0,0.17652,2.7781e-78,9.445999999999998e-76],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[40,40,40,171,171,171,172,172,172,60,60,60,144,144,144,8,8,8]],"container":"<table class=\"compact hover\">\n  <thead>\n    <tr>\n      <th>Region<\/th>\n      <th>Term<\/th>\n      <th>Estimate<\/th>\n      <th>SE<\/th>\n      <th>p value<\/th>\n      <th>R²<\/th>\n      <th>N<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":15,"dom":"Bfrtip","buttons":["csv"],"scrollX":true,"columnDefs":[{"className":"dt-right","targets":[2,3,4,5,6]},{"name":"Region","targets":0},{"name":"Term","targets":1},{"name":"Estimate","targets":2},{"name":"SE","targets":3},{"name":"p value","targets":4},{"name":"R²","targets":5},{"name":"N","targets":6}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[10,15,25,50,100]}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -299,8 +323,8 @@ window.Quarto = {
 <p>Observations far from the fitted line usually indicate an inconsistency in the data (e.g.&nbsp;weights or loss on a different scale).</p>
 <div class="cell" data-layout-align="left">
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-2371456151eca7074b35" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-2371456151eca7074b35">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[["Europe","Europe","Africa","Africa","Africa","Africa","Africa","Africa","Asia","Asia","Asia","North America","Europe","Asia","Asia","Asia","Asia","Asia","Asia","Asia","Asia","Asia","Africa","Africa","Africa","Africa","Africa","Asia","Asia","Asia"],["Malta","Malta","Niger","Angola","Democratic Republic of the Congo","Guinea","Madagascar","Niger","Georgia","Iran","Israel","Bahamas","Iceland","Cyprus","Cyprus","Georgia","Georgia","Japan","Sri Lanka","Palestine","Jordan","Japan","Angola","Guinea","Malawi","Niger","Chad","Afghanistan","Armenia","Azerbaijan"],["2000–2005","2005–2010","1995–2000","2000–2005","2005–2010","2000–2005","1995–2000","2000–2005","2005–2010","1995–2000","2000–2005","2000–2005","1995–2000","1995–2000","2000–2005","2000–2005","2010–2015","1995–2000","2005–2010","1995–2000","2000–2005","2000–2005","2005–2010","2010–2015","1995–2000","2005–2010","2005–2010","2005–2010","2005–2010","1995–2000"],[1.0154e-09,6.2698e-10,2.1673,30.361,18.328,5.5474,64.97,2.9433,14.766,98.247,20.573,0.1239,0.0013359,1.0475,1.4315,3.5982,4.2936,3.4967,1.1662,0.36061,0.42572,1.3333,15.649,15.971,13.398,8.5878,9.595499999999999,14.631,0.12855,10.723],[1.0058e-07,1.5274e-07,8744.6,24158,19740,5015,29711,9220,344.18,3987.4,266.2,7.2724,0.11258,17.857,30.187,392.71,171.81,1351.2,471.18,204.24,71.706,706.13,12793,15237,6490.5,11210,6152.5,1136.4,332.06,1750],[0.010095,0.0041049,0.00024785,0.0012568,0.00092846,0.0011062,0.0021867,0.00031923,0.042902,0.024639,0.077283,0.017037,0.011866,0.058662,0.047421,0.0091626,0.02499,0.0025878,0.0024749,0.0017656,0.005937,0.0018882,0.0012232,0.0010482,0.0020643,0.00076611,0.0015596,0.012875,0.00038712,0.0061272],[-1.0658e-14,-7.1054e-15,-4.6629e-15,-4.4409e-15,-4.4409e-15,-4.4409e-15,-4.4409e-15,-4.4409e-15,4.4409e-15,4.4409e-15,4.4409e-15,-4.4409e-15,-4.4409e-15,4.427e-15,4.2188e-15,4.2188e-15,4.2188e-15,4.2188e-15,4.2188e-15,4.2188e-15,4.1078e-15,4.1078e-15,-3.9968e-15,-3.9968e-15,-3.9968e-15,-3.9968e-15,-3.9968e-15,3.9968e-15,3.9968e-15,3.9968e-15]],"container":"<table class=\"compact hover\">\n  <thead>\n    <tr>\n      <th>Region<\/th>\n      <th>Country<\/th>\n      <th>Period<\/th>\n      <th>BF-NEE (km²)<\/th>\n      <th>Constrained loss (km²)<\/th>\n      <th>Effective weight<\/th>\n      <th>Residual<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":10,"dom":"Bfrtip","buttons":["csv"],"scrollX":true,"columnDefs":[{"className":"dt-right","targets":[3,4,5,6]},{"name":"Region","targets":0},{"name":"Country","targets":1},{"name":"Period","targets":2},{"name":"BF-NEE (km²)","targets":3},{"name":"Constrained loss (km²)","targets":4},{"name":"Effective weight","targets":5},{"name":"Residual","targets":6}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-5fa047d807cb783224ea" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-5fa047d807cb783224ea">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[["Asia","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Africa","Asia","Asia","Africa","Africa","Africa","Africa","Africa","Africa","Asia","Asia","Africa","Africa","South America"],["Dem. Rep. Korea","Burkina Faso","Gabon","Nigeria","Tanzania","Côte d'Ivoire","Cameroon","Republic of the Congo","Republic of the Congo","Ethiopia","Gabon","Mali","Nigeria","Tanzania","South Africa","Zambia","Zambia","China","Dem. Rep. Korea","Niger","Angola","Cameroon","Democratic Republic of the Congo","Ghana","Niger","Singapore","Dem. Rep. Korea","Democratic Republic of the Congo","Niger","Uruguay"],["2000–2005","2005–2010","2005–2010","2010–2015","2005–2010","2010–2015","2005–2010","2000–2005","2005–2010","2000–2005","2010–2015","2010–2015","2005–2010","2000–2005","2005–2010","2000–2005","2005–2010","2000–2005","2005–2010","2010–2015","2000–2005","2010–2015","2010–2015","2000–2005","2005–2010","2005–2010","1995–2000","1995–2000","2000–2005","2000–2005"],[0.26317,51.879,140.83,309.57,38.425,129.1,42.405,237.59,157.53,40.048,75.137,52.96,61.988,72.464,82.261,74.98699999999999,31.157,260.57,0.0027189,0.6716800000000001,30.085,19.915,22.379,33.914,8.4,0.024608,1.5217,2.4481,2.8434,246.51],[3188.8,10573,13831,89883,8786.1,16159,22427,44931,51361,14344,10051,10240,8403.6,19956,10613,12909,9890.4,43890,493.31,11474,23885,10663,45916,10672,10965,0.58897,4839.6,14552,8907.1,4797.1],[8.2529e-05,0.0049066,0.010183,0.0034441,0.0043734,0.0079893,0.0018908,0.0052879,0.003067,0.002792,0.0074759,0.0051719,0.0073763,0.0036312,0.007751,0.005809,0.0031503,0.0059369,5.5115e-06,5.8541e-05,0.0012596,0.0018677,0.00048739,0.0031779,0.00076611,0.041782,0.00031442,0.00016823,0.00031923,0.051388],[8.6597e-15,-7.1054e-15,-7.1054e-15,-7.1054e-15,-6.6613e-15,-6.2172e-15,-6.2172e-15,-6.2172e-15,-6.2172e-15,-6.2172e-15,-6.2172e-15,-6.2172e-15,-6.2172e-15,-6.2172e-15,-6.2172e-15,-6.2172e-15,-6.2172e-15,6.2172e-15,6.2172e-15,-5.9397e-15,-5.7732e-15,-5.7732e-15,-5.7732e-15,-5.7732e-15,-5.7732e-15,-5.7732e-15,5.7176e-15,-5.5511e-15,-5.5511e-15,5.3291e-15]],"container":"<table class=\"compact hover\">\n  <thead>\n    <tr>\n      <th>Region<\/th>\n      <th>Country<\/th>\n      <th>Period<\/th>\n      <th>BF-NEE (km²)<\/th>\n      <th>Constrained loss (km²)<\/th>\n      <th>Effective weight<\/th>\n      <th>Residual<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":10,"dom":"Bfrtip","buttons":["csv"],"scrollX":true,"columnDefs":[{"className":"dt-right","targets":[3,4,5,6]},{"name":"Region","targets":0},{"name":"Country","targets":1},{"name":"Period","targets":2},{"name":"BF-NEE (km²)","targets":3},{"name":"Constrained loss (km²)","targets":4},{"name":"Effective weight","targets":5},{"name":"Residual","targets":6}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 

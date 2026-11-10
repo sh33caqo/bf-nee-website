@@ -16,6 +16,12 @@ suppressPackageStartupMessages({
 
 source("R/theme.R")
 
+# Headless servers (no X11 display): plotly::ggplotly() opens a png()
+# device to measure text. Use cairo instead of X11 for that.
+if (isTRUE(capabilities("cairo"))) {
+  options(bitmapType = "cairo")
+}
+
 knitr::opts_chunk$set(
   dev = "svglite",
   fig.width = 8.5,
@@ -174,4 +180,39 @@ bf_table <- function(df, page_length = 10, ...) {
 # Round all numeric columns of a table for display
 round_df <- function(df, digits = 2) {
   mutate(df, across(where(is.numeric), ~ signif(.x, digits + 2)))
+}
+
+# ---------------------------------------------------------
+# v3.1 PLANTATION ADJUSTMENT (approximation) + FIGURE CAPTIONS
+# ---------------------------------------------------------
+# TRUE while the tables come from data-raw/03_plantation_adjustment.R
+# (plantations and artificial aquatic classes removed approximately).
+is_approx <- grepl("approximation", build_info$pipeline_version[1], fixed = TRUE)
+
+# Original v3 totals (plantations counted as natural), for comparison
+country_transition_v3 <- if (file.exists("data/v3_original/country_transition.csv")) {
+  read_csv("data/v3_original/country_transition.csv", show_col_types = FALSE,
+           progress = FALSE,
+           col_types = cols(transition = col_character(), .default = col_guess()))
+} else {
+  NULL
+}
+
+cap_basis <- paste0(
+  "Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the ",
+  length(valid_iso3), " producing countries that pass the data checks; ",
+  "final demand: Germany."
+)
+
+cap_v31 <- if (is_approx) {
+  paste("Plantations (IUCN 14.3) and artificial aquatic classes are treated as",
+        "anthropogenic (v3.1). Values are an approximation derived from the v3",
+        "results; the exact recalculation is pending.")
+} else {
+  "Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic."
+}
+
+# Detailed figure caption: what is shown + data basis + v3.1 note
+cap <- function(..., basis = TRUE, v31 = TRUE) {
+  paste(c(paste0(...), if (basis) cap_basis, if (v31) cap_v31), collapse = " ")
 }

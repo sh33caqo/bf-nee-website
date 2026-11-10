@@ -73,17 +73,17 @@ ecosystem_class,ecosystem_name,eco_group,tropical_moist_forest
 13.3,Marine coastal/supratidal – coastal sand dunes,Marine and coastal,FALSE
 13.4,Marine coastal/supratidal – coastal brackish/saline lagoons/marine lakes,Marine and coastal,FALSE
 13.5,Marine coastal/supratidal – coastal freshwater lakes,Marine and coastal,FALSE
-14.2,Pastureland,Modified (counted as natural),FALSE
-14.3,Plantations,Modified (counted as natural),FALSE
+14.2,Pastureland,"Agricultural (intensive pasture, since v3)",FALSE
+14.3,Plantations,Anthropogenic (not natural since v3.1),FALSE
 14.6,Subtropical/tropical heavily degraded former forest,Modified (counted as natural),FALSE
-15.1,Water storage areas,Modified (counted as natural),FALSE
-15.2,Ponds (below 8 ha),Modified (counted as natural),FALSE
-15.3,Aquaculture ponds,Modified (counted as natural),FALSE
-15.7,Irrigated land,Modified (counted as natural),FALSE
-15.9,Canals and drainage channels/ditches,Modified (counted as natural),FALSE
-15.10,Karst and other subterranean hydrological systems (human-made),Modified (counted as natural),FALSE
-15.12,Mariculture cages,Modified (counted as natural),FALSE
-15.13,Mari/brackish-culture ponds,Modified (counted as natural),FALSE
+15.1,Water storage areas,Anthropogenic (not natural since v3.1),FALSE
+15.2,Ponds (below 8 ha),Anthropogenic (not natural since v3.1),FALSE
+15.3,Aquaculture ponds,Anthropogenic (not natural since v3.1),FALSE
+15.7,Irrigated land,Anthropogenic (not natural since v3.1),FALSE
+15.9,Canals and drainage channels/ditches,Anthropogenic (not natural since v3.1),FALSE
+15.10,Karst and other subterranean hydrological systems (human-made),Anthropogenic (not natural since v3.1),FALSE
+15.12,Mariculture cages,Anthropogenic (not natural since v3.1),FALSE
+15.13,Mari/brackish-culture ponds,Anthropogenic (not natural since v3.1),FALSE
 16,Introduced vegetation,Modified (counted as natural),FALSE
 17,Other,Modified (counted as natural),FALSE
 18,Unknown,Modified (counted as natural),FALSE

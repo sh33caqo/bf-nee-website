@@ -22,6 +22,8 @@ eco_group_period <- ce %>%
 latest <- eco_group_period %>% filter(period == latest_period)
 ```
 
+{{< include _approx-note.qmd >}}
+
 The agriculture-constrained loss is split onto the ecosystem classes in proportion
 to their original loss ([method](method.qmd#class-split)), so the footprints of all
 groups add up to the total BF-NEE.
@@ -29,6 +31,8 @@ groups add up to the total BF-NEE.
 ## Footprint by ecosystem group
 
 ```{r}
+#| label: fig-eco-latest
+#| fig-cap: !expr 'cap("BF-NEE by ecosystem group in ", latest_period, ", in km², with each group’s share of the total. Because the constrained loss of each grid cell is split onto the natural classes in proportion to their gross loss, the groups add up to the total BF-NEE.")'
 #| fig-height: 4.2
 d <- latest %>%
   filter(bfnee_km2 > 0) %>%
@@ -49,6 +53,8 @@ ggplot(d, aes(bfnee_km2, eco_group, fill = eco_group)) +
 ## Change over time
 
 ```{r}
+#| label: fig-eco-trend
+#| fig-cap: !expr 'cap("BF-NEE per ecosystem group and five-year period, in km². Each panel has its own y-axis scale, so the panels show the trend within a group, not the size relative to other groups.")'
 #| fig-height: 5.6
 p <- ggplot(eco_group_period %>% filter(eco_group %in% unique(latest$eco_group[latest$bfnee_km2 > 0])),
             aes(period, bfnee_km2, colour = eco_group, group = eco_group,
@@ -73,6 +79,8 @@ Share of the gross loss of an ecosystem group that coincides with cropland expan
 in the same cell and period.
 
 ```{r}
+#| label: fig-eco-share-attributed
+#| fig-cap: !expr 'cap("Share of each ecosystem group’s gross loss that coincides with agricultural expansion in the same grid cell and period (agriculture-constrained loss divided by unconstrained loss). Hover for both areas.")'
 #| fig-height: 4.4
 d <- eco_group_period %>%
   filter(loss_unconstrained_km2 > 0) %>%
@@ -97,6 +105,8 @@ bf_interactive(p)
 Subtropical/tropical moist lowland (1.6) and moist montane forest (1.9).
 
 ```{r}
+#| label: fig-tmf-trend
+#| fig-cap: !expr 'cap("BF-NEE in tropical moist forests (IUCN 1.6 subtropical/tropical moist lowland forest and 1.9 moist montane forest) per period, in km². These classes are part of the Forest group; the tooltip shows their share of the total BF-NEE.")'
 #| fig-height: 4
 tmf <- ce %>%
   filter(tropical_moist_forest) %>%
@@ -122,6 +132,8 @@ bf_interactive(p)
 ```
 
 ```{r}
+#| label: fig-tmf-countries
+#| fig-cap: !expr 'cap("The 12 producing countries with the largest BF-NEE in tropical moist forests (IUCN 1.6 and 1.9) in ", latest_period, ", in km², coloured by world region.")'
 #| fig-height: 4.2
 tmf_countries <- ce %>%
   filter(tropical_moist_forest, period == latest_period) %>%
@@ -147,6 +159,8 @@ ggplot(tmf_countries, aes(bfnee_km2, country_name, fill = continent)) +
 Share of each region's footprint that falls on each ecosystem group (`r latest_period`).
 
 ```{r}
+#| label: fig-eco-region
+#| fig-cap: !expr 'cap("Composition of the BF-NEE of each world region by ecosystem group in ", latest_period, ". Each row sums to 100 %; empty cells mean no attributed loss.")'
 #| fig-height: 4.2
 heat <- ce %>%
   filter(period == latest_period) %>%
@@ -178,6 +192,8 @@ ggplot(heat, aes(eco_group, continent, fill = share)) +
 ## Top ecosystem classes
 
 ```{r}
+#| label: fig-eco-classes
+#| fig-cap: !expr 'cap("The 15 IUCN habitat classes with the largest BF-NEE in ", latest_period, ", in km², coloured by ecosystem group.")'
 #| fig-height: 5.6
 top_classes <- ce %>%
   filter(period == latest_period) %>%

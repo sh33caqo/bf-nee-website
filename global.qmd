@@ -8,17 +8,21 @@ subtitle: "From gross natural ecosystem loss to the consumption-attributed footp
 source("R/setup.R")
 ```
 
+{{< include _approx-note.qmd >}}
+
 All figures sum over the `r length(valid_iso3)` producing countries that pass the
 [data checks](coverage.qmd).
 
 ## From loss to footprint
 
 Three steps narrow the observed loss down to the footprint: gross natural loss
-(*unconstrained*), the part that coincides with cropland expansion in the same cell
+(*unconstrained*), the part that coincides with agricultural expansion in the same cell
 (*agriculture-constrained*), and finally the share of it that is linked to German
 final demand (*BF-NEE*).
 
 ```{r}
+#| label: fig-cascade
+#| fig-cap: !expr 'cap("Gross loss of natural ecosystems (unconstrained), net expansion of agricultural land (cropland plus intensive pasture) and agriculture-constrained loss per five-year period, in km². The constrained loss is the part of the gross loss that coincides with agricultural expansion in the same grid cell and period, capped at the size of the expansion.")'
 #| fig-height: 4.6
 cascade <- global_period %>%
   select(period,
@@ -44,6 +48,8 @@ bf_interactive(p)
 ```
 
 ```{r}
+#| label: fig-share-attributed
+#| fig-cap: !expr 'cap("Share of the gross natural ecosystem loss that coincides with agricultural expansion in the same grid cell and period (agriculture-constrained loss divided by unconstrained loss), per five-year period.")'
 #| fig-height: 3.8
 p <- ggplot(global_period, aes(period, share_attributed, group = 1,
                                text = paste0(period, ": ", fmt_pct(share_attributed)))) +
@@ -59,6 +65,8 @@ bf_interactive(p)
 ```
 
 ```{r}
+#| label: fig-loss-basis
+#| fig-cap: !expr 'cap("Agriculture-constrained loss split into the part linked to cropland expansion and the part linked to intensive pasture expansion, in km². The split is made in every grid cell in proportion to the positive area changes of the two land uses; the tooltip shows each part’s share of the period total.")'
 #| eval: !expr has_pasture
 #| fig-height: 4.4
 basis <- global_period %>%
@@ -85,6 +93,8 @@ bf_interactive(p)
 ## BF-NEE over time
 
 ```{r}
+#| label: fig-bfnee-time
+#| fig-cap: !expr 'cap("BF-NEE per five-year period in km²: the agriculture-constrained loss weighted with the share of each producing country’s crop and livestock production that is used for German final demand. Hover for the number of countries.")'
 #| fig-height: 4.2
 p <- ggplot(global_period, aes(period, bfnee_km2, group = 1,
                                text = paste0(period, ": ", fmt_km2(bfnee_km2),
@@ -104,6 +114,8 @@ bf_interactive(p)
 ### By ecosystem group
 
 ```{r}
+#| label: fig-bfnee-eco
+#| fig-cap: !expr 'cap("BF-NEE per period split by ecosystem group, in km². The constrained loss of each grid cell is distributed onto the natural ecosystem classes in proportion to their gross loss, so the groups add up to the total. The group Modified (counted as natural) contains degraded former forest (IUCN 14.6), introduced vegetation and unclassified cover.")'
 #| fig-height: 4.8
 eco_period <- ce %>%
   group_by(period, eco_group) %>%
@@ -128,6 +140,8 @@ bf_interactive(p)
 More detail on the [Ecosystems](ecosystems.qmd) page.
 
 ```{r}
+#| label: fig-bfnee-basis
+#| fig-cap: !expr 'cap("BF-NEE per period split into crops (constrained loss on cropland × commodity share S × GLORIA production share P) and grazing livestock (constrained loss on intensive pasture × mean GLORIA share of cattle and of sheep and goats), in km².")'
 #| eval: !expr has_pasture
 #| fig-height: 4.2
 bb <- global_period %>%
@@ -155,6 +169,8 @@ How much smaller is BF-NEE when only loss linked to agricultural expansion is
 attributed, compared with attributing all natural loss?
 
 ```{r}
+#| label: fig-constraint
+#| fig-cap: !expr 'cap("BF-NEE with the agricultural-expansion constraint compared with a variant that attributes the entire gross natural ecosystem loss with the same weights, in km². The difference is the loss that is not attributed because it does not coincide with agricultural expansion.")'
 #| fig-height: 4
 comp <- global_period %>%
   select(period, `BF-NEE (constrained)` = bfnee_km2,
@@ -171,6 +187,49 @@ p <- ggplot(comp, aes(period, km2, fill = variant,
                     name = NULL) +
   scale_y_continuous(labels = fmt_area, expand = expansion(mult = c(0, 0.06))) +
   labs(title = "BF-NEE with and without the agricultural-expansion constraint",
+       x = NULL, y = "BF-NEE (km²)")
+
+bf_interactive(p)
+```
+
+## Effect of treating plantations as anthropogenic {#plantations}
+
+Since v3.1, plantations (IUCN 14.3) and artificial aquatic classes no longer count
+as natural ecosystems. Until the pipeline can be rerun, their share is removed from
+the v3 results; the exact values lie between the two bars of each period.
+
+```{r}
+#| label: fig-plantations
+#| fig-cap: !expr 'cap("Global BF-NEE per period in the v3 results, in which plantations and artificial aquatic classes still counted as natural ecosystems, and in the v3.1 approximation, in which their share is removed, in km². The v3.1 value is a lower bound; the exact value lies between the two bars. The tooltip shows the relative change.", v31 = FALSE)'
+#| eval: !expr '!is.null(country_transition_v3)'
+#| fig-height: 4
+v3_tot <- country_transition_v3 %>%
+  filter(iso3 %in% valid_iso3) %>%
+  mutate(period = factor(transition_label(transition), levels = periods)) %>%
+  group_by(period) %>%
+  summarise(`v3 (plantations counted as natural)` = sum(bfnee_km2, na.rm = TRUE),
+            .groups = "drop")
+
+pl <- global_period %>%
+  select(period, `v3.1 approximation` = bfnee_km2) %>%
+  left_join(v3_tot, by = "period") %>%
+  mutate(change = `v3.1 approximation` / `v3 (plantations counted as natural)` - 1) %>%
+  pivot_longer(c(`v3 (plantations counted as natural)`, `v3.1 approximation`),
+               names_to = "variant", values_to = "km2") %>%
+  mutate(variant = factor(variant, levels = c("v3 (plantations counted as natural)",
+                                              "v3.1 approximation")))
+
+p <- ggplot(pl, aes(period, km2, fill = variant,
+                    text = paste0(variant, "<br>", period, ": ", fmt_km2(km2),
+                                  ifelse(variant == "v3.1 approximation",
+                                         paste0(" (", fmt_pct(change), ")"), "")))) +
+  geom_col(position = position_dodge(width = 0.8), width = 0.75,
+           colour = bf_ink$surface, linewidth = 0.5) +
+  scale_fill_manual(values = c("v3 (plantations counted as natural)" = bf_ink$other,
+                               "v3.1 approximation" = measure_colors[["BF-NEE"]]),
+                    name = NULL) +
+  scale_y_continuous(labels = fmt_area, expand = expansion(mult = c(0, 0.06))) +
+  labs(title = "BF-NEE with and without plantations as natural ecosystems",
        x = NULL, y = "BF-NEE (km²)")
 
 bf_interactive(p)

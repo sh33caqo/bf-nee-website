@@ -22,6 +22,8 @@ regions_ok <- df_model %>% count(continent) %>% filter(n >= 6) %>% pull(continen
 df_model <- df_model %>% filter(continent %in% regions_ok)
 ```
 
+{{< include _approx-note.qmd >}}
+
 ## Model
 
 Per country $\text{BF-NEE} = R^{crop} \sum_c S_c P_c + R^{past} P^{past} = R \cdot w$, with the
@@ -39,6 +41,8 @@ the interesting part is how much each component varies between regions.
 Only countries with BF-NEE > 0 are used (log scale); regions need ≥ 6 observations.
 
 ```{r}
+#| label: fig-reg-scatter
+#| fig-cap: !expr 'cap("BF-NEE against agriculture-constrained loss for every country and period with positive values, by world region, with a least-squares line per region. Both axes are logarithmic.")'
 #| fig-height: 5.6
 ggplot(df_model, aes(loss_constrained_km2, bfnee_km2, colour = continent)) +
   geom_point(alpha = 0.7, size = 1.8) +
@@ -56,6 +60,8 @@ ggplot(df_model, aes(loss_constrained_km2, bfnee_km2, colour = continent)) +
 ## Which component varies more?
 
 ```{r}
+#| label: fig-reg-spread
+#| fig-cap: !expr 'cap("Standard deviation between countries of the log constrained loss and of the log effective attribution weight w = BF-NEE / R, by world region. The component with the larger spread explains more of the differences in BF-NEE between countries.")'
 #| fig-height: 4.4
 var_d <- df_model %>%
   group_by(continent) %>%
@@ -77,6 +83,8 @@ ggplot(var_d, aes(sd_log, continent, fill = component)) +
 ## Coefficients
 
 ```{r}
+#| label: fig-reg-coef
+#| fig-cap: !expr 'cap("Estimated coefficients of log(BF-NEE) = β0 + β1 log(R) + β2 log(w) with 95 % confidence intervals, by world region. Because BF-NEE = R × w by definition, both coefficients equal 1 (dashed line); the model serves only as a consistency check.")'
 #| fig-height: 4
 models <- df_model %>%
   group_by(continent) %>%

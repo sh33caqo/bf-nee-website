@@ -37,7 +37,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-baae5a45780b1e5f478c1a1a4471a6e2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-9541e78fa99370dcd20a5f9259563e08.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -204,6 +204,7 @@ window.Quarto = {
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
   <li><a href="#harmonising-cropland" id="toc-harmonising-cropland" class="nav-link" data-scroll-target="#harmonising-cropland">1 · Harmonising cropland</a></li>
   <li><a href="#pasture" id="toc-pasture" class="nav-link" data-scroll-target="#pasture">1b · Intensive pasture</a></li>
+  <li><a href="#plantations" id="toc-plantations" class="nav-link" data-scroll-target="#plantations">1c · Plantations and artificial classes</a></li>
   <li><a href="#loss-of-natural-ecosystems" id="toc-loss-of-natural-ecosystems" class="nav-link" data-scroll-target="#loss-of-natural-ecosystems">2 · Loss of natural ecosystems</a></li>
   <li><a href="#agricultural-expansion-constraint" id="toc-agricultural-expansion-constraint" class="nav-link" data-scroll-target="#agricultural-expansion-constraint">3 · Agricultural-expansion constraint</a></li>
   <li><a href="#class-split" id="toc-class-split" class="nav-link" data-scroll-target="#class-split">4 · Keeping the ecosystem classes</a></li>
@@ -300,6 +301,29 @@ G'_{p,e,y} = \tilde G_{p,e,y}\,\frac{1 - L^{crop}_{p,y} - L^{past}_{p,y}}{1 - \t
 </span></p>
 </div>
 <p>Pastureland (14.2) is therefore an agricultural class and no longer counted as natural.</p>
+</section>
+<section id="plantations" class="level2">
+<h2 class="anchored" data-anchor-id="plantations">1c · Plantations and artificial classes</h2>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>New in v3.1.</strong> Plantations and artificial aquatic classes are anthropogenic.</p>
+</div>
+</div>
+</div>
+<p>Plantations (IUCN 14.3) and artificial aquatic classes (water storage areas, ponds, aquaculture and mariculture ponds and cages, irrigated land, canals and artificial karst; IUCN 15.1, 15.2, 15.3, 15.7, 15.9, 15.10, 15.12, 15.13) are created and maintained by people. In line with the definition of anthropogenic ecosystems for GBF headline indicator A.2, they are no longer counted as natural ecosystems: their loss is not natural ecosystem loss, and their expansion does not offset it.</p>
+<p><strong>Current values are an approximation.</strong> The exact recalculation requires the per-pixel results of the pipeline, which are temporarily unavailable. Until then, the published v3 results are corrected by removing these classes:</p>
+<div class="equation-box">
+<p><span class="math display">
+N^{v3.1} = N^{v3} - \text{Loss}_{\text{removed}}, \qquad
+R^{v3.1} \approx R^{v3} - R_{\text{removed}}, \qquad
+\text{BF-NEE}^{v3.1} \approx \text{BF-NEE}^{v3} - \text{BF-NEE}_{\text{removed}}
+</span></p>
+</div>
+<p>The correction of the unconstrained loss <span class="math inline">N</span> is exact. For the constrained loss <span class="math inline">R</span>, the corrected value is a lower bound and the v3 value an upper bound of the exact result. Because GlobES is rescaled proportionally to LandSHIFT (Section 1b), the lower bound is exact in all grid cells where GlobES itself does not shift area between classes, so the approximation is expected to be close. Commodity-specific values are corrected with the cropland and pasture parts separately; the attribution weights <span class="math inline">S</span>, <span class="math inline">P</span> and <span class="math inline">P^{past}</span> are unchanged.</p>
 </section>
 <section id="loss-of-natural-ecosystems" class="level2">
 <h2 class="anchored" data-anchor-id="loss-of-natural-ecosystems">2 · Loss of natural ecosystems</h2>
@@ -435,19 +459,20 @@ L_{p,e,past,y} = R^{past}_{p,e,y}\,P^{past}_{r,y}, \qquad
 </tr>
 <tr class="even">
 <td style="text-align: left;">Modified (counted as natural)</td>
-<td style="text-align: left;">14.2, 14.3, 14.6, 15.1, 15.2, 15.3, 15.7, 15.9, 15.10, 15.12, 15.13, 16, 17, 18</td>
+<td style="text-align: left;">14.6, 16, 17, 18</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
+<p>Not natural, and therefore not part of any group: the agricultural classes (14.1 arable land, 14.2 pastureland, 15.8 seasonally flooded agricultural land), plantations and artificial aquatic classes (Section 1c) and the excluded anthropogenic classes (14.4, 14.5, 15.4, 15.5, 15.6, 15.11).</p>
 <div class="callout callout-style-simple callout-warning">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p><strong>Note on modified habitats.</strong> Since v3, pastureland (14.2) is agricultural land. Plantations (14.3), heavily degraded former forest (14.6) and several artificial aquatic classes are still <strong>not</strong> excluded and therefore count as “natural”. They are shown as a separate group so they can be judged – or excluded – explicitly.</p>
+<p><strong>Note on modified habitats.</strong> Heavily degraded former forest (14.6), introduced vegetation and unclassified cover still count as natural. They are shown as a separate group so they can be judged – or excluded – explicitly.</p>
 </div>
 </div>
 </div>
@@ -458,6 +483,7 @@ L_{p,e,past,y} = R^{past}_{p,e,y}\,P^{past}_{r,y}, \qquad
 <li>Commodity and GLORIA factors are national, not pixel-specific: the indicator does not identify the crop planted on a specific converted pixel.</li>
 <li>The constraint is spatially conservative – loss is attributed only where cropland grows in the same cell and five-year period. Transitions that happen and reverse between snapshots are not captured.</li>
 <li>Only intensive pasture is agricultural land; the split between intensive and extensive grazing depends on the country-mean threshold. Cattle and sheep/goats are weighted equally in <span class="math inline">P^{past}</span> (no per-cell information on species).</li>
+<li>Since v3.1, plantations and artificial aquatic classes are removed approximately from the v3 results (Section 1c); exact values follow after the next full run.</li>
 <li>The LandSHIFT–GLORIA concordance is not one-to-one (e.g.&nbsp;pulses and oil crops share one GLORIA sector).</li>
 </ul>
 

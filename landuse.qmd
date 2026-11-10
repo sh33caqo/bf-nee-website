@@ -15,6 +15,8 @@ lu <- landuse %>%
 latest_year <- max(lu$year, na.rm = TRUE)
 ```
 
+{{< include _approx-note.qmd >}}
+
 Agricultural land in BF-NEE consists of **cropland** (irrigated + rainfed) and
 **intensive pasture**. A cell's grazing land counts as intensive if its stocking
 density is above the country mean of the grazing land (fixed per country, 1995–2015).
@@ -23,6 +25,8 @@ Extensive grazing stays part of the natural ecosystem cover ([method](method.qmd
 ## Agricultural land over time
 
 ```{r}
+#| label: fig-agri-land
+#| fig-cap: !expr 'cap("Cropland, intensive pasture and extensive grazing per year in km², summed over the ", length(valid_iso3), " valid producing countries. Only cropland and intensive pasture count as agricultural land in BF-NEE; grazing land with a stocking density at or below the fixed country threshold (extensive grazing) remains part of the natural ecosystem cover. Data: LandSHIFT.", basis = FALSE, v31 = FALSE)'
 #| fig-height: 4.6
 g <- lu %>%
   group_by(year) %>%
@@ -51,6 +55,8 @@ Net agricultural expansion per grid cell, split into cropland and pasture
 (the quantity that limits the attributed loss).
 
 ```{r}
+#| label: fig-agri-expansion
+#| fig-cap: !expr 'cap("Net expansion of agricultural land per five-year period in km², split into cropland and intensive pasture. In each grid cell the net gain of cropland plus pasture is split in proportion to the positive changes of the two land uses; conversion of pasture to cropland is not counted as expansion. The tooltip shows each part’s share. Data: LandSHIFT.", basis = FALSE, v31 = FALSE)'
 #| fig-height: 4.4
 ex <- global_period %>%
   select(period, `Cropland` = agri_gain_cropland_km2, `Intensive pasture` = agri_gain_pasture_km2) %>%
@@ -72,6 +78,8 @@ bf_interactive(p)
 ## How intensive is grazing?
 
 ```{r}
+#| label: fig-intensive-share
+#| fig-cap: !expr 'cap("Share of the LandSHIFT grazing area classified as intensive pasture in ", latest_year, ", by world region. A grid cell counts as intensive if its stocking density exceeds the country’s grazing-area-weighted mean density of 1995–2015. Data: LandSHIFT.", basis = FALSE, v31 = FALSE)'
 #| fig-height: 4
 reg <- lu %>%
   filter(year == latest_year) %>%
@@ -93,6 +101,8 @@ ggplot(reg, aes(share, continent, fill = continent)) +
 ```
 
 ```{r}
+#| label: fig-thresholds
+#| fig-cap: !expr 'cap("Fixed stocking-density threshold (livestock units per ha) that separates intensive from extensive grazing, for the 25 countries with the largest grazing area in ", latest_year, ". Hover for the grazing area and the intensive share. Data: LandSHIFT.", basis = FALSE, v31 = FALSE)'
 #| fig-height: 5.6
 thr <- lu %>%
   filter(year == latest_year, is.finite(stocking_threshold_lu_per_ha), graze_km2 > 0) %>%
@@ -118,6 +128,8 @@ bf_interactive(p)
 ## Where is pasture expansion linked to ecosystem loss?
 
 ```{r}
+#| label: fig-pasture-loss
+#| fig-cap: !expr 'cap("Agriculture-constrained loss in ", latest_period, " for the 15 countries with the largest constrained loss, split into the part linked to cropland and the part linked to intensive pasture, in km².")'
 #| fig-height: 5.6
 pc <- ct %>%
   filter(period == latest_period) %>%

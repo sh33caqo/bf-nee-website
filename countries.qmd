@@ -17,9 +17,13 @@ top_latest <- country_period %>%
   slice_max(bfnee_km2, n = 20)
 ```
 
+{{< include _approx-note.qmd >}}
+
 ## Largest footprints
 
 ```{r}
+#| label: fig-top-countries
+#| fig-cap: !expr 'cap("The 20 producing countries with the largest BF-NEE in ", latest_period, ", in km², with each country’s share of the global footprint, coloured by world region.")'
 #| fig-height: 6.2
 d <- top_latest %>% mutate(country_name = forcats::fct_reorder(country_name, bfnee_km2))
 
@@ -38,6 +42,8 @@ ggplot(d, aes(bfnee_km2, country_name, fill = continent)) +
 ## Concentration
 
 ```{r}
+#| label: fig-concentration
+#| fig-cap: !expr 'cap("Cumulative share of the global BF-NEE accounted for by the largest producing countries, per period. Countries are ranked by BF-NEE; a steep curve means the footprint is concentrated in few countries.")'
 #| fig-height: 4
 conc <- country_period %>%
   filter(bfnee_km2 > 0) %>%
@@ -64,6 +70,8 @@ bf_interactive(p)
 ## Trajectories
 
 ```{r}
+#| label: fig-trajectories
+#| fig-cap: !expr 'cap("BF-NEE per period of the 8 producing countries with the largest footprint summed over all periods, in km². Each panel has its own y-axis scale.")'
 #| fig-height: 5.4
 top8 <- country_period %>%
   group_by(iso3) %>%
@@ -100,6 +108,8 @@ ecosystems, because a large share of their expanding crops ends up in German fin
 demand – or both.
 
 ```{r}
+#| label: fig-drivers
+#| fig-cap: !expr 'cap("Agriculture-constrained loss (x-axis) against the attribution weight Σ S·P of the expanding crops (y-axis) for each producing country in ", latest_period, ". Bubble size is proportional to BF-NEE; both axes are logarithmic. Countries with weight zero or no constrained loss are not shown.")'
 #| fig-height: 5.4
 d <- country_period %>%
   filter(period == latest_period, loss_constrained_km2 > 0, weight_sum > 0)
@@ -126,6 +136,8 @@ bf_interactive(p)
 ## Regions
 
 ```{r}
+#| label: fig-regions
+#| fig-cap: !expr 'cap("BF-NEE per period by world region of the producing country, in km².")'
 #| fig-height: 4.4
 reg <- country_period %>%
   group_by(period, continent) %>%

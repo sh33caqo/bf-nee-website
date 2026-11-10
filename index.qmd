@@ -114,6 +114,11 @@ commodity and ecosystem type.
 ::: {.callout-note appearance="simple"}
 **`r sub(":.*", "", build_info$pipeline_version)`** (data built `r build_info$built_at`)
 
+- **Plantations are anthropogenic (v3.1).** Plantations and artificial aquatic
+  classes no longer count as natural ecosystems. The current values are an
+  approximation derived from the v3 results; the exact recalculation follows
+  ([Method](method.qmd#plantations)).
+
 - **Intensive pasture (v3).** Cropland *and* intensive pasture count as agricultural
   land. Loss linked to pasture expansion is attributed to grazing livestock.
 

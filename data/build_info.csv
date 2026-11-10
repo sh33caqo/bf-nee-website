@@ -1,2 +1,2 @@
-built_at,source_dir,n_countries,n_countries_v3,n_countries_valid,pipeline_version
-2026-10-26 14:34 CET,/home/sc.uni-leipzig.de/sh33caqo/Symobio/Data/Processed,155,155,151,v3: cropland + intensive pasture; commodity shares from positive area change; constrained loss split by ecosystem class
+built_at,source_dir,n_countries,n_countries_v3,n_countries_valid,pipeline_version,adjusted_at
+2026-10-26 14:34 CET,/home/sc.uni-leipzig.de/sh33caqo/Symobio/Data/Processed,155,155,151,"v3.1 (approximation): plantations (IUCN 14.3) and artificial aquatic classes treated as anthropogenic; derived from the v3 tables, exact rerun pending | v3: cropland + intensive pasture; commodity shares from positive area change; constrained loss split by ecosystem class",2026-11-09 14:36 CET

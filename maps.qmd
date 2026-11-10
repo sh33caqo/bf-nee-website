@@ -18,6 +18,13 @@ to zoom in and see its totals.
         allowfullscreen></iframe>
 ```
 
+::: {.callout-warning appearance="simple"}
+The map still shows the **v3 values**, in which plantations and artificial aquatic
+classes count as natural ecosystems (group *Modified*). The tables and figures on
+the other pages already treat them as anthropogenic (v3.1). The map will be updated
+with the next full run of the pipeline.
+:::
+
 ::: {.callout-note appearance="simple" collapse="true"}
 ## About the map data
 
