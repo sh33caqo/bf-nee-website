@@ -399,6 +399,7 @@ S_{c,r,y} =
 </span></p>
 </div>
 <p>Crops whose area shrank get <span class="math inline">S = 0</span>; the shares of a period sum to one. If no crop expanded, all shares are zero and nothing is attributed.</p>
+<p><strong>Maize is part of the cereals group.</strong> The LandSHIFT crop tables contain a maize column, but it is zero in all countries and years. The crop classification of the GLORIA material data that LandSHIFT uses has 14 crop groups and no separate maize class, and the production of <em>Cereals n.e.c.</em> in these data matches official maize plus other coarse grains (e.g.&nbsp;Brazil 2015: 88 Mt vs.&nbsp;85 Mt maize; USA 2015: 367 Mt vs.&nbsp;about 345 Mt maize and 15 Mt sorghum). Maize is therefore contained in <em>Cereals n.e.c.</em>, shown as <strong>Cereals incl.&nbsp;maize</strong> on this website. The LandSHIFT area of this group is larger than the official harvested area of maize and other cereals (USA 2015 about 2.3 times, Brazil about 1.6 times), so its share <span class="math inline">S</span> is probably overestimated relative to the other crops.</p>
 </section>
 <section id="attribution-and-indicator" class="level2">
 <h2 class="anchored" data-anchor-id="attribution-and-indicator">6 · Attribution and indicator</h2>
@@ -484,7 +485,8 @@ L_{p,e,past,y} = R^{past}_{p,e,y}\,P^{past}_{r,y}, \qquad
 <li>The constraint is spatially conservative – loss is attributed only where cropland grows in the same cell and five-year period. Transitions that happen and reverse between snapshots are not captured.</li>
 <li>Only intensive pasture is agricultural land; the split between intensive and extensive grazing depends on the country-mean threshold. Cattle and sheep/goats are weighted equally in <span class="math inline">P^{past}</span> (no per-cell information on species).</li>
 <li>Since v3.1, plantations and artificial aquatic classes are removed approximately from the v3 results (Section 1c); exact values follow after the next full run.</li>
-<li>The LandSHIFT–GLORIA concordance is not one-to-one (e.g.&nbsp;pulses and oil crops share one GLORIA sector).</li>
+<li>The LandSHIFT–GLORIA concordance is not one-to-one (e.g.&nbsp;pulses and oil crops share one GLORIA sector). <em>Cereals incl.&nbsp;maize</em> is currently linked to the GLORIA sector <em>Growing cereals n.e.c.</em> only; a production-weighted mix with <em>Growing maize</em> would be more accurate.</li>
+<li>LandSHIFT has no separate maize class, and the area of <em>Cereals incl.&nbsp;maize</em> is probably overestimated (Section 5). Results for individual crops should therefore be interpreted with caution; totals and ecosystem results are not affected.</li>
 </ul>
 
 

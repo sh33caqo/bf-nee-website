@@ -79,6 +79,14 @@ country_commodity_ecosystem <- if (file.exists("data/country_commodity_ecosystem
   NULL
 }
 
+# LandSHIFT has no separate maize class: the column "Maize" is zero in all
+# countries and years, and maize is contained in "Cereals n.e.c." (shown as
+# "Cereals incl. maize"). The empty class is dropped from all commodity tables.
+drop_maize <- function(df) if (is.null(df)) NULL else dplyr::filter(df, commodity != "Maize")
+country_commodity           <- drop_maize(country_commodity)
+commodity_expansion         <- drop_maize(commodity_expansion)
+country_commodity_ecosystem <- drop_maize(country_commodity_ecosystem)
+
 build_info <- read_data("build_info")
 
 opt_data <- function(name, ...) {

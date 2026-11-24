@@ -23,11 +23,15 @@ crops that expanded in that country and period ($S_c$,
 that ends up in German final demand ($P_c$). The loss linked to **intensive pasture**
 is attributed to *Grazing livestock* ([method](method.qmd#pasture)).
 
+LandSHIFT has no separate maize class; maize is contained in **Cereals incl. maize**
+([method](method.qmd#commodity-shares)). Because the area of this group is probably
+overestimated, results for individual crops should be read with caution.
+
 ## Footprint by commodity
 
 ```{r}
 #| label: fig-commodity-trend
-#| fig-cap: !expr 'cap("BF-NEE per period by commodity, in km². The seven largest commodity groups are named; all other crops are combined in grey. Grazing livestock carries the loss linked to intensive pasture.")'
+#| fig-cap: !expr 'cap("BF-NEE per period by commodity, in km². The seven largest commodity groups are named; all other crops are combined in grey. Grazing livestock carries the loss linked to intensive pasture; maize is contained in Cereals incl. maize (LandSHIFT has no separate maize class).")'
 #| fig-height: 4.8
 d <- comm_period %>%
   group_by(period, commodity_label) %>%
@@ -151,6 +155,7 @@ if (!is.null(commodity_expansion)) {
 
 ```{r}
 cc %>%
+  mutate(commodity = label_commodity(commodity)) %>%
   group_by(Period = period, Commodity = commodity) %>%
   summarise(`Countries with S > 0` = sum(S > 0, na.rm = TRUE),
             `Mean S (expanding countries)` = mean(S[S > 0], na.rm = TRUE),

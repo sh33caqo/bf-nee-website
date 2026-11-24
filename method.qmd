@@ -182,6 +182,17 @@ $$
 Crops whose area shrank get $S = 0$; the shares of a period sum to one. If no crop
 expanded, all shares are zero and nothing is attributed.
 
+**Maize is part of the cereals group.** The LandSHIFT crop tables contain a maize
+column, but it is zero in all countries and years. The crop classification of the
+GLORIA material data that LandSHIFT uses has 14 crop groups and no separate maize
+class, and the production of *Cereals n.e.c.* in these data matches official maize
+plus other coarse grains (e.g. Brazil 2015: 88 Mt vs. 85 Mt maize; USA 2015: 367 Mt
+vs. about 345 Mt maize and 15 Mt sorghum). Maize is therefore contained in
+*Cereals n.e.c.*, shown as **Cereals incl. maize** on this website. The LandSHIFT
+area of this group is larger than the official harvested area of maize and other
+cereals (USA 2015 about 2.3 times, Brazil about 1.6 times), so its share $S$ is
+probably overestimated relative to the other crops.
+
 ## 6 · Attribution and indicator
 
 The cropland part is attributed to crops with the commodity share and the GLORIA
@@ -243,4 +254,9 @@ separate group so they can be judged – or excluded – explicitly.
 - Since v3.1, plantations and artificial aquatic classes are removed approximately
   from the v3 results (Section 1c); exact values follow after the next full run.
 - The LandSHIFT–GLORIA concordance is not one-to-one (e.g. pulses and oil crops share
-  one GLORIA sector).
+  one GLORIA sector). *Cereals incl. maize* is currently linked to the GLORIA sector
+  *Growing cereals n.e.c.* only; a production-weighted mix with *Growing maize* would
+  be more accurate.
+- LandSHIFT has no separate maize class, and the area of *Cereals incl. maize* is
+  probably overestimated (Section 5). Results for individual crops should therefore be
+  interpreted with caution; totals and ecosystem results are not affected.

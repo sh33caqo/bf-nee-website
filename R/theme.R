@@ -84,6 +84,7 @@ commodity_colors <- c(
 )
 
 commodity_labels <- c(
+  "Cereals n.e.c."                          = "Cereals incl. maize",
   "Spice - beverage - pharmaceutical crops" = "Spice, beverage & pharma crops",
   "Other crops n.e.c"                       = "Other crops n.e.c.",
   "Oil bearing crops"                       = "Oil-bearing crops"
