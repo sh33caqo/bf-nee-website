@@ -1,0 +1,232 @@
+#!/bin/bash
+
+#SBATCH --job-name=bfnee_all_v3
+#SBATCH --partition=paula
+#SBATCH --mem=150G
+#SBATCH --cpus-per-task=1
+#SBATCH --time=24:00:00
+#SBATCH --array=1-155%10
+
+#SBATCH --output=/home/sc.uni-leipzig.de/sh33caqo/Symobio/Scripts_C_v3/logs/bfnee_all_v3_%A_%a.out
+#SBATCH --error=/home/sc.uni-leipzig.de/sh33caqo/Symobio/Scripts_C_v3/logs/bfnee_all_v3_%A_%a.err
+
+# ---------------------------------------------------------
+# Runs the full BF-NEE pipeline (steps 01-08) for every country
+# in the ISO list. Steps that were already completed successfully
+# (checkpoint files in Pipeline_Status) are skipped. v3 (intensive
+# pasture) has new checkpoint names for 01, 04, 05, 07 and 08, so
+# these are re-run once; 02, 03 and 06 are reused:
+#   01: intensive pasture from LandSHIFT graze fraction + LUDENS
+#   04: GlobES 14.2 coupled to intensive pasture
+#   05: ecosystem change on the new composition
+#   07: GLORIA factor for "Grazing livestock"
+#   08: constrained loss split into cropland and pasture part
+#
+# Optional (without editing this file):
+#   other ISO list:   sbatch --export=ALL,ISO_LIST=/path/list.txt --array=1-4 job_all_countries.job
+#   force steps:      sbatch --export=ALL,FORCE_STEPS=06,08 job_all_countries.job
+# ---------------------------------------------------------
+
+set -euo pipefail
+
+# ---------------------------------------------------------
+# PATHS
+# ---------------------------------------------------------
+
+SCRIPT_DIR="/home/sc.uni-leipzig.de/sh33caqo/Symobio/Scripts_C_v3"
+ISO_LIST="${ISO_LIST:-${SCRIPT_DIR}/step08_iso_list.txt}"
+FORCE_STEPS="${FORCE_STEPS:-}"
+R_RUNNER="${SCRIPT_DIR}/run_country_by_iso_pipeline.R"
+LOG_DIR="${SCRIPT_DIR}/logs"
+TMP_DIR="/home/sc.uni-leipzig.de/sh33caqo/Symobio/tmp"
+OUT_BASE="/home/sc.uni-leipzig.de/sh33caqo/Symobio/Data/Processed/BF_NEE_v3_Countries"
+STATUS_DIR="/home/sc.uni-leipzig.de/sh33caqo/Symobio/Data/Processed/Pipeline_Status"
+
+# ---------------------------------------------------------
+# PREPARE ENVIRONMENT
+# ---------------------------------------------------------
+
+mkdir -p "${LOG_DIR}"
+mkdir -p "${TMP_DIR}"
+
+export TMPDIR="${TMP_DIR}"
+
+module load R
+
+# ---------------------------------------------------------
+# CHECK REQUIRED FILES
+# ---------------------------------------------------------
+
+if [[ ! -f "${ISO_LIST}" ]]; then
+  echo "ERROR: ISO list not found:"
+  echo "${ISO_LIST}"
+  exit 1
+fi
+
+if [[ ! -f "${R_RUNNER}" ]]; then
+  echo "ERROR: R runner not found:"
+  echo "${R_RUNNER}"
+  exit 1
+fi
+
+for f in \
+  01_loaddata_landshift.R \
+  02_loaddata_globes.R \
+  03_raster_adaptation.R \
+  04_raster_adaptation_shares.R \
+  05_change_in_ecosystem_extent.R \
+  06_Extraction_Commodity_Shares.R \
+  07_Extraction_Production_Shares.R \
+  08_calculating_indicator.R
+do
+  if [[ ! -f "${SCRIPT_DIR}/${f}" ]]; then
+    echo "ERROR: Pipeline script not found:"
+    echo "${SCRIPT_DIR}/${f}"
+    exit 1
+  fi
+done
+
+# ---------------------------------------------------------
+# GET COUNTRY FOR THIS ARRAY TASK
+# ---------------------------------------------------------
+
+ISO3=$(sed -n "${SLURM_ARRAY_TASK_ID}p" "${ISO_LIST}" | tr -d '\r')
+
+if [[ -z "${ISO3}" ]]; then
+  echo "ERROR: No ISO3 code found for array task ${SLURM_ARRAY_TASK_ID}"
+  exit 1
+fi
+
+ISO3=$(echo "${ISO3}" | tr '[:lower:]' '[:upper:]' | xargs)
+ISO3_LOWER=$(echo "${ISO3}" | tr '[:upper:]' '[:lower:]')
+
+STATUS_FILE="${STATUS_DIR}/pipeline_status_${ISO3}.csv"
+
+# ---------------------------------------------------------
+# JOB INFORMATION
+# ---------------------------------------------------------
+
+echo "=================================================="
+echo "Starting BF-NEE pipeline (v3)"
+echo "ISO3: ${ISO3}"
+echo "Job ID: ${SLURM_JOB_ID}"
+echo "Array task ID: ${SLURM_ARRAY_TASK_ID}"
+echo "Host: $(hostname)"
+echo "Started: $(date)"
+echo "R runner: ${R_RUNNER}"
+echo "ISO list: ${ISO_LIST}"
+echo "Force steps: ${FORCE_STEPS:-none}"
+echo "TMPDIR: ${TMPDIR}"
+echo "=================================================="
+
+# ---------------------------------------------------------
+# RUN PIPELINE FOR ONE COUNTRY
+# ---------------------------------------------------------
+
+Rscript "${R_RUNNER}" "${ISO3}" "${FORCE_STEPS}"
+
+# ---------------------------------------------------------
+# CHECK PIPELINE STATUS
+# (the R runner does not exit with an error if a step fails,
+#  it only logs it in the status file)
+# ---------------------------------------------------------
+
+if [[ ! -f "${STATUS_FILE}" ]]; then
+  echo "ERROR: Status file not found:"
+  echo "${STATUS_FILE}"
+  exit 1
+fi
+
+for STEP in 08_calculating_indicator_v3; do
+  LAST_ENTRY=$(grep "\"${STEP}\"," "${STATUS_FILE}" | tail -n 1 || true)
+  if ! echo "${LAST_ENTRY}" | grep -q "\"${STEP}\",\"success\""; then
+    echo "ERROR: Step ${STEP} not logged as success for ${ISO3}."
+    echo "Last status entries:"
+    tail -n 5 "${STATUS_FILE}"
+    exit 1
+  fi
+done
+
+# ---------------------------------------------------------
+# CHECK EXPECTED OUTPUTS
+# ---------------------------------------------------------
+
+OUT_DIR="${OUT_BASE}/${ISO3}"
+
+if [[ ! -d "${OUT_DIR}" ]]; then
+  echo "ERROR: Output directory not found:"
+  echo "${OUT_DIR}"
+  exit 1
+fi
+
+count_files () {
+  find "${OUT_DIR}" -maxdepth 1 -type f -name "$1" 2>/dev/null | wc -l
+}
+
+N_LOSS_CLASS=$(count_files "natural_ecosystem_loss_by_class_${ISO3_LOWER}_*.csv")
+N_CLASS_COMMODITY=$(count_files "BF_NEE_by_ecosystem_and_commodity_${ISO3_LOWER}_*.csv")
+N_AGRI_GAIN=$(count_files "agriculture_gain_area_${ISO3_LOWER}_*.tif")
+N_LOSS_AGRI=$(count_files "natural_ecosystem_loss_agriConstrained_${ISO3_LOWER}_*.tif")
+N_LOSS_AGRI_CLASS=$(count_files "natural_ecosystem_loss_agriConstrained_by_class_${ISO3_LOWER}_*.tif")
+
+MASTER_FILE="${OUT_DIR}/BF_NEE_master_country_commodity_ecosystem_${ISO3_LOWER}_all_years.csv"
+SUMMARY_FILE="${OUT_DIR}/BF_NEE_summary_${ISO3_LOWER}.csv"
+
+echo "Created loss-by-class files: ${N_LOSS_CLASS}"
+echo "Created ecosystem-by-commodity files: ${N_CLASS_COMMODITY}"
+echo "Created agriculture-gain rasters: ${N_AGRI_GAIN}"
+echo "Created agri-constrained loss rasters: ${N_LOSS_AGRI}"
+echo "Created agri-constrained loss-by-class rasters: ${N_LOSS_AGRI_CLASS}"
+echo "Master table: ${MASTER_FILE}"
+echo "Summary file: ${SUMMARY_FILE}"
+
+check_min () {
+  if [[ "$1" -lt 4 ]]; then
+    echo "ERROR: Expected 4 $2 files, found $1"
+    exit 1
+  fi
+}
+
+check_min "${N_LOSS_CLASS}" "loss-by-class"
+check_min "${N_CLASS_COMMODITY}" "ecosystem-by-commodity"
+check_min "${N_AGRI_GAIN}" "agriculture-gain"
+check_min "${N_LOSS_AGRI}" "agri-constrained loss"
+check_min "${N_LOSS_AGRI_CLASS}" "agri-constrained loss-by-class"
+
+if [[ ! -s "${MASTER_FILE}" ]]; then
+  echo "ERROR: Master table missing or empty:"
+  echo "${MASTER_FILE}"
+  exit 1
+fi
+
+if [[ ! -f "${SUMMARY_FILE}" ]]; then
+  echo "ERROR: Expected summary file not found:"
+  echo "${SUMMARY_FILE}"
+  exit 1
+fi
+
+# ---------------------------------------------------------
+# MASTER-TABLE / SUMMARY CONTENT CHECK
+# ---------------------------------------------------------
+
+if ! head -n 1 "${MASTER_FILE}" | grep -q "natural_loss_area_pasture"; then
+  echo "ERROR: Master table was not produced by the new step 08 (v3):"
+  echo "${MASTER_FILE}"
+  exit 1
+fi
+
+if ! head -n 1 "${SUMMARY_FILE}" | grep -q "BF_NEE_pasture"; then
+  echo "ERROR: Summary file was not produced by the new step 08 (v3):"
+  echo "${SUMMARY_FILE}"
+  exit 1
+fi
+
+# ---------------------------------------------------------
+# FINISHED
+# ---------------------------------------------------------
+
+echo "=================================================="
+echo "Finished BF-NEE pipeline (v3) successfully"
+echo "ISO3: ${ISO3}"
+echo "Finished: $(date)"
+echo "=================================================="

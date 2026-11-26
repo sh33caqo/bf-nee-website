@@ -1,0 +1,71 @@
+#!/bin/bash
+#SBATCH --job-name=bfnee_big_v3
+#SBATCH --partition=paula
+#SBATCH --mem=0
+#SBATCH --cpus-per-task=1
+#SBATCH --time=48:00:00
+#SBATCH --array=1-4%2
+#SBATCH --output=/home/sc.uni-leipzig.de/sh33caqo/Symobio/Scripts_C_v3/logs/bfnee_big_%A_%a.out
+#SBATCH --error=/home/sc.uni-leipzig.de/sh33caqo/Symobio/Scripts_C_v3/logs/bfnee_big_%A_%a.err
+
+# ---------------------------------------------------------
+# BF-NEE pipeline (v3) for the big countries only.
+# --mem=0 = use the full memory of the node.
+# Completed steps (01-05, 07) are skipped via the status
+# file, only 06 and 08 (v3) are re-run.
+# Do NOT delete the status file, otherwise 01-05 run again.
+# ---------------------------------------------------------
+
+set -euo pipefail
+
+SCRIPT_DIR="/home/sc.uni-leipzig.de/sh33caqo/Symobio/Scripts_C_v3"
+OUT_BASE="/home/sc.uni-leipzig.de/sh33caqo/Symobio/Data/Processed/BF_NEE_v3_Countries"
+STATUS_DIR="/home/sc.uni-leipzig.de/sh33caqo/Symobio/Data/Processed/Pipeline_Status"
+
+mkdir -p "${SCRIPT_DIR}/logs"
+mkdir -p /home/sc.uni-leipzig.de/sh33caqo/Symobio/tmp
+export TMPDIR=/home/sc.uni-leipzig.de/sh33caqo/Symobio/tmp
+
+module load R
+
+COUNTRIES=(
+USA
+RUS
+FRA
+CAN
+)
+
+ISO3=${COUNTRIES[$((SLURM_ARRAY_TASK_ID-1))]}
+ISO3_LOWER=$(echo "${ISO3}" | tr '[:upper:]' '[:lower:]')
+
+echo "=================================================="
+echo "Processing ${ISO3}"
+echo "Job ID: ${SLURM_JOB_ID}, array task: ${SLURM_ARRAY_TASK_ID}"
+echo "Host: $(hostname)"
+echo "Started: $(date)"
+echo "=================================================="
+
+Rscript "${SCRIPT_DIR}/run_country_by_iso_pipeline.R" "${ISO3}"
+
+# ---------------------------------------------------------
+# CHECK RESULT
+# ---------------------------------------------------------
+STATUS_FILE="${STATUS_DIR}/pipeline_status_${ISO3}.csv"
+LAST_08=$(grep '"08_calculating_indicator_v3",' "${STATUS_FILE}" | tail -n 1 || true)
+
+if ! echo "${LAST_08}" | grep -q '"success"'; then
+  echo "ERROR: step 08 (v3) not successful for ${ISO3}. Last status entries:"
+  tail -n 5 "${STATUS_FILE}"
+  exit 1
+fi
+
+MASTER_FILE="${OUT_BASE}/${ISO3}/BF_NEE_master_country_commodity_ecosystem_${ISO3_LOWER}_all_years.csv"
+
+if ! head -n 1 "${MASTER_FILE}" | grep -q "natural_loss_area_pasture"; then
+  echo "ERROR: master table missing or not from the new version: ${MASTER_FILE}"
+  exit 1
+fi
+
+echo "=================================================="
+echo "Finished ${ISO3} successfully: $(date)"
+echo "=================================================="

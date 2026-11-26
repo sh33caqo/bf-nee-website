@@ -1,0 +1,213 @@
+#!/bin/bash
+# ---------------------------------------------------------
+# TIER CONTROLLER (submitted automatically, do not start by hand)
+#
+# usage: tier_controller.job <finished_tier> <array_job_id> <iso_list_of_that_tier>
+#
+# - checks which countries of the finished tier are done
+# - classifies the unfinished ones:
+#     resource -> memory / time / node problem -> next tier
+#     other    -> data / code error             -> only reported
+# - submits the next tier (big countries are added to the last tier)
+# - after the last tier: writes the final report
+# ---------------------------------------------------------
+
+set -euo pipefail
+
+source "/home/sc.uni-leipzig.de/sh33caqo/Symobio/Scripts_C_v3/tiers.conf"
+source "${SCRIPT_DIR}/pipeline_tiers_common.sh"
+
+PREV_TIER="$1"
+PREV_JOB="$2"
+PREV_LIST="$3"
+RETRY="${4:-0}"
+
+N_TIERS=${#TIER_MEM[@]}
+LAST_TIER=$((N_TIERS - 1))
+
+RUN_ID=$(cat "${LIST_DIR}/current_run_id.txt")
+
+STATE_FILE="${LIST_DIR}/run_${RUN_ID}_states.csv"
+[[ -f "${STATE_FILE}" ]] || echo "tier,iso3,job_state,classification" > "${STATE_FILE}"
+
+echo "=================================================="
+echo "Controller for run ${RUN_ID}, finished tier ${PREV_TIER} (job ${PREV_JOB})"
+echo "Started: $(date)"
+echo "=================================================="
+
+# ---------------------------------------------------------
+# HELPERS
+# ---------------------------------------------------------
+memory_pattern='cannot allocate|bad_alloc|Out Of Memory|oom-kill|oom_kill|oom_kill event|OUT_OF_MEMORY|memory exhausted|DUE TO TIME LIMIT|CANCELLED AT|Killed|segfault|memory not mapped|Segmentation fault'
+
+array_task_state () {
+  local job="$1"
+  local idx="$2"
+  if [[ "${job}" == "none" ]] || ! command -v sacct >/dev/null 2>&1; then
+    echo "UNKNOWN"
+    return 0
+  fi
+  local st
+  st=$(sacct -j "${job}_${idx}" -n -X -o State 2>/dev/null | head -n 1 | awk '{print $1}' || true)
+  echo "${st:-UNKNOWN}"
+}
+
+classify_failure () {
+  local iso3="$1"
+  local idx="$2"
+  local state="$3"
+
+  if [[ "${ESCALATE_MODE}" == "all" ]]; then
+    echo "resource"
+    return 0
+  fi
+
+  case "${state}" in
+    OUT_OF_MEMORY*|TIMEOUT*|NODE_FAIL*|PREEMPTED*|CANCELLED*|UNKNOWN)
+      echo "resource"
+      return 0
+      ;;
+  esac
+
+  # R-side memory errors appear as "failed" step with message
+  if last_status_error "${iso3}" | grep -Eqi "${memory_pattern}"; then
+    echo "resource"
+    return 0
+  fi
+
+  local err_log="${LOG_DIR}/bfnee_tier${PREV_TIER}_${PREV_JOB}_${idx}.err"
+  if [[ -f "${err_log}" ]] && grep -Eqi "${memory_pattern}" "${err_log}"; then
+    echo "resource"
+    return 0
+  fi
+
+  echo "other"
+}
+
+# ---------------------------------------------------------
+# CHECK COUNTRIES OF THE FINISHED TIER
+# ---------------------------------------------------------
+ESCALATE=()
+N_DONE=0
+N_OTHER=0
+IDX=0
+
+while read -r ISO3; do
+  IDX=$((IDX + 1))
+
+  STATE=$(array_task_state "${PREV_JOB}" "${IDX}")
+
+  if is_country_done "${ISO3}"; then
+    N_DONE=$((N_DONE + 1))
+    echo "${PREV_TIER},${ISO3},${STATE},done" >> "${STATE_FILE}"
+    continue
+  fi
+
+  CLASS=$(classify_failure "${ISO3}" "${IDX}" "${STATE}")
+  echo "${PREV_TIER},${ISO3},${STATE},failed_${CLASS}" >> "${STATE_FILE}"
+
+  if [[ "${CLASS}" == "resource" ]]; then
+    ESCALATE+=("${ISO3}")
+  else
+    N_OTHER=$((N_OTHER + 1))
+  fi
+done < <(read_iso_list "${PREV_LIST}")
+
+echo "Tier ${PREV_TIER}: done=${N_DONE}, resource failures=${#ESCALATE[@]}, other failures=${N_OTHER}"
+
+# ---------------------------------------------------------
+# SUBMIT NEXT NON-EMPTY TIER
+# ---------------------------------------------------------
+NEXT_TIER=$((PREV_TIER + 1))
+
+# tier 0 was empty and never ran: nothing to escalate
+if [[ "${PREV_JOB}" == "none" ]]; then
+  ESCALATE=()
+fi
+
+# Last tier: retry resource failures in the same tier (checkpoints
+# make the retry continue at the failed step)
+if [[ ${PREV_TIER} -eq ${LAST_TIER} && ${#ESCALATE[@]} -gt 0 && ${RETRY} -lt ${LAST_TIER_RETRIES:-0} ]]; then
+  NEXT_RETRY=$((RETRY + 1))
+  RETRY_LIST="${LIST_DIR}/run_${RUN_ID}_tier${LAST_TIER}_retry${NEXT_RETRY}.txt"
+  printf "%s\n" "${ESCALATE[@]}" > "${RETRY_LIST}"
+  echo "Retrying ${#ESCALATE[@]} countries in the last tier (retry ${NEXT_RETRY}/${LAST_TIER_RETRIES})"
+  if submit_tier "${LAST_TIER}" "${RETRY_LIST}" "${NEXT_RETRY}"; then
+    exit 0
+  fi
+fi
+
+while [[ ${NEXT_TIER} -le ${LAST_TIER} ]]; do
+
+  NEXT_LIST="${LIST_DIR}/run_${RUN_ID}_tier${NEXT_TIER}.txt"
+  : > "${NEXT_LIST}"
+
+  for ISO3 in "${ESCALATE[@]+"${ESCALATE[@]}"}"; do
+    echo "${ISO3}" >> "${NEXT_LIST}"
+  done
+
+  # large countries start directly in MEDIUM_START_TIER
+  if [[ ${NEXT_TIER} -eq ${MEDIUM_START_TIER:--1} && -n "${MEDIUM_ISO_LIST:-}" ]]; then
+    BIG_ISOS=$(read_iso_list "${BIG_ISO_LIST}")
+    while read -r ISO3; do
+      if ! is_country_done "${ISO3}" && ! grep -qx "${ISO3}" "${NEXT_LIST}" &&
+         ! grep -qx "${ISO3}" <<< "${BIG_ISOS}"; then
+        echo "${ISO3}" >> "${NEXT_LIST}"
+      fi
+    done < <(read_iso_list "${MEDIUM_ISO_LIST}")
+  fi
+
+  if [[ ${NEXT_TIER} -eq ${LAST_TIER} ]]; then
+    while read -r ISO3; do
+      if ! is_country_done "${ISO3}" && ! grep -qx "${ISO3}" "${NEXT_LIST}"; then
+        echo "${ISO3}" >> "${NEXT_LIST}"
+      fi
+    done < <(read_iso_list "${BIG_ISO_LIST}")
+  fi
+
+  SUBMIT_RC=0
+  submit_tier "${NEXT_TIER}" "${NEXT_LIST}" || SUBMIT_RC=$?
+
+  if [[ ${SUBMIT_RC} -eq 0 ]]; then
+    echo "Controller finished: tier ${NEXT_TIER} submitted."
+    exit 0
+  fi
+
+  if [[ ${SUBMIT_RC} -eq 2 ]]; then
+    echo "ERROR: tier ${NEXT_TIER} could not be submitted. Writing report and stopping." >&2
+    break
+  fi
+
+  NEXT_TIER=$((NEXT_TIER + 1))
+done
+
+# ---------------------------------------------------------
+# NO FURTHER TIER: FINAL REPORT
+# ---------------------------------------------------------
+REPORT="${LIST_DIR}/final_report_${RUN_ID}.csv"
+echo "iso3,status,last_error" > "${REPORT}"
+
+ALL_ISOS=$( { read_iso_list "${ALL_ISO_LIST}"; read_iso_list "${BIG_ISO_LIST}"; } | sort -u )
+
+N_FINAL_DONE=0
+N_FINAL_FAILED=0
+
+while read -r ISO3; do
+  [[ -n "${ISO3}" ]] || continue
+  if is_country_done "${ISO3}"; then
+    echo "${ISO3},done," >> "${REPORT}"
+    N_FINAL_DONE=$((N_FINAL_DONE + 1))
+  else
+    ERR=$(last_status_error "${ISO3}" | tr ',' ';' | tr -d '"' | cut -c 1-300)
+    echo "${ISO3},failed,\"${ERR}\"" >> "${REPORT}"
+    N_FINAL_FAILED=$((N_FINAL_FAILED + 1))
+  fi
+done <<< "${ALL_ISOS}"
+
+echo "=================================================="
+echo "ALL TIERS FINISHED for run ${RUN_ID}"
+echo "Countries done: ${N_FINAL_DONE}"
+echo "Countries failed: ${N_FINAL_FAILED}"
+echo "Report: ${REPORT}"
+echo "Per-tier states: ${STATE_FILE}"
+echo "=================================================="

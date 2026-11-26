@@ -2,7 +2,7 @@
 
 Website and interactive map for **BF-NEE** – natural ecosystem loss through the
 expansion of cropland and intensive pasture, attributed to commodities and German
-final demand. The results come from the pipeline in `~/Symobio/Scripts_C_v3`.
+final demand. The results come from the calculation pipeline in [`pipeline/`](pipeline/README.md).
 
 - Website: <https://sh33caqo.github.io/bf-nee-website/>
 - Map: <https://sh33caqo.shinyapps.io/bf-nee-global-map/>
@@ -10,7 +10,7 @@ final demand. The results come from the pipeline in `~/Symobio/Scripts_C_v3`.
 ## How it works
 
 ```
-Scripts_C_v3 (cluster)  ->  ~/Symobio/Data/Processed/...   (large, not in git)
+pipeline/ (cluster)     ->  ~/Symobio/Data/Processed/...   (large, not in git)
                                  |
 data-raw/01_build_website_data.R |  small tables  -> data/*.csv        (in git)
 data-raw/02_build_map_data.R     |  web rasters   -> shiny/global_map/data/ (not in git)
@@ -30,6 +30,7 @@ added to `data-raw/01_build_website_data.R` as a new table, the figure to a `.qm
 ├── R/theme.R, R/setup.R    colours/theme; data loading for all pages
 ├── data/lookup/ecosystem_classes.csv   IUCN class names + groups (edit here)
 ├── data/*.csv              tables built on the cluster
+├── pipeline/               BF-NEE calculation (steps 01–08) + SLURM jobs
 ├── data-raw/               build scripts + SLURM job
 ├── shiny/global_map/       map app + deploy script (no credentials in the repo)
 ├── render_website.R        renders into docs/
