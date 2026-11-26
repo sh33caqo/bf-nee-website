@@ -209,7 +209,7 @@ country_transition_v3 <- if (file.exists("data/v3_original/country_transition.cs
 cap_basis <- paste0(
   "Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the ",
   length(valid_iso3), " producing countries that pass the data checks; ",
-  "final demand: Germany."
+  "final demand: Germany. Values for 1995–2000 are subject to larger uncertainties in the input data."
 )
 
 cap_v31 <- if (is_approx) {

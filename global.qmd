@@ -11,7 +11,8 @@ source("R/setup.R")
 {{< include _approx-note.qmd >}}
 
 All figures sum over the `r length(valid_iso3)` producing countries that pass the
-[data checks](coverage.qmd).
+[data checks](coverage.qmd). The input data for 1995–2000 are subject to larger
+uncertainties; trends are best read from 2000–2005 onwards ([method](method.qmd)).
 
 ## From loss to footprint
 

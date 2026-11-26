@@ -23,6 +23,12 @@ The analysis covers the years 1995, 2000, 2005, 2010 and 2015 and therefore four
 five-year periods. Each period $y-1 \rightarrow y$ is combined with the commodity and
 GLORIA factors of its **end year** $y$.
 
+::: {.callout-note appearance="simple"}
+**First period more uncertain.** The input data for 1995–2000 are subject to larger
+uncertainties than those of later periods. Values for 1995–2000 should be interpreted
+with caution, and trends are best read from 2000–2005 onwards.
+:::
+
 ## 1 · Harmonising cropland
 
 LandSHIFT is the authoritative source for cropland. In every grid cell the GlobES

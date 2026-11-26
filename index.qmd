@@ -98,6 +98,10 @@ commodity and ecosystem type.
     <h3>Commodities</h3>
     <p>Which crops drive the footprint, and in which ecosystems.</p>
   </a>
+  <a class="feature-card" href="southamerica.html">
+    <h3>Case study: South America</h3>
+    <p>Brazil, Argentina, Paraguay and Colombia – which ecosystems are lost, and whether conversion or trade drives the change.</p>
+  </a>
   <a class="feature-card" href="maps.html">
     <h3>Interactive map</h3>
     <p>Explore BF-NEE spatially by period, ecosystem group and commodity.</p>

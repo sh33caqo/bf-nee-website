@@ -1,0 +1,286 @@
+---
+title: "Case study: South America"
+subtitle: "Brazil, Argentina, Paraguay and Colombia – where German demand is linked to the loss of natural ecosystems, and why it changes"
+---
+
+```{r}
+#| include: false
+source("R/setup.R")
+
+focus <- c(BRA = "Brazil", ARG = "Argentina", PRY = "Paraguay", COL = "Colombia")
+p0 <- periods[2]             # 2000–2005, reference period of the case study
+p1 <- latest_period          # latest period
+p_first <- periods[1]        # 1995–2000, larger uncertainties
+
+sa <- ct %>% filter(subregion == "South America")
+
+# region totals and share of the global footprint
+sa_period <- sa %>%
+  group_by(period) %>%
+  summarise(bfnee_km2 = sum(bfnee_km2, na.rm = TRUE), .groups = "drop") %>%
+  left_join(global_period %>% select(period, global_km2 = bfnee_km2), by = "period") %>%
+  mutate(share = bfnee_km2 / global_km2)
+sa_at <- function(p) sa_period %>% filter(period == p)
+
+# focus countries: drivers per period
+drv <- sa %>%
+  filter(iso3 %in% names(focus)) %>%
+  transmute(iso3, country = unname(focus[iso3]), period,
+            bfnee_km2, loss_constrained_km2,
+            gain_crop = agri_gain_cropland_km2, gain_past = agri_gain_pasture_km2,
+            weight = ifelse(loss_constrained_km2 > 0, bfnee_km2 / loss_constrained_km2, NA_real_)) %>%
+  mutate(country = factor(country, levels = unname(focus)))
+dv <- function(iso, p, var) drv %>% filter(iso3 == iso, period == p) %>% pull({{ var }})
+chg <- function(iso, var) dv(iso, p1, {{ var }}) / dv(iso, p0, {{ var }}) - 1
+
+# focus countries: ecosystem groups
+eco <- ce %>%
+  filter(iso3 %in% names(focus)) %>%
+  group_by(iso3, period, eco_group) %>%
+  summarise(bfnee_km2 = sum(bfnee_km2, na.rm = TRUE), .groups = "drop") %>%
+  group_by(iso3, period) %>%
+  mutate(share = bfnee_km2 / sum(bfnee_km2)) %>%
+  ungroup() %>%
+  mutate(country = factor(unname(focus[iso3]), levels = unname(focus)))
+es <- function(iso, p, g) {
+  v <- eco %>% filter(iso3 == iso, period == p, eco_group == g) %>% pull(share)
+  if (length(v) == 0) 0 else v
+}
+
+# focus countries: commodities
+com <- cc %>%
+  filter(iso3 %in% names(focus)) %>%
+  group_by(iso3, period, commodity_label) %>%
+  summarise(bfnee_km2 = sum(bfnee_km2, na.rm = TRUE), .groups = "drop") %>%
+  group_by(iso3, period) %>%
+  mutate(share = bfnee_km2 / sum(bfnee_km2)) %>%
+  ungroup() %>%
+  mutate(country = factor(unname(focus[iso3]), levels = unname(focus)))
+cs <- function(iso, p, lab) {
+  v <- com %>% filter(iso3 == iso, period == p, commodity_label == lab) %>% pull(share)
+  if (length(v) == 0) 0 else v
+}
+oil <- label_commodity("Oil bearing crops")
+
+pct <- function(x) fmt_pct(abs(x))
+```
+
+{{< include _approx-note.qmd >}}
+
+South America was the main hotspot of the footprint during the soy and cattle boom
+of the early 2000s. This page compares four producing countries in which German
+demand is linked to the loss of natural ecosystems in very different ways. It is
+the online version of the case study in the public monitoring report; all numbers
+are calculated from the tables of this website.
+
+::: {.metric-grid}
+
+::: {.metric-card}
+[`r fmt_km2(sa_at(p0)$bfnee_km2)`]{.metric-value}
+
+[BF-NEE in South America `r p0`]{.metric-label}
+
+[`r fmt_pct(sa_at(p0)$share)` of the global footprint]{.metric-note}
+:::
+
+::: {.metric-card}
+[`r fmt_km2(sa_at(p1)$bfnee_km2)`]{.metric-value}
+
+[BF-NEE in South America `r p1`]{.metric-label}
+
+[`r fmt_pct(sa_at(p1)$share)` of the global footprint]{.metric-note}
+:::
+
+::: {.metric-card}
+[+`r pct(chg("COL", bfnee_km2))`]{.metric-value}
+
+[Colombia `r p0` → `r p1`]{.metric-label}
+
+[the only rising footprint among the four]{.metric-note}
+:::
+
+
+:::
+
+## South America in the global footprint
+
+```{r}
+#| label: fig-sa-region
+#| fig-cap: !expr 'cap("BF-NEE in South America per five-year period, in km², by producing country. The four case-study countries are shown individually, the other six South American countries are combined. The label above each bar is the region’s share of the global BF-NEE.")'
+#| fig-height: 4.4
+reg <- sa %>%
+  mutate(country = ifelse(iso3 %in% names(focus), unname(focus[iso3]), "Other South America"),
+         country = factor(country, levels = rev(c(unname(focus), "Other South America")))) %>%
+  group_by(period, country) %>%
+  summarise(bfnee_km2 = sum(bfnee_km2, na.rm = TRUE), .groups = "drop")
+
+country_cols <- c(Brazil = "#1c5cab", Argentina = "#3987e5", Paraguay = "#86b6ef",
+                  Colombia = "#eda100", `Other South America` = bf_ink$other)
+
+p <- ggplot(reg, aes(period, bfnee_km2, fill = country,
+                     text = paste0(country, "<br>", period, ": ", fmt_km2(bfnee_km2)))) +
+  geom_col(width = 0.65) +
+  geom_text(data = sa_period, aes(period, bfnee_km2, label = fmt_pct(share)),
+            inherit.aes = FALSE, vjust = -0.5, size = 3.4, colour = bf_ink$secondary) +
+  scale_fill_manual(values = country_cols, name = NULL, breaks = names(country_cols)) +
+  scale_y_continuous(labels = fmt_area, expand = expansion(mult = c(0, 0.12))) +
+  labs(title = "BF-NEE in South America",
+       subtitle = "By producing country; label = share of the global footprint",
+       x = NULL, y = "BF-NEE (km²)")
+
+bf_interactive(p)
+```
+
+In `r p0` the region accounted for `r fmt_km2(sa_at(p0)$bfnee_km2)`, or
+`r fmt_pct(sa_at(p0)$share)` of the footprint of German final demand; by `r p1`
+this had fallen to `r fmt_km2(sa_at(p1)$bfnee_km2)` (`r fmt_pct(sa_at(p1)$share)`).
+Values for `r p_first` are shown for completeness but are subject to larger
+uncertainties in the input data, so trends are described from `r p0` onwards.
+
+## Which ecosystems are lost?
+
+```{r}
+#| label: fig-sa-eco
+#| fig-cap: !expr 'cap("BF-NEE of German final demand in Brazil, Argentina, Paraguay and Colombia by ecosystem group and five-year period, in km². Each panel has its own y-axis scale.")'
+#| fig-height: 5.4
+p <- ggplot(eco %>% filter(bfnee_km2 > 0),
+            aes(period, bfnee_km2, fill = eco_group,
+                text = paste0(country, " · ", eco_group, "<br>", period, ": ",
+                              fmt_km2(bfnee_km2), " (", fmt_pct(share), ")"))) +
+  geom_col(width = 0.7) +
+  facet_wrap(~ country, scales = "free_y", ncol = 2) +
+  scale_fill_manual(values = eco_group_colors, name = NULL, drop = TRUE) +
+  scale_y_continuous(labels = fmt_area, expand = expansion(mult = c(0, 0.05))) +
+  labs(title = "BF-NEE by ecosystem group",
+       subtitle = "Each panel has its own scale",
+       x = NULL, y = "BF-NEE (km²)") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 8))
+
+bf_interactive(p, height = 600) |>
+  plotly::layout(legend = list(orientation = "h", y = -0.2, yanchor = "top"))
+```
+
+## Less conversion or less trade?
+
+BF-NEE changes for two reasons: how much natural land is converted for agriculture
+in the producing country (agriculture-constrained loss), and how much of that
+country's production is linked to German final demand (the attribution weight,
+BF-NEE ÷ constrained loss). The figure separates the two.
+
+```{r}
+#| label: fig-sa-drivers
+#| fig-cap: !expr 'cap("Change between ", p0, " and ", p1, " in the agriculture-constrained natural ecosystem loss (conversion on the ground), in the attribution weight (share of the loss linked to German final demand, BF-NEE ÷ constrained loss) and in BF-NEE, per country, in percent. Colombia’s increase in constrained loss is cut off at +200 % for readability; the exact values are given in the labels and the table below.")'
+#| fig-height: 4.2
+dchg <- drv %>%
+  filter(period %in% c(p0, p1)) %>%
+  select(country, period, `Constrained loss` = loss_constrained_km2,
+         `Attribution weight` = weight, `BF-NEE` = bfnee_km2) %>%
+  pivot_longer(-c(country, period), names_to = "measure") %>%
+  group_by(country, measure) %>%
+  summarise(change = value[period == p1] / value[period == p0] - 1, .groups = "drop") %>%
+  mutate(measure = factor(measure, levels = c("Constrained loss", "Attribution weight", "BF-NEE")),
+         shown = pmin(change, 2))
+
+ggplot(dchg, aes(shown, country, fill = change > 0)) +
+  geom_col(width = 0.65) +
+  geom_vline(xintercept = 0, colour = bf_ink$axis) +
+  geom_text(aes(label = sprintf("%+.0f %%", 100 * change),
+                hjust = ifelse(change > 0, -0.15, 1.15)),
+            size = 3.2, colour = bf_ink$secondary) +
+  facet_wrap(~ measure, ncol = 3) +
+  scale_fill_manual(values = c(`TRUE` = "#d03b3b", `FALSE` = "#1c5cab"), guide = "none") +
+  scale_x_continuous(labels = c("−100", "0", "+100", "+200"),
+                     limits = c(-1.7, 3.1), breaks = c(-1, 0, 1, 2)) +
+  scale_y_discrete(limits = rev) +
+  labs(title = paste("What changed between", p0, "and", p1, "?"),
+       subtitle = "Red = increase, blue = decrease",
+       x = "Change (%)", y = NULL) +
+  theme_bfnee(grid = "x")
+```
+
+## Four countries, four stories
+
+**Brazil – rising again after 2010, and moving into savannas.** After a low in
+`r periods[3]` (`r fmt_km2(dv("BRA", periods[3], bfnee_km2))`), the footprint rose to
+`r fmt_km2(dv("BRA", p1, bfnee_km2))` in `r p1`, because cropland expansion more
+than tripled and a larger share of production was linked to German demand.
+Savannas (`r fmt_pct(es("BRA", p1, "Savanna"))`) and shrublands
+(`r fmt_pct(es("BRA", p1, "Shrubland"))`) now dominate; forests account for
+`r fmt_pct(es("BRA", p1, "Forest"))`. `r oil` carry
+`r fmt_pct(cs("BRA", p1, oil))` of the footprint.
+
+**Argentina – strongest decline.** The footprint fell by
+`r pct(chg("ARG", bfnee_km2))` compared with `r p0`, as both conversion
+(−`r pct(chg("ARG", loss_constrained_km2))`, mainly less pasture expansion) and the
+share of production linked to Germany (−`r pct(chg("ARG", weight))`) decreased.
+
+**Paraguay – less conversion, but from forests to shrublands.** The footprint fell
+by `r pct(chg("PRY", bfnee_km2))` because less land was converted, while the trade
+link to Germany remained stable. The forest share dropped from
+`r fmt_pct(es("PRY", p0, "Forest"))` to `r fmt_pct(es("PRY", p1, "Forest"))`,
+shrublands rose to `r fmt_pct(es("PRY", p1, "Shrubland"))`; `r tolower(oil)` carry
+`r fmt_pct(cs("PRY", p1, oil))` of the footprint.
+
+**Colombia – the only rising footprint.** It more than doubled
+(+`r pct(chg("COL", bfnee_km2))`) because conversion grew almost fivefold,
+driven by the expansion of intensive pasture (from
+`r fmt_km2(dv("COL", p0, gain_past))` to `r fmt_km2(dv("COL", p1, gain_past))`),
+mostly at the expense of forests (`r fmt_pct(es("COL", p1, "Forest"))`).
+
+## Which products?
+
+```{r}
+#| label: fig-sa-commodities
+#| fig-cap: !expr 'cap("Share of BF-NEE by commodity in each case-study country in ", p1, ". Commodity groups follow LandSHIFT; soy is part of oil-bearing crops and maize part of cereals. Loss linked to the expansion of intensive pasture is attributed to grazing livestock.")'
+#| fig-height: 3.8
+d <- com %>% filter(period == p1, bfnee_km2 > 0)
+
+p <- ggplot(d, aes(share, country, fill = commodity_label,
+                   text = paste0(country, " · ", commodity_label, "<br>",
+                                 fmt_km2(bfnee_km2), " (", fmt_pct(share), ")"))) +
+  geom_col(width = 0.65) +
+  scale_fill_manual(values = commodity_colors_lab, name = NULL) +
+  scale_x_continuous(labels = percent, expand = expansion(mult = c(0, 0.02))) +
+  scale_y_discrete(limits = rev) +
+  labs(title = paste("BF-NEE by commodity,", p1),
+       subtitle = "Share of each country's footprint",
+       x = NULL, y = NULL) +
+  theme_bfnee(grid = "x")
+
+bf_interactive(p) |>
+  plotly::layout(legend = list(orientation = "h", y = -0.15, yanchor = "top"))
+```
+
+## Why this matters for policy
+
+Progress towards target 21.1 of the German National Biodiversity Strategy 2030 –
+reducing the negative impacts of global supply chains on biodiversity – is currently
+considered not measurable. BF-NEE can close this gap: it shows where, in which
+ecosystems and through which products German consumption is linked to the loss of
+natural ecosystems, and whether changes result from less conversion on the ground
+or from shifts in trade. The South American cases show that both drivers matter and
+can point in opposite directions. Because savannas, shrublands and grasslands
+account for a large part of the footprint in Brazil and Paraguay, a forest-only view –
+as in the EU Deforestation Regulation – misses much of it.
+
+## Data
+
+```{r}
+drv %>%
+  transmute(Country = country, Period = period,
+            `Constrained loss (km²)` = round(loss_constrained_km2),
+            `Cropland expansion (km²)` = round(gain_crop),
+            `Intensive pasture expansion (km²)` = round(gain_past),
+            `Attribution weight` = signif(weight, 3),
+            `BF-NEE (km²)` = round(bfnee_km2, 1)) %>%
+  arrange(Country, Period) %>%
+  bf_table(page_length = 16) %>%
+  DT::formatRound(c("Constrained loss (km²)", "Cropland expansion (km²)",
+                    "Intensive pasture expansion (km²)"), digits = 0) %>%
+  DT::formatRound("BF-NEE (km²)", digits = 1)
+```
+
+Constrained loss = natural ecosystem loss that coincides with agricultural expansion
+in the same grid cell and period. Attribution weight = BF-NEE ÷ constrained loss,
+i.e. the share of the loss linked to German final demand through the commodities
+grown on the new land.

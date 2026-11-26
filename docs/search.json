@@ -1,346 +1,73 @@
 [
   {
-    "objectID": "regressions.html",
-    "href": "regressions.html",
-    "title": "Regional regressions",
+    "objectID": "southamerica.html",
+    "href": "southamerica.html",
+    "title": "Case study: South America",
     "section": "",
-    "text": "Plantations no longer count as natural (v3.1, approximation). Plantations (IUCN 14.3) and artificial aquatic classes are now treated as anthropogenic. Until the full pipeline can be rerun, natural ecosystem loss and BF-NEE are derived from the v3 results by removing these classes; the exact values lie between the values shown and the v3 values (Method). The interactive map still shows the v3 values."
+    "text": "Plantations no longer count as natural (v3.1, approximation). Plantations (IUCN 14.3) and artificial aquatic classes are now treated as anthropogenic. Until the full pipeline can be rerun, natural ecosystem loss and BF-NEE are derived from the v3 results by removing these classes; the exact values lie between the values shown and the v3 values (Method). The interactive map still shows the v3 values.\nSouth America was the main hotspot of the footprint during the soy and cattle boom of the early 2000s. This page compares four producing countries in which German demand is linked to the loss of natural ecosystems in very different ways. It is the online version of the case study in the public monitoring report; all numbers are calculated from the tables of this website."
   },
   {
-    "objectID": "regressions.html#model",
-    "href": "regressions.html#model",
-    "title": "Regional regressions",
-    "section": "Model",
-    "text": "Model\nPer country \\text{BF-NEE} = R^{crop} \\sum_c S_c P_c + R^{past} P^{past} = R \\cdot w, with the effective attribution weight w = \\text{BF-NEE}/R (cropland and pasture part combined). A log-log model\n\n\\log(\\text{BF-NEE}) = \\beta_0 + \\beta_1 \\log(R) + \\beta_2 \\log(w) + \\varepsilon\n\nhas \\beta_1 = \\beta_2 = 1 and R^2 = 1 by construction. Deviations therefore point to data problems – not to substantive effects. The model serves as a consistency check; the interesting part is how much each component varies between regions.\nOnly countries with BF-NEE &gt; 0 are used (log scale); regions need ≥ 6 observations.\n\n\n\n\n\n\n\n\nFigure 1: BF-NEE against agriculture-constrained loss for every country and period with positive values, by world region, with a least-squares line per region. Both axes are logarithmic. Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending."
+    "objectID": "southamerica.html#south-america-in-the-global-footprint",
+    "href": "southamerica.html#south-america-in-the-global-footprint",
+    "title": "Case study: South America",
+    "section": "South America in the global footprint",
+    "text": "South America in the global footprint\n\n\n\n\n\n\n\n\nFigure 1: BF-NEE in South America per five-year period, in km², by producing country. The four case-study countries are shown individually, the other six South American countries are combined. The label above each bar is the region’s share of the global BF-NEE. Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany. Values for 1995–2000 are subject to larger uncertainties in the input data. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending.\n\n\n\n\nIn 2000–2005 the region accounted for 4,760 km², or 38% of the footprint of German final demand; by 2010–2015 this had fallen to 1,240 km² (18%). Values for 1995–2000 are shown for completeness but are subject to larger uncertainties in the input data, so trends are described from 2000–2005 onwards."
   },
   {
-    "objectID": "regressions.html#which-component-varies-more",
-    "href": "regressions.html#which-component-varies-more",
-    "title": "Regional regressions",
-    "section": "Which component varies more?",
-    "text": "Which component varies more?\n\n\n\n\n\n\n\n\nFigure 2: Standard deviation between countries of the log constrained loss and of the log effective attribution weight w = BF-NEE / R, by world region. The component with the larger spread explains more of the differences in BF-NEE between countries. Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending."
+    "objectID": "southamerica.html#which-ecosystems-are-lost",
+    "href": "southamerica.html#which-ecosystems-are-lost",
+    "title": "Case study: South America",
+    "section": "Which ecosystems are lost?",
+    "text": "Which ecosystems are lost?\n\n\n\n\n\n\n\n\nFigure 2: BF-NEE of German final demand in Brazil, Argentina, Paraguay and Colombia by ecosystem group and five-year period, in km². Each panel has its own y-axis scale. Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany. Values for 1995–2000 are subject to larger uncertainties in the input data. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending."
   },
   {
-    "objectID": "regressions.html#coefficients",
-    "href": "regressions.html#coefficients",
-    "title": "Regional regressions",
-    "section": "Coefficients",
-    "text": "Coefficients\n\n\n\n\n\n\n\n\nFigure 3: Estimated coefficients of log(BF-NEE) = β0 + β1 log(R) + β2 log(w) with 95 % confidence intervals, by world region. Because BF-NEE = R × w by definition, both coefficients equal 1 (dashed line); the model serves only as a consistency check. Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending."
+    "objectID": "southamerica.html#less-conversion-or-less-trade",
+    "href": "southamerica.html#less-conversion-or-less-trade",
+    "title": "Case study: South America",
+    "section": "Less conversion or less trade?",
+    "text": "Less conversion or less trade?\nBF-NEE changes for two reasons: how much natural land is converted for agriculture in the producing country (agriculture-constrained loss), and how much of that country’s production is linked to German final demand (the attribution weight, BF-NEE ÷ constrained loss). The figure separates the two.\n\n\n\n\n\n\n\n\nFigure 3: Change between 2000–2005 and 2010–2015 in the agriculture-constrained natural ecosystem loss (conversion on the ground), in the attribution weight (share of the loss linked to German final demand, BF-NEE ÷ constrained loss) and in BF-NEE, per country, in percent. Colombia’s increase in constrained loss is cut off at +200 % for readability; the exact values are given in the labels and the table below. Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany. Values for 1995–2000 are subject to larger uncertainties in the input data. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending."
   },
   {
-    "objectID": "regressions.html#largest-residuals",
-    "href": "regressions.html#largest-residuals",
-    "title": "Regional regressions",
-    "section": "Largest residuals",
-    "text": "Largest residuals\nObservations far from the fitted line usually indicate an inconsistency in the data (e.g. weights or loss on a different scale)."
+    "objectID": "southamerica.html#four-countries-four-stories",
+    "href": "southamerica.html#four-countries-four-stories",
+    "title": "Case study: South America",
+    "section": "Four countries, four stories",
+    "text": "Four countries, four stories\nBrazil – rising again after 2010, and moving into savannas. After a low in 2005–2010 (236 km²), the footprint rose to 736 km² in 2010–2015, because cropland expansion more than tripled and a larger share of production was linked to German demand. Savannas (58%) and shrublands (16%) now dominate; forests account for 12%. Oil-bearing crops carry 54% of the footprint.\nArgentina – strongest decline. The footprint fell by 90% compared with 2000–2005, as both conversion (−62%, mainly less pasture expansion) and the share of production linked to Germany (−73%) decreased.\nParaguay – less conversion, but from forests to shrublands. The footprint fell by 41% because less land was converted, while the trade link to Germany remained stable. The forest share dropped from 70% to 33%, shrublands rose to 33%; oil-bearing crops carry 74% of the footprint.\nColombia – the only rising footprint. It more than doubled (+128%) because conversion grew almost fivefold, driven by the expansion of intensive pasture (from 4,060 km² to 22.1k km²), mostly at the expense of forests (68%)."
   },
   {
-    "objectID": "maps.html",
-    "href": "maps.html",
-    "title": "Interactive map",
-    "section": "",
-    "text": "Choose a period, an ecosystem group and a commodity. The map shows either the agriculture-constrained natural ecosystem loss or the BF-NEE (loss × attribution weight of the producing country). Hover over a cell for its value; select a country to zoom in and see its totals.\n\n\n\n\n\n\n\nThe map still shows the v3 values, in which plantations and artificial aquatic classes count as natural ecosystems (group Modified). The tables and figures on the other pages already treat them as anthropogenic (v3.1). The map will be updated with the next full run of the pipeline.\n\n\n\n\n\n\n\n\n\nAbout the map data\n\n\n\n\n\nCells are aggregated for the web (about 18 km); values are km² per displayed cell. Totals in the side panel come from the country tables, not from the display raster. The map data are built on the cluster with data-raw/02_build_map_data.R and uploaded with shiny/global_map/deploy.R."
+    "objectID": "southamerica.html#which-products",
+    "href": "southamerica.html#which-products",
+    "title": "Case study: South America",
+    "section": "Which products?",
+    "text": "Which products?\n\n\n\n\n\n\n\n\nFigure 4: Share of BF-NEE by commodity in each case-study country in 2010–2015. Commodity groups follow LandSHIFT; soy is part of oil-bearing crops and maize part of cereals. Loss linked to the expansion of intensive pasture is attributed to grazing livestock. Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany. Values for 1995–2000 are subject to larger uncertainties in the input data. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending."
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Natural ecosystem loss behind consumption",
-    "section": "",
-    "text": "BF-NEE links the loss of natural ecosystems through agricultural expansion to the commodities grown on the new land and to final demand – here, consumption in Germany. Results are available for every producing country, time period, commodity and ecosystem type.\nExplore global trends Open the map"
+    "objectID": "southamerica.html#why-this-matters-for-policy",
+    "href": "southamerica.html#why-this-matters-for-policy",
+    "title": "Case study: South America",
+    "section": "Why this matters for policy",
+    "text": "Why this matters for policy\nProgress towards target 21.1 of the German National Biodiversity Strategy 2030 – reducing the negative impacts of global supply chains on biodiversity – is currently considered not measurable. BF-NEE can close this gap: it shows where, in which ecosystems and through which products German consumption is linked to the loss of natural ecosystems, and whether changes result from less conversion on the ground or from shifts in trade. The South American cases show that both drivers matter and can point in opposite directions. Because savannas, shrublands and grasslands account for a large part of the footprint in Brazil and Paraguay, a forest-only view – as in the EU Deforestation Regulation – misses much of it."
   },
   {
-    "objectID": "index.html#explore",
-    "href": "index.html#explore",
-    "title": "Natural ecosystem loss behind consumption",
-    "section": "Explore",
-    "text": "Explore\n\n  \n    Global trends\n    Unconstrained loss, agricultural expansion, attributed loss and BF-NEE over time.\n  \n  \n    Cropland & pasture\n    Agricultural land, intensive vs. extensive grazing and the expansion behind the loss.\n  \n  \n    Ecosystems\n    Which ecosystem types are lost – forests, savannas, grasslands, wetlands, tropical moist forests.\n  \n  \n    Countries\n    Producing countries with the largest footprints and how they change.\n  \n  \n    Commodities\n    Which crops drive the footprint, and in which ecosystems.\n  \n  \n    Interactive map\n    Explore BF-NEE spatially by period, ecosystem group and commodity.\n  \n  \n    Data & checks\n    Coverage, validity flags and consistency checks of every country."
-  },
-  {
-    "objectID": "index.html#what-is-new-in-this-version",
-    "href": "index.html#what-is-new-in-this-version",
-    "title": "Natural ecosystem loss behind consumption",
-    "section": "What is new in this version",
-    "text": "What is new in this version\n\n\n\n\n\n\nv3.1 (approximation) (data built 2026-10-26 14:34 CET)\n\nPlantations are anthropogenic (v3.1). Plantations and artificial aquatic classes no longer count as natural ecosystems. The current values are an approximation derived from the v3 results; the exact recalculation follows (Method).\nIntensive pasture (v3). Cropland and intensive pasture count as agricultural land. Loss linked to pasture expansion is attributed to grazing livestock.\nCommodity shares from expansion. A crop’s share is now its increase in area relative to the total increase of all expanding crops in the same period. Crops whose area shrank get a share of zero.\nAgricultural-expansion constraint. Only natural ecosystem loss that coincides with agricultural expansion in the same grid cell is attributed (Eq. 31–32).\nEcosystem classes are kept. The constrained loss is split back onto the ecosystem classes in proportion to their original loss, so footprints by ecosystem type add up exactly to the total footprint."
-  },
-  {
-    "objectID": "ecosystems.html",
-    "href": "ecosystems.html",
-    "title": "Ecosystems",
-    "section": "",
-    "text": "Plantations no longer count as natural (v3.1, approximation). Plantations (IUCN 14.3) and artificial aquatic classes are now treated as anthropogenic. Until the full pipeline can be rerun, natural ecosystem loss and BF-NEE are derived from the v3 results by removing these classes; the exact values lie between the values shown and the v3 values (Method). The interactive map still shows the v3 values.\nThe agriculture-constrained loss is split onto the ecosystem classes in proportion to their original loss (method), so the footprints of all groups add up to the total BF-NEE."
-  },
-  {
-    "objectID": "ecosystems.html#footprint-by-ecosystem-group",
-    "href": "ecosystems.html#footprint-by-ecosystem-group",
-    "title": "Ecosystems",
-    "section": "Footprint by ecosystem group",
-    "text": "Footprint by ecosystem group\n\n\n\n\n\n\n\n\nFigure 1: BF-NEE by ecosystem group in 2010–2015, in km², with each group’s share of the total. Because the constrained loss of each grid cell is split onto the natural classes in proportion to their gross loss, the groups add up to the total BF-NEE. Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending."
-  },
-  {
-    "objectID": "ecosystems.html#change-over-time",
-    "href": "ecosystems.html#change-over-time",
-    "title": "Ecosystems",
-    "section": "Change over time",
-    "text": "Change over time\n\n\n\n\n\n\n\n\nFigure 2: BF-NEE per ecosystem group and five-year period, in km². Each panel has its own y-axis scale, so the panels show the trend within a group, not the size relative to other groups. Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending."
-  },
-  {
-    "objectID": "ecosystems.html#how-much-of-each-groups-loss-is-linked-to-agriculture",
-    "href": "ecosystems.html#how-much-of-each-groups-loss-is-linked-to-agriculture",
-    "title": "Ecosystems",
-    "section": "How much of each group’s loss is linked to agriculture?",
-    "text": "How much of each group’s loss is linked to agriculture?\nShare of the gross loss of an ecosystem group that coincides with cropland expansion in the same cell and period.\n\n\n\n\n\n\n\n\nFigure 3: Share of each ecosystem group’s gross loss that coincides with agricultural expansion in the same grid cell and period (agriculture-constrained loss divided by unconstrained loss). Hover for both areas. Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending."
-  },
-  {
-    "objectID": "ecosystems.html#tropical-moist-forests",
-    "href": "ecosystems.html#tropical-moist-forests",
-    "title": "Ecosystems",
-    "section": "Tropical moist forests",
-    "text": "Tropical moist forests\nSubtropical/tropical moist lowland (1.6) and moist montane forest (1.9).\n\n\n\n\n\n\n\n\nFigure 4: BF-NEE in tropical moist forests (IUCN 1.6 subtropical/tropical moist lowland forest and 1.9 moist montane forest) per period, in km². These classes are part of the Forest group; the tooltip shows their share of the total BF-NEE. Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending.\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 5: The 12 producing countries with the largest BF-NEE in tropical moist forests (IUCN 1.6 and 1.9) in 2010–2015, in km², coloured by world region. Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending."
-  },
-  {
-    "objectID": "ecosystems.html#ecosystem-groups-by-world-region",
-    "href": "ecosystems.html#ecosystem-groups-by-world-region",
-    "title": "Ecosystems",
-    "section": "Ecosystem groups by world region",
-    "text": "Ecosystem groups by world region\nShare of each region’s footprint that falls on each ecosystem group (2010–2015).\n\n\n\n\n\n\n\n\nFigure 6: Composition of the BF-NEE of each world region by ecosystem group in 2010–2015. Each row sums to 100 %; empty cells mean no attributed loss. Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending."
-  },
-  {
-    "objectID": "ecosystems.html#top-ecosystem-classes",
-    "href": "ecosystems.html#top-ecosystem-classes",
-    "title": "Ecosystems",
-    "section": "Top ecosystem classes",
-    "text": "Top ecosystem classes\n\n\n\n\n\n\n\n\nFigure 7: The 15 IUCN habitat classes with the largest BF-NEE in 2010–2015, in km², coloured by ecosystem group. Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending."
-  },
-  {
-    "objectID": "countries.html",
-    "href": "countries.html",
-    "title": "Countries",
-    "section": "",
-    "text": "Plantations no longer count as natural (v3.1, approximation). Plantations (IUCN 14.3) and artificial aquatic classes are now treated as anthropogenic. Until the full pipeline can be rerun, natural ecosystem loss and BF-NEE are derived from the v3 results by removing these classes; the exact values lie between the values shown and the v3 values (Method). The interactive map still shows the v3 values."
-  },
-  {
-    "objectID": "countries.html#largest-footprints",
-    "href": "countries.html#largest-footprints",
-    "title": "Countries",
-    "section": "Largest footprints",
-    "text": "Largest footprints\n\n\n\n\n\n\n\n\nFigure 1: The 20 producing countries with the largest BF-NEE in 2010–2015, in km², with each country’s share of the global footprint, coloured by world region. Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending."
-  },
-  {
-    "objectID": "countries.html#concentration",
-    "href": "countries.html#concentration",
-    "title": "Countries",
-    "section": "Concentration",
-    "text": "Concentration\n\n\n\n\n\n\n\n\nFigure 2: Cumulative share of the global BF-NEE accounted for by the largest producing countries, per period. Countries are ranked by BF-NEE; a steep curve means the footprint is concentrated in few countries. Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending."
-  },
-  {
-    "objectID": "countries.html#trajectories",
-    "href": "countries.html#trajectories",
-    "title": "Countries",
-    "section": "Trajectories",
-    "text": "Trajectories\n\n\n\n\n\n\n\n\nFigure 3: BF-NEE per period of the 8 producing countries with the largest footprint summed over all periods, in km². Each panel has its own y-axis scale. Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending."
-  },
-  {
-    "objectID": "countries.html#what-drives-a-countrys-footprint",
-    "href": "countries.html#what-drives-a-countrys-footprint",
-    "title": "Countries",
-    "section": "What drives a country’s footprint?",
-    "text": "What drives a country’s footprint?\nBF-NEE of a country is its agriculture-constrained loss multiplied by its attribution weight \\sum_c S_c P_c. Countries can rank high because they lose a lot of ecosystems, because a large share of their expanding crops ends up in German final demand – or both.\n\n\n\n\n\n\n\n\nFigure 4: Agriculture-constrained loss (x-axis) against the attribution weight Σ S·P of the expanding crops (y-axis) for each producing country in 2010–2015. Bubble size is proportional to BF-NEE; both axes are logarithmic. Countries with weight zero or no constrained loss are not shown. Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending."
-  },
-  {
-    "objectID": "countries.html#regions",
-    "href": "countries.html#regions",
-    "title": "Countries",
-    "section": "Regions",
-    "text": "Regions\n\n\n\n\n\n\n\n\nFigure 5: BF-NEE per period by world region of the producing country, in km². Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending."
-  },
-  {
-    "objectID": "countries.html#all-countries",
-    "href": "countries.html#all-countries",
-    "title": "Countries",
-    "section": "All countries",
-    "text": "All countries"
-  },
-  {
-    "objectID": "commodities.html",
-    "href": "commodities.html",
-    "title": "Commodities",
-    "section": "",
-    "text": "Plantations no longer count as natural (v3.1, approximation). Plantations (IUCN 14.3) and artificial aquatic classes are now treated as anthropogenic. Until the full pipeline can be rerun, natural ecosystem loss and BF-NEE are derived from the v3 results by removing these classes; the exact values lie between the values shown and the v3 values (Method). The interactive map still shows the v3 values.\nEach country’s agriculture-constrained loss on cropland is distributed to the crops that expanded in that country and period (S_c, method), weighted with the share of their production that ends up in German final demand (P_c). The loss linked to intensive pasture is attributed to Grazing livestock (method).\nLandSHIFT has no separate maize class; maize is contained in Cereals incl. maize (method). Because the area of this group is probably overestimated, results for individual crops should be read with caution."
-  },
-  {
-    "objectID": "commodities.html#footprint-by-commodity",
-    "href": "commodities.html#footprint-by-commodity",
-    "title": "Commodities",
-    "section": "Footprint by commodity",
-    "text": "Footprint by commodity\n\n\n\n\n\n\n\n\nFigure 1: BF-NEE per period by commodity, in km². The seven largest commodity groups are named; all other crops are combined in grey. Grazing livestock carries the loss linked to intensive pasture; maize is contained in Cereals incl. maize (LandSHIFT has no separate maize class). Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending.\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 2: BF-NEE of every commodity in 2010–2015, in km², with its share of the total footprint. Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending."
-  },
-  {
-    "objectID": "commodities.html#commodities-ecosystems",
-    "href": "commodities.html#commodities-ecosystems",
-    "title": "Commodities",
-    "section": "Commodities × ecosystems",
-    "text": "Commodities × ecosystems\nBecause the constrained loss keeps its ecosystem class, every commodity’s footprint can be split by ecosystem group: \\text{BF-NEE}_{c,g} = \\sum_r R_{r,g}\\,S_{c,r}\\,P_{c,r}.\n\n\n\n\n\n\n\n\nFigure 3: Ecosystem composition of each commodity’s BF-NEE in 2010–2015: share of the commodity’s footprint that falls on each ecosystem group. Commodities are ordered by total BF-NEE, largest at the top. Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending."
-  },
-  {
-    "objectID": "commodities.html#which-crops-expand",
-    "href": "commodities.html#which-crops-expand",
-    "title": "Commodities",
-    "section": "Which crops expand?",
-    "text": "Which crops expand?\nCommodity shares S_c come from the increase in crop area. This is the summed increase of each crop across all valid countries (decreases are not counted).\n\n\n\n\n\n\n\n\nFigure 4: Summed increase of crop area per period across all valid producing countries, in LandSHIFT area units; decreases are not counted. These increases define the commodity shares S. Data: LandSHIFT."
-  },
-  {
-    "objectID": "commodities.html#table",
-    "href": "commodities.html#table",
-    "title": "Commodities",
-    "section": "Table",
-    "text": "Table"
-  },
-  {
-    "objectID": "coverage.html",
-    "href": "coverage.html",
-    "title": "Data & checks",
-    "section": "",
-    "text": "155\ncountry folders with pipeline output\n\n\n155\nwith v3 results\n\n\n151\nvalid for analysis\nused on all result pages\n\n\n2026-10-26 14:34 CET\ndata built"
-  },
-  {
-    "objectID": "coverage.html#validity-rules",
-    "href": "coverage.html#validity-rules",
-    "title": "Data & checks",
-    "section": "Validity rules",
-    "text": "Validity rules\nA country is used on the result pages if all of the following hold:\n\n\n\n\n\n\n\nCheck\nRule\n\n\n\n\nOutput present\nBF-NEE summary for all 4 periods\n\n\nPipeline v3\nsummary contains the v3 columns (cropland / pasture split)\n\n\nScale\nLandSHIFT cell area ≤ 1,000 km² (old outputs were in m²)\n\n\nCommodity data\nLandSHIFT crop areas available (commodity shares not all missing)\n\n\nClass split\necosystem-class losses add up to the constrained total (rel. error &lt; 10⁻⁶)\n\n\nConstraint\nconstrained loss ≤ unconstrained loss in every period\n\n\nLand-use split\nBF-NEE of cropland + pasture = total BF-NEE\n\n\nGlobES coupling\nadjusted GlobES composition sums to 1 in every cell (step 04)"
-  },
-  {
-    "objectID": "coverage.html#countries-not-used",
-    "href": "coverage.html#countries-not-used",
-    "title": "Data & checks",
-    "section": "Countries not used",
-    "text": "Countries not used\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 1: Number of producing countries excluded from the analysis, by reason."
-  },
-  {
-    "objectID": "coverage.html#pipeline-status",
-    "href": "coverage.html#pipeline-status",
-    "title": "Data & checks",
-    "section": "Pipeline status",
-    "text": "Pipeline status\nLatest checkpoint of every step and country (Pipeline_Status).\n\n\n\n\n\n\n\n\nFigure 2: Latest checkpoint status of every pipeline step (scripts 01 to 08) for all countries, from the pipeline status files of the last full run."
-  },
-  {
-    "objectID": "coverage.html#globeslandshift-coupling-step-04",
-    "href": "coverage.html#globeslandshift-coupling-step-04",
-    "title": "Data & checks",
-    "section": "GlobES–LandSHIFT coupling (step 04)",
-    "text": "GlobES–LandSHIFT coupling (step 04)\nAfter the coupling every cell must sum to one, the GlobES cropland classes must equal LandSHIFT cropland, and 14.2 must equal LandSHIFT intensive pasture. Small pasture differences occur only where LandSHIFT cropland + pasture exceed the cell and are scaled down. Cells without any GlobES cover (sum 0) are set to NA in step 05 and ignored here.\n\n\n\n\n\n\n\n\nFigure 3: Largest absolute deviation per country and year after coupling GlobES to LandSHIFT (step 04), as a fraction of a grid cell, log scale. Panels show the deviation of the class sum from 1, of the GlobES cropland classes from LandSHIFT cropland and of class 14.2 from LandSHIFT intensive pasture."
-  },
-  {
-    "objectID": "coverage.html#consistency-of-the-valid-countries",
-    "href": "coverage.html#consistency-of-the-valid-countries",
-    "title": "Data & checks",
-    "section": "Consistency of the valid countries",
-    "text": "Consistency of the valid countries\n\n\n\n\n\n\n\n\nFigure 4: Relative difference between the sum over ecosystem classes and the total agriculture-constrained loss, per country and period, log scale. The dashed line marks the tolerance of 10⁻⁶. Checked on the tables shown on this website. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending."
-  },
-  {
-    "objectID": "coverage.html#all-countries",
-    "href": "coverage.html#all-countries",
-    "title": "Data & checks",
-    "section": "All countries",
-    "text": "All countries"
-  },
-  {
-    "objectID": "global.html",
-    "href": "global.html",
-    "title": "Global trends",
-    "section": "",
-    "text": "Plantations no longer count as natural (v3.1, approximation). Plantations (IUCN 14.3) and artificial aquatic classes are now treated as anthropogenic. Until the full pipeline can be rerun, natural ecosystem loss and BF-NEE are derived from the v3 results by removing these classes; the exact values lie between the values shown and the v3 values (Method). The interactive map still shows the v3 values.\nAll figures sum over the 151 producing countries that pass the data checks."
-  },
-  {
-    "objectID": "global.html#from-loss-to-footprint",
-    "href": "global.html#from-loss-to-footprint",
-    "title": "Global trends",
-    "section": "From loss to footprint",
-    "text": "From loss to footprint\nThree steps narrow the observed loss down to the footprint: gross natural loss (unconstrained), the part that coincides with agricultural expansion in the same cell (agriculture-constrained), and finally the share of it that is linked to German final demand (BF-NEE).\n\n\n\n\n\n\n\n\nFigure 1: Gross loss of natural ecosystems (unconstrained), net expansion of agricultural land (cropland plus intensive pasture) and agriculture-constrained loss per five-year period, in km². The constrained loss is the part of the gross loss that coincides with agricultural expansion in the same grid cell and period, capped at the size of the expansion. Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending.\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 2: Share of the gross natural ecosystem loss that coincides with agricultural expansion in the same grid cell and period (agriculture-constrained loss divided by unconstrained loss), per five-year period. Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending.\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 3: Agriculture-constrained loss split into the part linked to cropland expansion and the part linked to intensive pasture expansion, in km². The split is made in every grid cell in proportion to the positive area changes of the two land uses; the tooltip shows each part’s share of the period total. Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending."
-  },
-  {
-    "objectID": "global.html#bf-nee-over-time",
-    "href": "global.html#bf-nee-over-time",
-    "title": "Global trends",
-    "section": "BF-NEE over time",
-    "text": "BF-NEE over time\n\n\n\n\n\n\n\n\nFigure 4: BF-NEE per five-year period in km²: the agriculture-constrained loss weighted with the share of each producing country’s crop and livestock production that is used for German final demand. Hover for the number of countries. Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending.\n\n\n\n\n\nBy ecosystem group\n\n\n\n\n\n\n\n\nFigure 5: BF-NEE per period split by ecosystem group, in km². The constrained loss of each grid cell is distributed onto the natural ecosystem classes in proportion to their gross loss, so the groups add up to the total. The group Modified (counted as natural) contains degraded former forest (IUCN 14.6), introduced vegetation and unclassified cover. Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending.\n\n\n\n\nMore detail on the Ecosystems page.\n\n\n\n\n\n\n\n\nFigure 6: BF-NEE per period split into crops (constrained loss on cropland × commodity share S × GLORIA production share P) and grazing livestock (constrained loss on intensive pasture × mean GLORIA share of cattle and of sheep and goats), in km². Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending."
-  },
-  {
-    "objectID": "global.html#effect-of-the-agricultural-constraint",
-    "href": "global.html#effect-of-the-agricultural-constraint",
-    "title": "Global trends",
-    "section": "Effect of the agricultural constraint",
-    "text": "Effect of the agricultural constraint\nHow much smaller is BF-NEE when only loss linked to agricultural expansion is attributed, compared with attributing all natural loss?\n\n\n\n\n\n\n\n\nFigure 7: BF-NEE with the agricultural-expansion constraint compared with a variant that attributes the entire gross natural ecosystem loss with the same weights, in km². The difference is the loss that is not attributed because it does not coincide with agricultural expansion. Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending."
-  },
-  {
-    "objectID": "global.html#plantations",
-    "href": "global.html#plantations",
-    "title": "Global trends",
-    "section": "Effect of treating plantations as anthropogenic",
-    "text": "Effect of treating plantations as anthropogenic\nSince v3.1, plantations (IUCN 14.3) and artificial aquatic classes no longer count as natural ecosystems. Until the pipeline can be rerun, their share is removed from the v3 results; the exact values lie between the two bars of each period.\n\n\n\n\n\n\n\n\nFigure 8: Global BF-NEE per period in the v3 results, in which plantations and artificial aquatic classes still counted as natural ecosystems, and in the v3.1 approximation, in which their share is removed, in km². The v3.1 value is a lower bound; the exact value lies between the two bars. The tooltip shows the relative change. Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany."
-  },
-  {
-    "objectID": "global.html#table",
-    "href": "global.html#table",
-    "title": "Global trends",
-    "section": "Table",
-    "text": "Table"
-  },
-  {
-    "objectID": "landuse.html",
-    "href": "landuse.html",
-    "title": "Cropland & pasture",
-    "section": "",
-    "text": "Plantations no longer count as natural (v3.1, approximation). Plantations (IUCN 14.3) and artificial aquatic classes are now treated as anthropogenic. Until the full pipeline can be rerun, natural ecosystem loss and BF-NEE are derived from the v3 results by removing these classes; the exact values lie between the values shown and the v3 values (Method). The interactive map still shows the v3 values.\nAgricultural land in BF-NEE consists of cropland (irrigated + rainfed) and intensive pasture. A cell’s grazing land counts as intensive if its stocking density is above the country mean of the grazing land (fixed per country, 1995–2015). Extensive grazing stays part of the natural ecosystem cover (method)."
-  },
-  {
-    "objectID": "landuse.html#agricultural-land-over-time",
-    "href": "landuse.html#agricultural-land-over-time",
-    "title": "Cropland & pasture",
-    "section": "Agricultural land over time",
-    "text": "Agricultural land over time\n\n\n\n\n\n\n\n\nFigure 1: Cropland, intensive pasture and extensive grazing per year in km², summed over the 151 valid producing countries. Only cropland and intensive pasture count as agricultural land in BF-NEE; grazing land with a stocking density at or below the fixed country threshold (extensive grazing) remains part of the natural ecosystem cover. Data: LandSHIFT."
-  },
-  {
-    "objectID": "landuse.html#expansion-of-cropland-and-pasture",
-    "href": "landuse.html#expansion-of-cropland-and-pasture",
-    "title": "Cropland & pasture",
-    "section": "Expansion of cropland and pasture",
-    "text": "Expansion of cropland and pasture\nNet agricultural expansion per grid cell, split into cropland and pasture (the quantity that limits the attributed loss).\n\n\n\n\n\n\n\n\nFigure 2: Net expansion of agricultural land per five-year period in km², split into cropland and intensive pasture. In each grid cell the net gain of cropland plus pasture is split in proportion to the positive changes of the two land uses; conversion of pasture to cropland is not counted as expansion. The tooltip shows each part’s share. Data: LandSHIFT."
-  },
-  {
-    "objectID": "landuse.html#how-intensive-is-grazing",
-    "href": "landuse.html#how-intensive-is-grazing",
-    "title": "Cropland & pasture",
-    "section": "How intensive is grazing?",
-    "text": "How intensive is grazing?\n\n\n\n\n\n\n\n\nFigure 3: Share of the LandSHIFT grazing area classified as intensive pasture in 2015, by world region. A grid cell counts as intensive if its stocking density exceeds the country’s grazing-area-weighted mean density of 1995–2015. Data: LandSHIFT.\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 4: Fixed stocking-density threshold (livestock units per ha) that separates intensive from extensive grazing, for the 25 countries with the largest grazing area in 2015. Hover for the grazing area and the intensive share. Data: LandSHIFT."
-  },
-  {
-    "objectID": "landuse.html#where-is-pasture-expansion-linked-to-ecosystem-loss",
-    "href": "landuse.html#where-is-pasture-expansion-linked-to-ecosystem-loss",
-    "title": "Cropland & pasture",
-    "section": "Where is pasture expansion linked to ecosystem loss?",
-    "text": "Where is pasture expansion linked to ecosystem loss?\n\n\n\n\n\n\n\n\nFigure 5: Agriculture-constrained loss in 2010–2015 for the 15 countries with the largest constrained loss, split into the part linked to cropland and the part linked to intensive pasture, in km². Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending."
-  },
-  {
-    "objectID": "landuse.html#table",
-    "href": "landuse.html#table",
-    "title": "Cropland & pasture",
-    "section": "Table",
-    "text": "Table"
+    "objectID": "southamerica.html#data",
+    "href": "southamerica.html#data",
+    "title": "Case study: South America",
+    "section": "Data",
+    "text": "Data\n\n\n\n\n\n\nConstrained loss = natural ecosystem loss that coincides with agricultural expansion in the same grid cell and period. Attribution weight = BF-NEE ÷ constrained loss, i.e. the share of the loss linked to German final demand through the commodities grown on the new land."
   },
   {
     "objectID": "method.html",
     "href": "method.html",
     "title": "Method",
     "section": "",
-    "text": "BF-NEE combines three data sets that each play a distinct role:\n\n\n\n\n\n\n\nData set\nRole\n\n\n\n\nLandSHIFT\nCropland extent per grid cell; crop composition per country\n\n\nGlobES\nComposition of ecosystem classes (IUCN habitat scheme) and its change\n\n\nGLORIA (MRIO)\nShare of each crop’s production that ends up in German final demand\n\n\n\nThe analysis covers the years 1995, 2000, 2005, 2010 and 2015 and therefore four five-year periods. Each period y-1 \\rightarrow y is combined with the commodity and GLORIA factors of its end year y."
+    "text": "BF-NEE combines three data sets that each play a distinct role:\n\n\n\n\n\n\n\nData set\nRole\n\n\n\n\nLandSHIFT\nCropland extent per grid cell; crop composition per country\n\n\nGlobES\nComposition of ecosystem classes (IUCN habitat scheme) and its change\n\n\nGLORIA (MRIO)\nShare of each crop’s production that ends up in German final demand\n\n\n\nThe analysis covers the years 1995, 2000, 2005, 2010 and 2015 and therefore four five-year periods. Each period y-1 \\rightarrow y is combined with the commodity and GLORIA factors of its end year y.\n\n\n\n\n\n\nFirst period more uncertain. The input data for 1995–2000 are subject to larger uncertainties than those of later periods. Values for 1995–2000 should be interpreted with caution, and trends are best read from 2000–2005 onwards."
   },
   {
     "objectID": "method.html#overview",
     "href": "method.html#overview",
     "title": "Method",
     "section": "",
-    "text": "BF-NEE combines three data sets that each play a distinct role:\n\n\n\n\n\n\n\nData set\nRole\n\n\n\n\nLandSHIFT\nCropland extent per grid cell; crop composition per country\n\n\nGlobES\nComposition of ecosystem classes (IUCN habitat scheme) and its change\n\n\nGLORIA (MRIO)\nShare of each crop’s production that ends up in German final demand\n\n\n\nThe analysis covers the years 1995, 2000, 2005, 2010 and 2015 and therefore four five-year periods. Each period y-1 \\rightarrow y is combined with the commodity and GLORIA factors of its end year y."
+    "text": "BF-NEE combines three data sets that each play a distinct role:\n\n\n\n\n\n\n\nData set\nRole\n\n\n\n\nLandSHIFT\nCropland extent per grid cell; crop composition per country\n\n\nGlobES\nComposition of ecosystem classes (IUCN habitat scheme) and its change\n\n\nGLORIA (MRIO)\nShare of each crop’s production that ends up in German final demand\n\n\n\nThe analysis covers the years 1995, 2000, 2005, 2010 and 2015 and therefore four five-year periods. Each period y-1 \\rightarrow y is combined with the commodity and GLORIA factors of its end year y.\n\n\n\n\n\n\nFirst period more uncertain. The input data for 1995–2000 are subject to larger uncertainties than those of later periods. Values for 1995–2000 should be interpreted with caution, and trends are best read from 2000–2005 onwards."
   },
   {
     "objectID": "method.html#harmonising-cropland",
@@ -411,5 +138,334 @@
     "title": "Method",
     "section": "Limitations",
     "text": "Limitations\n\nCommodity and GLORIA factors are national, not pixel-specific: the indicator does not identify the crop planted on a specific converted pixel.\nThe constraint is spatially conservative – loss is attributed only where cropland grows in the same cell and five-year period. Transitions that happen and reverse between snapshots are not captured.\nOnly intensive pasture is agricultural land; the split between intensive and extensive grazing depends on the country-mean threshold. Cattle and sheep/goats are weighted equally in P^{past} (no per-cell information on species).\nSince v3.1, plantations and artificial aquatic classes are removed approximately from the v3 results (Section 1c); exact values follow after the next full run.\nThe LandSHIFT–GLORIA concordance is not one-to-one (e.g. pulses and oil crops share one GLORIA sector). Cereals incl. maize is currently linked to the GLORIA sector Growing cereals n.e.c. only; a production-weighted mix with Growing maize would be more accurate.\nLandSHIFT has no separate maize class, and the area of Cereals incl. maize is probably overestimated (Section 5). Results for individual crops should therefore be interpreted with caution; totals and ecosystem results are not affected."
+  },
+  {
+    "objectID": "landuse.html",
+    "href": "landuse.html",
+    "title": "Cropland & pasture",
+    "section": "",
+    "text": "Plantations no longer count as natural (v3.1, approximation). Plantations (IUCN 14.3) and artificial aquatic classes are now treated as anthropogenic. Until the full pipeline can be rerun, natural ecosystem loss and BF-NEE are derived from the v3 results by removing these classes; the exact values lie between the values shown and the v3 values (Method). The interactive map still shows the v3 values.\nAgricultural land in BF-NEE consists of cropland (irrigated + rainfed) and intensive pasture. A cell’s grazing land counts as intensive if its stocking density is above the country mean of the grazing land (fixed per country, 1995–2015). Extensive grazing stays part of the natural ecosystem cover (method)."
+  },
+  {
+    "objectID": "landuse.html#agricultural-land-over-time",
+    "href": "landuse.html#agricultural-land-over-time",
+    "title": "Cropland & pasture",
+    "section": "Agricultural land over time",
+    "text": "Agricultural land over time\n\n\n\n\n\n\n\n\nFigure 1: Cropland, intensive pasture and extensive grazing per year in km², summed over the 151 valid producing countries. Only cropland and intensive pasture count as agricultural land in BF-NEE; grazing land with a stocking density at or below the fixed country threshold (extensive grazing) remains part of the natural ecosystem cover. Data: LandSHIFT."
+  },
+  {
+    "objectID": "landuse.html#expansion-of-cropland-and-pasture",
+    "href": "landuse.html#expansion-of-cropland-and-pasture",
+    "title": "Cropland & pasture",
+    "section": "Expansion of cropland and pasture",
+    "text": "Expansion of cropland and pasture\nNet agricultural expansion per grid cell, split into cropland and pasture (the quantity that limits the attributed loss).\n\n\n\n\n\n\n\n\nFigure 2: Net expansion of agricultural land per five-year period in km², split into cropland and intensive pasture. In each grid cell the net gain of cropland plus pasture is split in proportion to the positive changes of the two land uses; conversion of pasture to cropland is not counted as expansion. The tooltip shows each part’s share. Data: LandSHIFT."
+  },
+  {
+    "objectID": "landuse.html#how-intensive-is-grazing",
+    "href": "landuse.html#how-intensive-is-grazing",
+    "title": "Cropland & pasture",
+    "section": "How intensive is grazing?",
+    "text": "How intensive is grazing?\n\n\n\n\n\n\n\n\nFigure 3: Share of the LandSHIFT grazing area classified as intensive pasture in 2015, by world region. A grid cell counts as intensive if its stocking density exceeds the country’s grazing-area-weighted mean density of 1995–2015. Data: LandSHIFT.\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 4: Fixed stocking-density threshold (livestock units per ha) that separates intensive from extensive grazing, for the 25 countries with the largest grazing area in 2015. Hover for the grazing area and the intensive share. Data: LandSHIFT."
+  },
+  {
+    "objectID": "landuse.html#where-is-pasture-expansion-linked-to-ecosystem-loss",
+    "href": "landuse.html#where-is-pasture-expansion-linked-to-ecosystem-loss",
+    "title": "Cropland & pasture",
+    "section": "Where is pasture expansion linked to ecosystem loss?",
+    "text": "Where is pasture expansion linked to ecosystem loss?\n\n\n\n\n\n\n\n\nFigure 5: Agriculture-constrained loss in 2010–2015 for the 15 countries with the largest constrained loss, split into the part linked to cropland and the part linked to intensive pasture, in km². Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany. Values for 1995–2000 are subject to larger uncertainties in the input data. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending."
+  },
+  {
+    "objectID": "landuse.html#table",
+    "href": "landuse.html#table",
+    "title": "Cropland & pasture",
+    "section": "Table",
+    "text": "Table"
+  },
+  {
+    "objectID": "global.html",
+    "href": "global.html",
+    "title": "Global trends",
+    "section": "",
+    "text": "Plantations no longer count as natural (v3.1, approximation). Plantations (IUCN 14.3) and artificial aquatic classes are now treated as anthropogenic. Until the full pipeline can be rerun, natural ecosystem loss and BF-NEE are derived from the v3 results by removing these classes; the exact values lie between the values shown and the v3 values (Method). The interactive map still shows the v3 values.\nAll figures sum over the 151 producing countries that pass the data checks. The input data for 1995–2000 are subject to larger uncertainties; trends are best read from 2000–2005 onwards (method)."
+  },
+  {
+    "objectID": "global.html#from-loss-to-footprint",
+    "href": "global.html#from-loss-to-footprint",
+    "title": "Global trends",
+    "section": "From loss to footprint",
+    "text": "From loss to footprint\nThree steps narrow the observed loss down to the footprint: gross natural loss (unconstrained), the part that coincides with agricultural expansion in the same cell (agriculture-constrained), and finally the share of it that is linked to German final demand (BF-NEE).\n\n\n\n\n\n\n\n\nFigure 1: Gross loss of natural ecosystems (unconstrained), net expansion of agricultural land (cropland plus intensive pasture) and agriculture-constrained loss per five-year period, in km². The constrained loss is the part of the gross loss that coincides with agricultural expansion in the same grid cell and period, capped at the size of the expansion. Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany. Values for 1995–2000 are subject to larger uncertainties in the input data. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending.\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 2: Share of the gross natural ecosystem loss that coincides with agricultural expansion in the same grid cell and period (agriculture-constrained loss divided by unconstrained loss), per five-year period. Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany. Values for 1995–2000 are subject to larger uncertainties in the input data. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending.\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 3: Agriculture-constrained loss split into the part linked to cropland expansion and the part linked to intensive pasture expansion, in km². The split is made in every grid cell in proportion to the positive area changes of the two land uses; the tooltip shows each part’s share of the period total. Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany. Values for 1995–2000 are subject to larger uncertainties in the input data. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending."
+  },
+  {
+    "objectID": "global.html#bf-nee-over-time",
+    "href": "global.html#bf-nee-over-time",
+    "title": "Global trends",
+    "section": "BF-NEE over time",
+    "text": "BF-NEE over time\n\n\n\n\n\n\n\n\nFigure 4: BF-NEE per five-year period in km²: the agriculture-constrained loss weighted with the share of each producing country’s crop and livestock production that is used for German final demand. Hover for the number of countries. Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany. Values for 1995–2000 are subject to larger uncertainties in the input data. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending.\n\n\n\n\n\nBy ecosystem group\n\n\n\n\n\n\n\n\nFigure 5: BF-NEE per period split by ecosystem group, in km². The constrained loss of each grid cell is distributed onto the natural ecosystem classes in proportion to their gross loss, so the groups add up to the total. The group Modified (counted as natural) contains degraded former forest (IUCN 14.6), introduced vegetation and unclassified cover. Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany. Values for 1995–2000 are subject to larger uncertainties in the input data. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending.\n\n\n\n\nMore detail on the Ecosystems page.\n\n\n\n\n\n\n\n\nFigure 6: BF-NEE per period split into crops (constrained loss on cropland × commodity share S × GLORIA production share P) and grazing livestock (constrained loss on intensive pasture × mean GLORIA share of cattle and of sheep and goats), in km². Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany. Values for 1995–2000 are subject to larger uncertainties in the input data. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending."
+  },
+  {
+    "objectID": "global.html#effect-of-the-agricultural-constraint",
+    "href": "global.html#effect-of-the-agricultural-constraint",
+    "title": "Global trends",
+    "section": "Effect of the agricultural constraint",
+    "text": "Effect of the agricultural constraint\nHow much smaller is BF-NEE when only loss linked to agricultural expansion is attributed, compared with attributing all natural loss?\n\n\n\n\n\n\n\n\nFigure 7: BF-NEE with the agricultural-expansion constraint compared with a variant that attributes the entire gross natural ecosystem loss with the same weights, in km². The difference is the loss that is not attributed because it does not coincide with agricultural expansion. Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany. Values for 1995–2000 are subject to larger uncertainties in the input data. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending."
+  },
+  {
+    "objectID": "global.html#plantations",
+    "href": "global.html#plantations",
+    "title": "Global trends",
+    "section": "Effect of treating plantations as anthropogenic",
+    "text": "Effect of treating plantations as anthropogenic\nSince v3.1, plantations (IUCN 14.3) and artificial aquatic classes no longer count as natural ecosystems. Until the pipeline can be rerun, their share is removed from the v3 results; the exact values lie between the two bars of each period.\n\n\n\n\n\n\n\n\nFigure 8: Global BF-NEE per period in the v3 results, in which plantations and artificial aquatic classes still counted as natural ecosystems, and in the v3.1 approximation, in which their share is removed, in km². The v3.1 value is a lower bound; the exact value lies between the two bars. The tooltip shows the relative change. Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany. Values for 1995–2000 are subject to larger uncertainties in the input data."
+  },
+  {
+    "objectID": "global.html#table",
+    "href": "global.html#table",
+    "title": "Global trends",
+    "section": "Table",
+    "text": "Table"
+  },
+  {
+    "objectID": "coverage.html",
+    "href": "coverage.html",
+    "title": "Data & checks",
+    "section": "",
+    "text": "155\ncountry folders with pipeline output\n\n\n155\nwith v3 results\n\n\n151\nvalid for analysis\nused on all result pages\n\n\n2026-10-26 14:34 CET\ndata built"
+  },
+  {
+    "objectID": "coverage.html#validity-rules",
+    "href": "coverage.html#validity-rules",
+    "title": "Data & checks",
+    "section": "Validity rules",
+    "text": "Validity rules\nA country is used on the result pages if all of the following hold:\n\n\n\n\n\n\n\nCheck\nRule\n\n\n\n\nOutput present\nBF-NEE summary for all 4 periods\n\n\nPipeline v3\nsummary contains the v3 columns (cropland / pasture split)\n\n\nScale\nLandSHIFT cell area ≤ 1,000 km² (old outputs were in m²)\n\n\nCommodity data\nLandSHIFT crop areas available (commodity shares not all missing)\n\n\nClass split\necosystem-class losses add up to the constrained total (rel. error &lt; 10⁻⁶)\n\n\nConstraint\nconstrained loss ≤ unconstrained loss in every period\n\n\nLand-use split\nBF-NEE of cropland + pasture = total BF-NEE\n\n\nGlobES coupling\nadjusted GlobES composition sums to 1 in every cell (step 04)"
+  },
+  {
+    "objectID": "coverage.html#countries-not-used",
+    "href": "coverage.html#countries-not-used",
+    "title": "Data & checks",
+    "section": "Countries not used",
+    "text": "Countries not used\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 1: Number of producing countries excluded from the analysis, by reason."
+  },
+  {
+    "objectID": "coverage.html#pipeline-status",
+    "href": "coverage.html#pipeline-status",
+    "title": "Data & checks",
+    "section": "Pipeline status",
+    "text": "Pipeline status\nLatest checkpoint of every step and country (Pipeline_Status).\n\n\n\n\n\n\n\n\nFigure 2: Latest checkpoint status of every pipeline step (scripts 01 to 08) for all countries, from the pipeline status files of the last full run."
+  },
+  {
+    "objectID": "coverage.html#globeslandshift-coupling-step-04",
+    "href": "coverage.html#globeslandshift-coupling-step-04",
+    "title": "Data & checks",
+    "section": "GlobES–LandSHIFT coupling (step 04)",
+    "text": "GlobES–LandSHIFT coupling (step 04)\nAfter the coupling every cell must sum to one, the GlobES cropland classes must equal LandSHIFT cropland, and 14.2 must equal LandSHIFT intensive pasture. Small pasture differences occur only where LandSHIFT cropland + pasture exceed the cell and are scaled down. Cells without any GlobES cover (sum 0) are set to NA in step 05 and ignored here.\n\n\n\n\n\n\n\n\nFigure 3: Largest absolute deviation per country and year after coupling GlobES to LandSHIFT (step 04), as a fraction of a grid cell, log scale. Panels show the deviation of the class sum from 1, of the GlobES cropland classes from LandSHIFT cropland and of class 14.2 from LandSHIFT intensive pasture."
+  },
+  {
+    "objectID": "coverage.html#consistency-of-the-valid-countries",
+    "href": "coverage.html#consistency-of-the-valid-countries",
+    "title": "Data & checks",
+    "section": "Consistency of the valid countries",
+    "text": "Consistency of the valid countries\n\n\n\n\n\n\n\n\nFigure 4: Relative difference between the sum over ecosystem classes and the total agriculture-constrained loss, per country and period, log scale. The dashed line marks the tolerance of 10⁻⁶. Checked on the tables shown on this website. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending."
+  },
+  {
+    "objectID": "coverage.html#all-countries",
+    "href": "coverage.html#all-countries",
+    "title": "Data & checks",
+    "section": "All countries",
+    "text": "All countries"
+  },
+  {
+    "objectID": "commodities.html",
+    "href": "commodities.html",
+    "title": "Commodities",
+    "section": "",
+    "text": "Plantations no longer count as natural (v3.1, approximation). Plantations (IUCN 14.3) and artificial aquatic classes are now treated as anthropogenic. Until the full pipeline can be rerun, natural ecosystem loss and BF-NEE are derived from the v3 results by removing these classes; the exact values lie between the values shown and the v3 values (Method). The interactive map still shows the v3 values.\nEach country’s agriculture-constrained loss on cropland is distributed to the crops that expanded in that country and period (S_c, method), weighted with the share of their production that ends up in German final demand (P_c). The loss linked to intensive pasture is attributed to Grazing livestock (method).\nLandSHIFT has no separate maize class; maize is contained in Cereals incl. maize (method). Because the area of this group is probably overestimated, results for individual crops should be read with caution."
+  },
+  {
+    "objectID": "commodities.html#footprint-by-commodity",
+    "href": "commodities.html#footprint-by-commodity",
+    "title": "Commodities",
+    "section": "Footprint by commodity",
+    "text": "Footprint by commodity\n\n\n\n\n\n\n\n\nFigure 1: BF-NEE per period by commodity, in km². The seven largest commodity groups are named; all other crops are combined in grey. Grazing livestock carries the loss linked to intensive pasture; maize is contained in Cereals incl. maize (LandSHIFT has no separate maize class). Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany. Values for 1995–2000 are subject to larger uncertainties in the input data. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending.\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 2: BF-NEE of every commodity in 2010–2015, in km², with its share of the total footprint. Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany. Values for 1995–2000 are subject to larger uncertainties in the input data. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending."
+  },
+  {
+    "objectID": "commodities.html#commodities-ecosystems",
+    "href": "commodities.html#commodities-ecosystems",
+    "title": "Commodities",
+    "section": "Commodities × ecosystems",
+    "text": "Commodities × ecosystems\nBecause the constrained loss keeps its ecosystem class, every commodity’s footprint can be split by ecosystem group: \\text{BF-NEE}_{c,g} = \\sum_r R_{r,g}\\,S_{c,r}\\,P_{c,r}.\n\n\n\n\n\n\n\n\nFigure 3: Ecosystem composition of each commodity’s BF-NEE in 2010–2015: share of the commodity’s footprint that falls on each ecosystem group. Commodities are ordered by total BF-NEE, largest at the top. Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany. Values for 1995–2000 are subject to larger uncertainties in the input data. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending."
+  },
+  {
+    "objectID": "commodities.html#which-crops-expand",
+    "href": "commodities.html#which-crops-expand",
+    "title": "Commodities",
+    "section": "Which crops expand?",
+    "text": "Which crops expand?\nCommodity shares S_c come from the increase in crop area. This is the summed increase of each crop across all valid countries (decreases are not counted).\n\n\n\n\n\n\n\n\nFigure 4: Summed increase of crop area per period across all valid producing countries, in LandSHIFT area units; decreases are not counted. These increases define the commodity shares S. Data: LandSHIFT."
+  },
+  {
+    "objectID": "commodities.html#table",
+    "href": "commodities.html#table",
+    "title": "Commodities",
+    "section": "Table",
+    "text": "Table"
+  },
+  {
+    "objectID": "countries.html",
+    "href": "countries.html",
+    "title": "Countries",
+    "section": "",
+    "text": "Plantations no longer count as natural (v3.1, approximation). Plantations (IUCN 14.3) and artificial aquatic classes are now treated as anthropogenic. Until the full pipeline can be rerun, natural ecosystem loss and BF-NEE are derived from the v3 results by removing these classes; the exact values lie between the values shown and the v3 values (Method). The interactive map still shows the v3 values."
+  },
+  {
+    "objectID": "countries.html#largest-footprints",
+    "href": "countries.html#largest-footprints",
+    "title": "Countries",
+    "section": "Largest footprints",
+    "text": "Largest footprints\n\n\n\n\n\n\n\n\nFigure 1: The 20 producing countries with the largest BF-NEE in 2010–2015, in km², with each country’s share of the global footprint, coloured by world region. Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany. Values for 1995–2000 are subject to larger uncertainties in the input data. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending."
+  },
+  {
+    "objectID": "countries.html#concentration",
+    "href": "countries.html#concentration",
+    "title": "Countries",
+    "section": "Concentration",
+    "text": "Concentration\n\n\n\n\n\n\n\n\nFigure 2: Cumulative share of the global BF-NEE accounted for by the largest producing countries, per period. Countries are ranked by BF-NEE; a steep curve means the footprint is concentrated in few countries. Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany. Values for 1995–2000 are subject to larger uncertainties in the input data. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending."
+  },
+  {
+    "objectID": "countries.html#trajectories",
+    "href": "countries.html#trajectories",
+    "title": "Countries",
+    "section": "Trajectories",
+    "text": "Trajectories\n\n\n\n\n\n\n\n\nFigure 3: BF-NEE per period of the 8 producing countries with the largest footprint summed over all periods, in km². Each panel has its own y-axis scale. Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany. Values for 1995–2000 are subject to larger uncertainties in the input data. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending."
+  },
+  {
+    "objectID": "countries.html#what-drives-a-countrys-footprint",
+    "href": "countries.html#what-drives-a-countrys-footprint",
+    "title": "Countries",
+    "section": "What drives a country’s footprint?",
+    "text": "What drives a country’s footprint?\nBF-NEE of a country is its agriculture-constrained loss multiplied by its attribution weight \\sum_c S_c P_c. Countries can rank high because they lose a lot of ecosystems, because a large share of their expanding crops ends up in German final demand – or both.\n\n\n\n\n\n\n\n\nFigure 4: Agriculture-constrained loss (x-axis) against the attribution weight Σ S·P of the expanding crops (y-axis) for each producing country in 2010–2015. Bubble size is proportional to BF-NEE; both axes are logarithmic. Countries with weight zero or no constrained loss are not shown. Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany. Values for 1995–2000 are subject to larger uncertainties in the input data. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending."
+  },
+  {
+    "objectID": "countries.html#regions",
+    "href": "countries.html#regions",
+    "title": "Countries",
+    "section": "Regions",
+    "text": "Regions\n\n\n\n\n\n\n\n\nFigure 5: BF-NEE per period by world region of the producing country, in km². Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany. Values for 1995–2000 are subject to larger uncertainties in the input data. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending."
+  },
+  {
+    "objectID": "countries.html#all-countries",
+    "href": "countries.html#all-countries",
+    "title": "Countries",
+    "section": "All countries",
+    "text": "All countries"
+  },
+  {
+    "objectID": "ecosystems.html",
+    "href": "ecosystems.html",
+    "title": "Ecosystems",
+    "section": "",
+    "text": "Plantations no longer count as natural (v3.1, approximation). Plantations (IUCN 14.3) and artificial aquatic classes are now treated as anthropogenic. Until the full pipeline can be rerun, natural ecosystem loss and BF-NEE are derived from the v3 results by removing these classes; the exact values lie between the values shown and the v3 values (Method). The interactive map still shows the v3 values.\nThe agriculture-constrained loss is split onto the ecosystem classes in proportion to their original loss (method), so the footprints of all groups add up to the total BF-NEE."
+  },
+  {
+    "objectID": "ecosystems.html#footprint-by-ecosystem-group",
+    "href": "ecosystems.html#footprint-by-ecosystem-group",
+    "title": "Ecosystems",
+    "section": "Footprint by ecosystem group",
+    "text": "Footprint by ecosystem group\n\n\n\n\n\n\n\n\nFigure 1: BF-NEE by ecosystem group in 2010–2015, in km², with each group’s share of the total. Because the constrained loss of each grid cell is split onto the natural classes in proportion to their gross loss, the groups add up to the total BF-NEE. Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany. Values for 1995–2000 are subject to larger uncertainties in the input data. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending."
+  },
+  {
+    "objectID": "ecosystems.html#change-over-time",
+    "href": "ecosystems.html#change-over-time",
+    "title": "Ecosystems",
+    "section": "Change over time",
+    "text": "Change over time\n\n\n\n\n\n\n\n\nFigure 2: BF-NEE per ecosystem group and five-year period, in km². Each panel has its own y-axis scale, so the panels show the trend within a group, not the size relative to other groups. Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany. Values for 1995–2000 are subject to larger uncertainties in the input data. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending."
+  },
+  {
+    "objectID": "ecosystems.html#how-much-of-each-groups-loss-is-linked-to-agriculture",
+    "href": "ecosystems.html#how-much-of-each-groups-loss-is-linked-to-agriculture",
+    "title": "Ecosystems",
+    "section": "How much of each group’s loss is linked to agriculture?",
+    "text": "How much of each group’s loss is linked to agriculture?\nShare of the gross loss of an ecosystem group that coincides with cropland expansion in the same cell and period.\n\n\n\n\n\n\n\n\nFigure 3: Share of each ecosystem group’s gross loss that coincides with agricultural expansion in the same grid cell and period (agriculture-constrained loss divided by unconstrained loss). Hover for both areas. Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany. Values for 1995–2000 are subject to larger uncertainties in the input data. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending."
+  },
+  {
+    "objectID": "ecosystems.html#tropical-moist-forests",
+    "href": "ecosystems.html#tropical-moist-forests",
+    "title": "Ecosystems",
+    "section": "Tropical moist forests",
+    "text": "Tropical moist forests\nSubtropical/tropical moist lowland (1.6) and moist montane forest (1.9).\n\n\n\n\n\n\n\n\nFigure 4: BF-NEE in tropical moist forests (IUCN 1.6 subtropical/tropical moist lowland forest and 1.9 moist montane forest) per period, in km². These classes are part of the Forest group; the tooltip shows their share of the total BF-NEE. Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany. Values for 1995–2000 are subject to larger uncertainties in the input data. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending.\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 5: The 12 producing countries with the largest BF-NEE in tropical moist forests (IUCN 1.6 and 1.9) in 2010–2015, in km², coloured by world region. Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany. Values for 1995–2000 are subject to larger uncertainties in the input data. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending."
+  },
+  {
+    "objectID": "ecosystems.html#ecosystem-groups-by-world-region",
+    "href": "ecosystems.html#ecosystem-groups-by-world-region",
+    "title": "Ecosystems",
+    "section": "Ecosystem groups by world region",
+    "text": "Ecosystem groups by world region\nShare of each region’s footprint that falls on each ecosystem group (2010–2015).\n\n\n\n\n\n\n\n\nFigure 6: Composition of the BF-NEE of each world region by ecosystem group in 2010–2015. Each row sums to 100 %; empty cells mean no attributed loss. Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany. Values for 1995–2000 are subject to larger uncertainties in the input data. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending."
+  },
+  {
+    "objectID": "ecosystems.html#top-ecosystem-classes",
+    "href": "ecosystems.html#top-ecosystem-classes",
+    "title": "Ecosystems",
+    "section": "Top ecosystem classes",
+    "text": "Top ecosystem classes\n\n\n\n\n\n\n\n\nFigure 7: The 15 IUCN habitat classes with the largest BF-NEE in 2010–2015, in km², coloured by ecosystem group. Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany. Values for 1995–2000 are subject to larger uncertainties in the input data. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Natural ecosystem loss behind consumption",
+    "section": "",
+    "text": "BF-NEE links the loss of natural ecosystems through agricultural expansion to the commodities grown on the new land and to final demand – here, consumption in Germany. Results are available for every producing country, time period, commodity and ecosystem type.\nExplore global trends Open the map"
+  },
+  {
+    "objectID": "index.html#explore",
+    "href": "index.html#explore",
+    "title": "Natural ecosystem loss behind consumption",
+    "section": "Explore",
+    "text": "Explore\n\n  \n    Global trends\n    Unconstrained loss, agricultural expansion, attributed loss and BF-NEE over time.\n  \n  \n    Cropland & pasture\n    Agricultural land, intensive vs. extensive grazing and the expansion behind the loss.\n  \n  \n    Ecosystems\n    Which ecosystem types are lost – forests, savannas, grasslands, wetlands, tropical moist forests.\n  \n  \n    Countries\n    Producing countries with the largest footprints and how they change.\n  \n  \n    Commodities\n    Which crops drive the footprint, and in which ecosystems.\n  \n  \n    Case study: South America\n    Brazil, Argentina, Paraguay and Colombia – which ecosystems are lost, and whether conversion or trade drives the change.\n  \n  \n    Interactive map\n    Explore BF-NEE spatially by period, ecosystem group and commodity.\n  \n  \n    Data & checks\n    Coverage, validity flags and consistency checks of every country."
+  },
+  {
+    "objectID": "index.html#what-is-new-in-this-version",
+    "href": "index.html#what-is-new-in-this-version",
+    "title": "Natural ecosystem loss behind consumption",
+    "section": "What is new in this version",
+    "text": "What is new in this version\n\n\n\n\n\n\nv3.1 (approximation) (data built 2026-10-26 14:34 CET)\n\nPlantations are anthropogenic (v3.1). Plantations and artificial aquatic classes no longer count as natural ecosystems. The current values are an approximation derived from the v3 results; the exact recalculation follows (Method).\nIntensive pasture (v3). Cropland and intensive pasture count as agricultural land. Loss linked to pasture expansion is attributed to grazing livestock.\nCommodity shares from expansion. A crop’s share is now its increase in area relative to the total increase of all expanding crops in the same period. Crops whose area shrank get a share of zero.\nAgricultural-expansion constraint. Only natural ecosystem loss that coincides with agricultural expansion in the same grid cell is attributed (Eq. 31–32).\nEcosystem classes are kept. The constrained loss is split back onto the ecosystem classes in proportion to their original loss, so footprints by ecosystem type add up exactly to the total footprint."
+  },
+  {
+    "objectID": "maps.html",
+    "href": "maps.html",
+    "title": "Interactive map",
+    "section": "",
+    "text": "Choose a period, an ecosystem group and a commodity. The map shows either the agriculture-constrained natural ecosystem loss or the BF-NEE (loss × attribution weight of the producing country). Hover over a cell for its value; select a country to zoom in and see its totals.\n\n\n\n\n\n\n\nThe map still shows the v3 values, in which plantations and artificial aquatic classes count as natural ecosystems (group Modified). The tables and figures on the other pages already treat them as anthropogenic (v3.1). The map will be updated with the next full run of the pipeline.\n\n\n\n\n\n\n\n\n\nAbout the map data\n\n\n\n\n\nCells are aggregated for the web (about 18 km); values are km² per displayed cell. Totals in the side panel come from the country tables, not from the display raster. The map data are built on the cluster with data-raw/02_build_map_data.R and uploaded with shiny/global_map/deploy.R."
+  },
+  {
+    "objectID": "regressions.html",
+    "href": "regressions.html",
+    "title": "Regional regressions",
+    "section": "",
+    "text": "Plantations no longer count as natural (v3.1, approximation). Plantations (IUCN 14.3) and artificial aquatic classes are now treated as anthropogenic. Until the full pipeline can be rerun, natural ecosystem loss and BF-NEE are derived from the v3 results by removing these classes; the exact values lie between the values shown and the v3 values (Method). The interactive map still shows the v3 values."
+  },
+  {
+    "objectID": "regressions.html#model",
+    "href": "regressions.html#model",
+    "title": "Regional regressions",
+    "section": "Model",
+    "text": "Model\nPer country \\text{BF-NEE} = R^{crop} \\sum_c S_c P_c + R^{past} P^{past} = R \\cdot w, with the effective attribution weight w = \\text{BF-NEE}/R (cropland and pasture part combined). A log-log model\n\n\\log(\\text{BF-NEE}) = \\beta_0 + \\beta_1 \\log(R) + \\beta_2 \\log(w) + \\varepsilon\n\nhas \\beta_1 = \\beta_2 = 1 and R^2 = 1 by construction. Deviations therefore point to data problems – not to substantive effects. The model serves as a consistency check; the interesting part is how much each component varies between regions.\nOnly countries with BF-NEE &gt; 0 are used (log scale); regions need ≥ 6 observations.\n\n\n\n\n\n\n\n\nFigure 1: BF-NEE against agriculture-constrained loss for every country and period with positive values, by world region, with a least-squares line per region. Both axes are logarithmic. Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany. Values for 1995–2000 are subject to larger uncertainties in the input data. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending."
+  },
+  {
+    "objectID": "regressions.html#which-component-varies-more",
+    "href": "regressions.html#which-component-varies-more",
+    "title": "Regional regressions",
+    "section": "Which component varies more?",
+    "text": "Which component varies more?\n\n\n\n\n\n\n\n\nFigure 2: Standard deviation between countries of the log constrained loss and of the log effective attribution weight w = BF-NEE / R, by world region. The component with the larger spread explains more of the differences in BF-NEE between countries. Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany. Values for 1995–2000 are subject to larger uncertainties in the input data. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending."
+  },
+  {
+    "objectID": "regressions.html#coefficients",
+    "href": "regressions.html#coefficients",
+    "title": "Regional regressions",
+    "section": "Coefficients",
+    "text": "Coefficients\n\n\n\n\n\n\n\n\nFigure 3: Estimated coefficients of log(BF-NEE) = β0 + β1 log(R) + β2 log(w) with 95 % confidence intervals, by world region. Because BF-NEE = R × w by definition, both coefficients equal 1 (dashed line); the model serves only as a consistency check. Data: LandSHIFT, GlobES and GLORIA (release 059); sum over the 151 producing countries that pass the data checks; final demand: Germany. Values for 1995–2000 are subject to larger uncertainties in the input data. Plantations (IUCN 14.3) and artificial aquatic classes are treated as anthropogenic (v3.1). Values are an approximation derived from the v3 results; the exact recalculation is pending."
+  },
+  {
+    "objectID": "regressions.html#largest-residuals",
+    "href": "regressions.html#largest-residuals",
+    "title": "Regional regressions",
+    "section": "Largest residuals",
+    "text": "Largest residuals\nObservations far from the fitted line usually indicate an inconsistency in the data (e.g. weights or loss on a different scale)."
   }
 ]

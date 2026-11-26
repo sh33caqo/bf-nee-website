@@ -35,6 +35,8 @@ website:
             text: Commodities
           - href: regressions.qmd
             text: Regional regressions
+      - href: southamerica.qmd
+        text: "Case study: South America"
       - href: maps.qmd
         text: Map
       - href: coverage.qmd

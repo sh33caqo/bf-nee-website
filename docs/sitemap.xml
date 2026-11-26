@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://sh33caqo.github.io/bf-nee-website/regressions.html</loc>
+    <loc>https://sh33caqo.github.io/bf-nee-website/southamerica.html</loc>
+    <lastmod>2026-11-26T10:49:29.735Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sh33caqo.github.io/bf-nee-website/method.html</loc>
+    <lastmod>2026-11-24T11:18:53.477Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sh33caqo.github.io/bf-nee-website/landuse.html</loc>
     <lastmod>2026-11-24T10:17:57.695Z</lastmod>
   </url>
   <url>
-    <loc>https://sh33caqo.github.io/bf-nee-website/maps.html</loc>
-    <lastmod>2026-11-24T10:17:57.695Z</lastmod>
+    <loc>https://sh33caqo.github.io/bf-nee-website/global.html</loc>
+    <lastmod>2026-11-24T11:18:53.478Z</lastmod>
   </url>
   <url>
-    <loc>https://sh33caqo.github.io/bf-nee-website/index.html</loc>
-    <lastmod>2026-11-24T10:17:57.695Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sh33caqo.github.io/bf-nee-website/ecosystems.html</loc>
-    <lastmod>2026-11-24T10:17:57.695Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sh33caqo.github.io/bf-nee-website/countries.html</loc>
+    <loc>https://sh33caqo.github.io/bf-nee-website/coverage.html</loc>
     <lastmod>2026-11-24T10:17:57.642Z</lastmod>
   </url>
   <url>
@@ -25,19 +25,23 @@
     <lastmod>2026-11-24T10:45:17.565Z</lastmod>
   </url>
   <url>
-    <loc>https://sh33caqo.github.io/bf-nee-website/coverage.html</loc>
+    <loc>https://sh33caqo.github.io/bf-nee-website/countries.html</loc>
     <lastmod>2026-11-24T10:17:57.642Z</lastmod>
   </url>
   <url>
-    <loc>https://sh33caqo.github.io/bf-nee-website/global.html</loc>
+    <loc>https://sh33caqo.github.io/bf-nee-website/ecosystems.html</loc>
     <lastmod>2026-11-24T10:17:57.695Z</lastmod>
   </url>
   <url>
-    <loc>https://sh33caqo.github.io/bf-nee-website/landuse.html</loc>
+    <loc>https://sh33caqo.github.io/bf-nee-website/index.html</loc>
+    <lastmod>2026-11-26T10:49:29.735Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sh33caqo.github.io/bf-nee-website/maps.html</loc>
     <lastmod>2026-11-24T10:17:57.695Z</lastmod>
   </url>
   <url>
-    <loc>https://sh33caqo.github.io/bf-nee-website/method.html</loc>
-    <lastmod>2026-11-24T10:45:17.562Z</lastmod>
+    <loc>https://sh33caqo.github.io/bf-nee-website/regressions.html</loc>
+    <lastmod>2026-11-24T10:17:57.695Z</lastmod>
   </url>
 </urlset>
